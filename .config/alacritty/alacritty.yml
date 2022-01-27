@@ -1,0 +1,35 @@
+import:
+ - dracula.yml  # There are other themes in that folder
+
+font:
+  # The normal (roman) font face to use.
+  normal:
+    family: MesloLGSDZ Nerd Font Mono # should be "Menlo" or something on macOS.
+    # Style can be specified to pick a specific face.
+    style: Regular
+
+  # The bold font face
+  bold:
+    family: MesloLGSDZ Nerd Font Mono # should be "Menlo" or something on macOS.
+    # Style can be specified to pick a specific face.
+    style: Bold
+
+  # The italic font face
+  italic:
+    family: MesloLGSDZ Nerd Font Mono # should be "Menlo" or something on macOS.
+    # Style can be specified to pick a specific face.
+    style: Italic
+
+  size: 10
+
+draw_bold_text_with_bright_colors: true
+
+env:
+  TERM: alacritty
+
+window:
+  opacity: 1.0
+  decorations: "None"
+  padding:
+    x: 10
+    y: 10
