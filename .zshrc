@@ -35,6 +35,7 @@ alias cl='rm -fr build'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias gitc='/usr/bin/git --git-dir=$HOME/.DotfilesAndStuffV2/ --work-tree=$HOME'
 
 ### Various exports
 #export GO111MODULE=on
