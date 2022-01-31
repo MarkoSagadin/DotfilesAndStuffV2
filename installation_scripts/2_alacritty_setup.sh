@@ -46,7 +46,13 @@ sudo apt remove nautilus-extension-gnome-terminal
 
 # Add Open in Alacritty option
 cd $PROGRAMS_PATH
+## FOR MANJARO
+yay -S nautilus-open-any-terminal
+## ONLY FOR UBUNTU
+install python3-nautilus
 pip install nautilus-open-any-terminal
+
+#THIS is COMMON
 nautilus -q
 glib-compile-schemas ~/.local/share/glib-2.0/schemas/
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
