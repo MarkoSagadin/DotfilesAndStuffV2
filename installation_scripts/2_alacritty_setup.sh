@@ -30,7 +30,7 @@ git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 cd $PROGRAMS_PATH
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip
-cp $PROGRAMS_PATH/Meslo/*.ttf ~/.local/share/fonts/
+cp $PROGRAMS_PATH/*.ttf ~/.local/share/fonts/
 fc-cache -fv
 rm Meslo.zip
 rm Meslo
