@@ -1,5 +1,5 @@
 import:
- - dracula.yml  # There are other themes in that folder
+ - ~/.config/alacritty/dracula.yml  # There are other themes in that folder
 
 font:
   # The normal (roman) font face to use.
