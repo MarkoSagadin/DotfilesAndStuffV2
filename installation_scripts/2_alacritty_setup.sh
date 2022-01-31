@@ -37,8 +37,12 @@ fc-cache -fv
 rm Meslo.zip
 
 # Configure context menu in nautilus
-# Remove Open in Terminal option
-sudo mv -vi /usr/lib/nautilus/extensions-3.0/libterminal-nautilus.so{,.bak}
+# Remove Open in Terminal option, this should be changed for manjaro!!!!!!!
+sudo apt remove nautilus-extension-gnome-terminal
+
+#Below is another way
+#sudo mv -vi /usr/lib/x86_64-linux-gnu/nautilus/extensions-3.0/libterminal-nautilus.so{,.bak}
+
 
 # Add Open in Alacritty option
 cd $PROGRAMS_PATH
