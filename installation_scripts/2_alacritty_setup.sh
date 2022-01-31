@@ -22,9 +22,7 @@ sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
 sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
 sudo desktop-file-install extra/linux/Alacritty.desktop
 sudo update-desktop-database
-
-# Test this later, not sure if it is needed
-# sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 
 # Install pure prompt theme, it is expected on a specific path by .zshrc
 git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
