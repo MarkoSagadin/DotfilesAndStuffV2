@@ -51,3 +51,4 @@ nautilus -q
 
 # Bye bye bash, hello zsh
 chsh -s $(which zsh)
+echo "Alacritty is ready! Close this terminal window and open new one with Alacritty."
