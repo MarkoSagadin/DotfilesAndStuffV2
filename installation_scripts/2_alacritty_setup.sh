@@ -9,6 +9,9 @@ check_programs_path
 # Alacrity, fairly recent Rust compiler is warmly suggested
 install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
 
+# Cargo was probably installed in the same session, source it to activate it
+source $HOME/.cargo/env
+
 cd $PROGRAMS_PATH
 git clone https://github.com/alacritty/alacritty.git
 cd alacritty
