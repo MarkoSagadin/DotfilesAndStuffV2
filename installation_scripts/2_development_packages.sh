@@ -23,6 +23,8 @@ cd ctags
 ./configure #--prefix=/where/you/want # defaults to /usr/local
 make -j16
 sudo make install # may require extra privileges depending on where to install
+cd ..
+rm ctags
 
 # Install tmux plugin manager and install all plugins, this file should kept
 # out of git.
@@ -32,6 +34,7 @@ bash .tmux/plugins/tpm/tpm
 bash .tmux/plugins/tpm/scripts/install_plugins.sh
 
 # Neovim tooling - linters, formatters
+pip instalk pynvim
 
 # Bash formatter, this will need latest golang on Ubuntu
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
@@ -52,7 +55,7 @@ pip install cmakelang
 sudo npm install -g fixjson
 
 # Tree sitter
-cargo install tree-sitter
+cargo install tree-sitter-cli
 
 # Only for Ubuntu
 if [ "$DISTRO" = "UBUNTU" ]; then
@@ -61,13 +64,23 @@ if [ "$DISTRO" = "UBUNTU" ]; then
 	# Rip grep
 	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
 	sudo dpkg -i ripgrep_13.0.0_amd64.deb
+	rm ripgrep_13.0.0_amd64.deb
+
 	# Fd
 	wget https://github.com/sharkdp/fd/releases/download/v8.3.1/fd_8.3.1_amd64.deb
 	sudo dpkg -i fd_8.3.1_amd64.deb
+	rm fd_8.3.1_amd64.deb
 
 	# Clangformat, there was no way to just get it alone without whole
 	# clang tooling, plus I had to do symlinks. Not so happy about this.
 	wget https://apt.llvm.org/llvm.sh
 	chmod +x llvm.sh
 	sudo ./llvm.sh 13 all # Install all packages, version 13
+	sudo ln -s /usr/bin/clang-format-13 /usr/bin/clang-format
+	rm llvm.sh
+
+	# Fix for stupid markdown thing
+	sudo npm install -g tslib
+	sudo npm install -g yarn
+	sudo yarn add tslib
 fi

@@ -40,7 +40,7 @@ rm Meslo.zip
 
 # Configure context menu in nautilus
 # Remove Open in Terminal option, this should be changed for manjaro!!!!!!!
-sudo apt remove nautilus-extension-gnome-terminal
+sudo apt purge nautilus-extension-gnome-terminal -y
 
 #Below is another way
 #sudo mv -vi /usr/lib/x86_64-linux-gnu/nautilus/extensions-3.0/libterminal-nautilus.so{,.bak}
@@ -63,4 +63,4 @@ nautilus -q
 
 # Bye bye bash, hello zsh
 chsh -s $(which zsh)
-echo "Alacritty is ready! Close this terminal window and open new one with Alacritty."
+echo "Alacritty is ready! Logout and log back in."

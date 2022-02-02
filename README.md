@@ -28,7 +28,6 @@ To setup on a new machine, run from `$HOME`:
 
 ```bash
 alias gitc='/usr/bin/git --git-dir=$HOME/.DotfilesAndStuffV2/ --work-tree=$HOME'
-echo ".DotfilesAndStuffV2" >> .gitignore
 git clone --bare https://github.com/MarkoSagadin/DotfilesAndStuffV2.git $HOME/.DotfilesAndStuffV2
 ```
 

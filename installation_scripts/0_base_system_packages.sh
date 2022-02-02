@@ -6,38 +6,35 @@ check_distro
 #### Common section ####
 
 # Basics
-install curl
-install git
-install tmux
-install xclip
-install tree
-install make
-install cmake
-install gcc-multilib
-install gcc
-install g++
-install unzip
-install bash
-install wget
-install openocd
-install gdb
-install minicom
-install picocom
-install python3
-install neofetch
-install bison
-install htop
-install ccache
-install dfu-util
-install zathura
-install yarn
-install xdotool
-install gperf
-install file
-
-# Fun stuff
-install figlet
-install lolcat
+install curl \
+	git \
+	tmux \
+	xclip \
+	tree \
+	make \
+	cmake \
+	gcc-multilib \
+	gcc \
+	g++ \
+	unzip \
+	bash \
+	wget \
+	openocd \
+	gdb \
+	minicom \
+	picocom \
+	python3 \
+	neofetch \
+	bison \
+	htop \
+	ccache \
+	dfu-util \
+	zathura \
+	xdotool \
+	gperf \
+	file \
+	figlet \
+	lolcat
 
 #### System specific section ####
 if [ "$DISTRO" = "MANJARO" ]; then
@@ -68,29 +65,28 @@ if [ "$DISTRO" = "MANJARO" ]; then
 
 	figlet "AWW YEAH, DONE!" | lolcat
 else
-	install software-properties-common
-	install lsb-release
-	install vim-gtk # gtk version, so we can paste nicely to system cliboard
-	install python3-pip
-	install dconf-editor
-	install dconf-cli
-	install uuid-runtime
-	# Latex
-	install latexmk
-	install texlive-latex-extra
-	install texlive-science
-	# Zephyr stuff
-	install ninja-build
-	install python3-setuptools
-	install python3-wheel
-	install xz-utils
-	# Lua stuff
-	install lua5.3
-	install luarocks
+	install software-properties-common \
+		lsb-release \
+		vim-gtk \
+		python3-pip \
+		dconf-editor \
+		dconf-cli \
+		uuid-runtime \
+		latexmk \
+		texlive-latex-extra \
+		texlive-science \
+		ninja-build \
+		python3-setuptools \
+		python3-wheel \
+		xz-utils \
+		lua5.1 \
+		luarocks
 
 	# Install a recent golang, cause apt version is veeery old
 	wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
-	rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz
+	sudo rm -rf /usr/local/go
+	sudo tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz
+	rm go1.17.6.linux-amd64.tar.gz
 
 	# Same here, npm will also get installed
 	curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
