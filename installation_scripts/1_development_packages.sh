@@ -5,31 +5,31 @@ check_distro
 check_programs_path
 
 # # Install dependencies common to all packages
-# install ninja-build gettext libtool libtool-bin doxygen pkg-config autoconf automake
-#
+install ninja-build gettext libtool libtool-bin doxygen pkg-config autoconf automake
+
 # # Install Neovim
-# cd $PROGRAMS_PATH
-# git clone https://github.com/neovim/neovim
-# cd neovim && make
-# git checkout stable
-# make -j16 CMAKE_BUILD_TYPE=RelWithDebInfo # Could also be set to Release
-# sudo make install
-#
-# # Install Ctags
-# cd $PROGRAMS_PATH
-# git clone https://github.com/universal-ctags/ctags.git
-# cd ctags
-# ./autogen.sh
-# ./configure #--prefix=/where/you/want # defaults to /usr/local
-# make -j16
-# sudo make install # may require extra privileges depending on where to install
-#
-# # Install tmux plugin manager and install all plugins, this file should kept
-# # out of git.
-# cd $HOME
-# git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
-# bash .tmux/plugins/tpm/tpm
-# bash .tmux/plugins/tpm/scripts/install_plugins.sh
+cd $PROGRAMS_PATH
+git clone https://github.com/neovim/neovim
+cd neovim && make
+git checkout stable
+make -j16 CMAKE_BUILD_TYPE=RelWithDebInfo # Could also be set to Release
+sudo make install
+
+# Install Ctags
+cd $PROGRAMS_PATH
+git clone https://github.com/universal-ctags/ctags.git
+cd ctags
+./autogen.sh
+./configure #--prefix=/where/you/want # defaults to /usr/local
+make -j16
+sudo make install # may require extra privileges depending on where to install
+
+# Install tmux plugin manager and install all plugins, this file should kept
+# out of git.
+cd $HOME
+git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
+bash .tmux/plugins/tpm/tpm
+bash .tmux/plugins/tpm/scripts/install_plugins.sh
 
 # Neovim tooling - linters, formatters
 
@@ -55,7 +55,6 @@ sudo npm install -g fixjson
 cargo install tree-sitter
 
 # Only for Ubuntu
-
 if [ "$DISTRO" = "UBUNTU" ]; then
 	cd $PROGRAMS_PATH
 
@@ -72,7 +71,3 @@ if [ "$DISTRO" = "UBUNTU" ]; then
 	chmod +x llvm.sh
 	sudo ./llvm.sh 13 all # Install all packages, version 13
 fi
-
-# if [ "$DISTRO" = "UBUNTU" ]; then
-
-# fi

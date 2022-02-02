@@ -4,6 +4,8 @@
 check_distro
 check_programs_path
 
+install zsh
+
 # Ubuntu specific
 
 # Alacrity, fairly recent Rust compiler is warmly suggested
@@ -42,7 +44,6 @@ sudo apt remove nautilus-extension-gnome-terminal
 
 #Below is another way
 #sudo mv -vi /usr/lib/x86_64-linux-gnu/nautilus/extensions-3.0/libterminal-nautilus.so{,.bak}
-
 
 # Add Open in Alacritty option
 cd $PROGRAMS_PATH
