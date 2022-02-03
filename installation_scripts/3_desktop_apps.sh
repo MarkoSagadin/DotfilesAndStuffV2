@@ -16,6 +16,7 @@ install spotify-client
 # otii
 wget https://www.qoitech.com/downloads/otii_2.8.3.deb
 sudo dpkg -i otii_2.8.3.deb
+rm otii_2.8.3.deb
 
 # nrf desktop
 wget https://www.nordicsemi.com/-/media/Software-and-other-downloads/Desktop-software/nRF-Connect-for-Desktop/3-9-3/nrfconnect-3.9.3-x86_64.AppImage
