@@ -28,8 +28,17 @@ env:
   TERM: alacritty
 
 window:
-  opacity: 1.0
+  #opacity: 0.625
   decorations: "None"
   padding:
     x: 10
     y: 10
+  dynamic_padding: true
+  dynamic_title: true
+
+mouse:
+  hide_when_typing: true
+selection:
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
+

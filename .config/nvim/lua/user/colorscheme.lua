@@ -1,6 +1,6 @@
 -- require("colorbuddy").colorscheme("snazzybuddy")
 
-local colorscheme = "gruvbox"
+local colorscheme = "dracula"
 
 -- Uncomment below line, when using gruvbox to specify which gruvbox theme you
 -- want

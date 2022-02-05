@@ -19,5 +19,5 @@ require("user.plugins.autopairs")
 require("user.plugins.todo-comments")
 
 require("transparent").setup({
-	enable = false, -- boolean: enable transparent
+	enable = true, -- boolean: enable transparent
 })

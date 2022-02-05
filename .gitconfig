@@ -1,0 +1,17 @@
+[user]
+	email = marko.sagadin42@gmail.com
+	name = MarkoSagadin
+	mail = marko.sagadin42@gmail.com
+[credential]
+	helper = store
+[alias]
+    plog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    plog2 = "log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    commmit = commit
+    st = status
+    co = checkout
+[core]
+	autocrlf = input
+	editor = nvim
+[color]
+	ui = auto
