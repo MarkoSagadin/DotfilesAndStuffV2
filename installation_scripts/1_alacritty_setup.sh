@@ -33,10 +33,30 @@ git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 cd $PROGRAMS_PATH
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip
-mkdir -p ~/.local/share/fonts/
-mv $PROGRAMS_PATH/*.ttf ~/.local/share/fonts/
-fc-cache -fv
+mkdir -p ~/.fonts
+mv $PROGRAMS_PATH/*.ttf ~/fonts
 rm Meslo.zip
+
+# Install SFMono font
+cd $PROGRAMS_PATH
+git clone https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized.git
+cd SFMono-Nerd-Font-Ligaturized
+mkdir -p ~/.fonts
+mv *.otf ~/.fonts
+cd ..
+rm -fr SFMono-Nerd-Font-Ligaturized
+
+# Material design icons
+cd $PROGRAMS_PATH
+git clone https://github.com/Templarian/MaterialDesign-Font.git
+cd MaterialDesign-Font
+mkdir -p ~/.fonts
+cp *.ttf ~/.fonts
+cd ..
+rm -fr MaterialDesign-Font
+
+# Update new fonts
+fc-cache -fv
 
 # Configure context menu in nautilus
 # Remove Open in Terminal option, this should be changed for manjaro!!!!!!!

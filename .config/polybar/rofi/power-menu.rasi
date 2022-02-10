@@ -1,0 +1,42 @@
+@import "colors.rasi"
+
+window {
+    background-color:   @bg0;
+
+    location:       north east;
+    width:          225;
+    y-offset:       30;
+}
+
+mainbox {
+  children: [listview];
+}
+
+listview {
+    lines:      5;
+    columns:    1;
+}
+
+element {
+    padding:            5px 0px 5px 0px;
+    spacing:            0px;
+    background-color:   @bg0;
+    font:               @font;
+}
+
+element normal active {
+    text-color: @bg2;
+}
+
+element selected normal, element selected active {
+    background-color:   @bg2;
+    text-color:         @fg1;
+}
+
+element-icon {
+    size:   1em;
+}
+
+element-text {
+    text-color: inherit;
+}

@@ -28,7 +28,7 @@ env:
   TERM: alacritty
 
 window:
-  #opacity: 0.625
+  opacity: 0.80
   decorations: "None"
   padding:
     x: 10

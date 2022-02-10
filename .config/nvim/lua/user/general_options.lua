@@ -46,6 +46,7 @@ vim.cmd([[set tags+=$ZEPHYR_BASE/tags]])
 
 -- Autocommands
 vim.cmd([[
+au BufNewFile,BufRead /*.rasi setf css
 augroup open_help_vertical
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif

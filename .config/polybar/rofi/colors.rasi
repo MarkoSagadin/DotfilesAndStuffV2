@@ -1,0 +1,20 @@
+/* colors */
+* {
+    font:   "LigaSFMono Nerd Font Regular 14";
+
+    bg0:     #FFFFFF68;
+    bg1:     #7E7E7E80;
+    bg2:     #0860F2E6;
+
+    fg0:     #000000;
+    fg1:     #FFFFFF;
+    fg2:     #24242480;
+
+    background-color:   transparent;
+    text-color:         @fg0;
+
+    margin:     0;
+    padding:    0;
+    spacing:    0;
+}
+
