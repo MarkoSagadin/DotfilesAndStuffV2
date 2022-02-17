@@ -1,0 +1,64 @@
+@import "colors.rasi"
+
+window {
+    transparency:                   "real";
+    location:                       center;
+	width:							425px;
+	height:							260px;
+}
+
+mainbox {
+    background-color:               @bg0;
+    children:                       [ inputbar, listview ];
+    spacing:                        12px;
+}
+
+prompt {
+    enabled: 						true;
+    padding:                        10px 0px 10px 130px;
+}
+
+inputbar {
+	children: 						[ prompt ];
+    background-color:               @bg0;
+    text-color:                     @fg0;
+    margin:                         0px 0px 0px 0px;
+    position:                       center;
+}
+
+listview {
+    spacing:                        20px;
+    cycle:                          false;
+    dynamic:                        true;
+    layout:                         horizontal;
+    padding:                        10px 0px 10px 20px;
+}
+
+
+element {
+    text-color:                     @fg0;
+    border-radius:                  30px;
+}
+
+element-text {
+    expand:                         true;
+    padding:                         35px 70px 120px 25px;
+    font: @font-big;
+}
+
+element normal active {
+    text-color: @bg2;
+}
+
+element selected normal, element selected active {
+    background-color:   @bg2;
+    text-color:         @fg1;
+}
+
+element-icon {
+    size:   1em;
+}
+
+element-text {
+    text-color: inherit;
+}
