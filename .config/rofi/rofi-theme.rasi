@@ -2,7 +2,7 @@
 configuration {
 	font:							"LigaSFMono Nerd Font Regular 12";
     show-icons:                     true;
-	icon-theme: 					"Papirus";
+	icon-theme: 					"WhiteSur";
     display-drun: 					"";
     drun-display-format:            "{name}";
     disable-history:                false;
@@ -75,7 +75,7 @@ textbox {
 }
 
 listview {
-    lines:      10;
+    lines:      6;
     columns:    1;
 
     fixed-height:   false;

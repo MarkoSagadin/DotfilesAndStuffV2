@@ -25,14 +25,6 @@ mkdir -p build && cd build
 make -j16
 sudo make install
 
-# git clone https://github.com/i3-gnome/i3-gnome.git
-# cd i3-gnome
-# sudo make install
-
-# install gnome-flashback
-# gsettings set org.gnome.gnome-flashback desktop false
-# gsettings set org.gnome.gnome-flashback root-background true
-
 # Picom
 cd $PROGRAMS_PATH
 install libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev \
@@ -123,6 +115,7 @@ sudo chmod +x setup.sh
 install playerctl
 install pavucontrol
 install jq
+install brightnessctl
 
 cd $PROGRAMS_PATH
 git clone https://github.com/noctuid/zscroll
@@ -130,3 +123,54 @@ cd zscroll
 sudo python3 setup.py install
 cd ..
 rm -fr zscroll
+
+install libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
+	libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev
+
+cd $PROGRAMS_PATH
+git clone https://github.com/dunst-project/dunst.git
+cd dunst
+make
+sudo make install
+cd ..
+rm -fr dunst
+
+install python3-pyqt5.qtwebengine
+
+cd $PROGRAMS_PATH
+git clone https://github.com/Antergos/whither.git
+cd whither
+sudo python3 setup.py install
+cd ..
+rm -fr whither
+
+install liblightdm-gobject-1-dev
+install python3-gi
+
+cd $PROGRAMS_PATH
+git clone https://github.com/Antergos/web-greeter.git
+cd web-greeter
+sudo make install
+cd ..
+rm -fr web-greeter
+
+cd $PROGRAMS_PATH
+wget https://github.com/Litarvan/lightdm-webkit-theme-litarvan/releases/download/v3.2.0/lightdm-webkit-theme-litarvan-3.2.0.tar.gz
+mkdir litarvan
+tar -xvzf lightdm-webkit-theme-litarvan-3.2.0.tar.gz -C litarvan
+sudo mv litarvan /usr/share/lightdm-webkit/themes/litarvan
+
+cd $PROGRAMS_PATH
+git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+cd WhiteSur-gtk-theme
+./install.sh -c dark -c light
+sudo ./tweaks.sh -g -b default
+cd ..
+rm -fr WhiteSur-gtk-theme
+
+cd $PROGRAMS_PATH
+git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+cd WhiteSur-icon-theme
+./install.sh
+cd ..
+rm -fr WhiteSur-icon-theme

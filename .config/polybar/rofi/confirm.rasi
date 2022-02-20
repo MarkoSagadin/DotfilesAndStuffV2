@@ -3,7 +3,7 @@
 window {
     transparency:                   "real";
     location:                       center;
-	width:							425px;
+	width:							415px;
 	height:							260px;
 }
 
@@ -42,7 +42,7 @@ element {
 
 element-text {
     expand:                         true;
-    padding:                         35px 70px 120px 25px;
+    padding:                         35px 70px 120px 50px;
     font: @font-big;
 }
 
