@@ -30,18 +30,18 @@ sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 
 # Install Meslo font and source it
+mkdir -p ~/.fonts
+
 cd $PROGRAMS_PATH
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip
-mkdir -p ~/.fonts
-mv $PROGRAMS_PATH/*.ttf ~/fonts
+mv *.ttf ~/.fonts
 rm Meslo.zip
 
 # Install SFMono font
 cd $PROGRAMS_PATH
 git clone https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized.git
 cd SFMono-Nerd-Font-Ligaturized
-mkdir -p ~/.fonts
 mv *.otf ~/.fonts
 cd ..
 rm -fr SFMono-Nerd-Font-Ligaturized
@@ -50,7 +50,6 @@ rm -fr SFMono-Nerd-Font-Ligaturized
 cd $PROGRAMS_PATH
 git clone https://github.com/Templarian/MaterialDesign-Font.git
 cd MaterialDesign-Font
-mkdir -p ~/.fonts
 cp *.ttf ~/.fonts
 cd ..
 rm -fr MaterialDesign-Font
