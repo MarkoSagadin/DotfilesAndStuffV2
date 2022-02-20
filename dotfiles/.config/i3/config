@@ -196,7 +196,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 # Touchpad fixes, enable tap and natural scrolling, for futue xinput command
 # tells you what touchpad you have
 
-exec_always --no-startup-id feh --no-fehbg --bg-scale ~/wallpapers/big-sur.jpg
+exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Programs/DotfilesAndStuffV2/wallpapers/big-sur.jpg
 
 # Media volume controls
 bindsym XF86AudioMute exec amixer -D pulse sset 'Master' toggle

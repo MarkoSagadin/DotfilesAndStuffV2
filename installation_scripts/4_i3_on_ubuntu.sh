@@ -146,8 +146,7 @@ wget https://github.com/Litarvan/lightdm-webkit-theme-litarvan/releases/download
 mkdir litarvan
 tar -xvzf lightdm-webkit-theme-litarvan-3.2.0.tar.gz -C litarvan
 rm lightdm-webkit-theme-litarvan-3.2.0.tar.gz
-sudo mkdir /usr/share/lightdm-webkit/themes/litarvan
-sudo mv litarvan /usr/share/lightdm-webkit/themes/litarvan
+sudo mv litarvan /usr/share/lightdm-webkit/themes
 
 cd $PROGRAMS_PATH
 git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
