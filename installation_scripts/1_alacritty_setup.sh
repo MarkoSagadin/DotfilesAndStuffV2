@@ -68,7 +68,7 @@ sudo apt purge nautilus-extension-gnome-terminal -y
 # Add Open in Alacritty option
 cd $PROGRAMS_PATH
 ## FOR MANJARO
-yay -S nautilus-open-any-terminal
+#yay -S nautilus-open-any-terminal
 ## ONLY FOR UBUNTU
 install python3-nautilus
 pip install nautilus-open-any-terminal
