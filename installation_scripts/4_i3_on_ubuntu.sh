@@ -106,12 +106,6 @@ sudo make install
 cd ../..
 rm -fr Clight
 
-cd $PROGRAMS_PATH
-git clone --depth=1 https://github.com/adi1090x/rofi.git
-cd rofi
-sudo chmod +x setup.sh
-./setup.sh
-
 install playerctl
 install pavucontrol
 install jq
@@ -135,30 +129,18 @@ sudo make install
 cd ..
 rm -fr dunst
 
-install python3-pyqt5.qtwebengine
+install python3-pyqt5.qtwebengine lightdm liblightdm-gobject-1-dev python3-gi
 
 cd $PROGRAMS_PATH
-git clone https://github.com/Antergos/whither.git
-cd whither
-sudo python3 setup.py install
-cd ..
-rm -fr whither
-
-install lightdm
-install liblightdm-gobject-1-dev
-install python3-gi
-
-cd $PROGRAMS_PATH
-git clone https://github.com/Antergos/web-greeter.git
-cd web-greeter
-sudo make install
-cd ..
-rm -fr web-greeter
+wget https://download.opensuse.org/repositories/home:/antergos/xUbuntu_17.10/amd64/lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
+dpkg -i lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
+rm lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
 
 cd $PROGRAMS_PATH
 wget https://github.com/Litarvan/lightdm-webkit-theme-litarvan/releases/download/v3.2.0/lightdm-webkit-theme-litarvan-3.2.0.tar.gz
 mkdir litarvan
 tar -xvzf lightdm-webkit-theme-litarvan-3.2.0.tar.gz -C litarvan
+sudo mkdir /usr/share/lightdm-webkit/themes/litarvan
 sudo mv litarvan /usr/share/lightdm-webkit/themes/litarvan
 
 cd $PROGRAMS_PATH
