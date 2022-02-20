@@ -20,6 +20,7 @@ install i3-gaps
 
 git clone https://www.github.com/resloved/i3 i3-gaps-rounded
 cd i3-gaps-rounded
+autoconf -fi
 mkdir -p build && cd build
 ../configure
 make -j16
