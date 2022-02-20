@@ -28,9 +28,11 @@ sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 
 # Install pure prompt theme, it is expected on a specific path by .zshrc
 mkdir -p ~/.zsh/pure
-git clone https://github.com/sindresorhus/pure.git "~/.zsh/pure"
+mkdir -p ~/.zsh/antigen
+git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
+curl -L git.io/antigen >~/.zsh/antigen/antigen.zsh
 
-# Install Meslo font and source it
+# Install various fonts
 mkdir -p ~/.fonts
 
 cd $PROGRAMS_PATH
