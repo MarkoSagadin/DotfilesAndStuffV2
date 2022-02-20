@@ -23,14 +23,26 @@ function linkDotfile {
 	fi
 
 	echo "Creating new symlink: ${dest}"
-	ln -s ${dotfilesDir}/${2} ${dest}
+	sudo ln -s ${dotfilesDir}/${2} ${dest}
 }
 
 # Create symlink for a file/folder on a right in the folder on the left
-linkDotfile /home/$USER .config
+linkDotfile /home/$USER .config/alacritty
+linkDotfile /home/$USER .config/dunst
+linkDotfile /home/$USER .config/gtk-3.0
+linkDotfile /home/$USER .config/i3
+linkDotfile /home/$USER .config/nvim
+linkDotfile /home/$USER .config/picom
+linkDotfile /home/$USER .config/polybar
+linkDotfile /home/$USER .config/rofi
 linkDotfile /home/$USER .ssh
 linkDotfile /home/$USER .zsh
 linkDotfile /home/$USER .gitconfig
 linkDotfile /home/$USER .tmux.conf
 linkDotfile /home/$USER .vimrc
 linkDotfile /home/$USER .zshrc
+
+# Various configuration files
+linkDotfile /etc/lightdm lightdm.conf
+linkDotfile /etc/lightdm lightdm-webkit2-greeter.conf
+linkDotfile /usr/share/X11/xorg.conf.d 70-touchpad.conf

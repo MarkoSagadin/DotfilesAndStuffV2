@@ -144,6 +144,7 @@ cd $PROGRAMS_PATH
 wget https://github.com/Litarvan/lightdm-webkit-theme-litarvan/releases/download/v3.2.0/lightdm-webkit-theme-litarvan-3.2.0.tar.gz
 mkdir litarvan
 tar -xvzf lightdm-webkit-theme-litarvan-3.2.0.tar.gz -C litarvan
+rm lightdm-webkit-theme-litarvan-3.2.0.tar.gz
 sudo mkdir /usr/share/lightdm-webkit/themes/litarvan
 sudo mv litarvan /usr/share/lightdm-webkit/themes/litarvan
 
