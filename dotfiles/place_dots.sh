@@ -9,22 +9,25 @@ function linkDotfile {
 	if [ -h ~/${2} ]; then
 		# Existing symlink
 		echo "Removing existing symlink: ${dest}"
-		rm ${dest}
+		sudo rm ${dest}
 
 	elif [ -f "${dest}" ]; then
 		# Existing file
 		echo "Backing up existing file: ${dest}"
-		mv ${dest}{,.${dateStr}}
+		sudo mv ${dest}{,.${dateStr}}
 
 	elif [ -d "${dest}" ]; then
 		# Existing dir
 		echo "Backing up existing dir: ${dest}"
-		mv ${dest}{,.${dateStr}}
+		sudo mv ${dest}{,.${dateStr}}
 	fi
 
 	echo "Creating new symlink: ${dest}"
 	sudo ln -s ${dotfilesDir}/${2} ${dest}
 }
+
+# Create config folder if it does not exists, below symlinks fail otherwise
+mkdir -p ~/.config
 
 # Create symlink for a file/folder on a right in the folder on the left
 linkDotfile /home/$USER .config/alacritty
