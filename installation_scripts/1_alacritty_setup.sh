@@ -27,7 +27,8 @@ sudo update-desktop-database
 sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 
 # Install pure prompt theme, it is expected on a specific path by .zshrc
-git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+mkdir -p ~/.zsh/pure
+git clone https://github.com/sindresorhus/pure.git "~/.zsh/pure"
 
 # Install Meslo font and source it
 mkdir -p ~/.fonts
