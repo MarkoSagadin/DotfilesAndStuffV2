@@ -39,7 +39,6 @@ linkDotfile /home/$USER .config/picom
 linkDotfile /home/$USER .config/polybar
 linkDotfile /home/$USER .config/rofi
 linkDotfile /home/$USER .ssh
-linkDotfile /home/$USER .zsh
 linkDotfile /home/$USER .gitconfig
 linkDotfile /home/$USER .tmux.conf
 linkDotfile /home/$USER .vimrc
