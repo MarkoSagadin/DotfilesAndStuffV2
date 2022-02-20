@@ -24,6 +24,8 @@ mkdir -p build && cd build
 ../configure
 make -j16
 sudo make install
+cd ..
+rm -fr i3-gaps-rounded
 
 # Picom
 cd $PROGRAMS_PATH
@@ -40,6 +42,8 @@ git submodule update --init --recursive
 meson --buildtype=release . build
 ninja -C build
 ninja -C build install
+cd ..
+rm -fr picom
 
 install build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libuv1-dev libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
 
@@ -53,11 +57,11 @@ mkdir build
 cd build
 cmake ..
 make -j$(nproc)
-# Optional. This will install the polybar executable in /usr/local/bin
 sudo make install
+cd ..
+rm -fr polybar
 
-install rofi
-install feh
+install rofi feh
 
 cd $PROGRAMS_PATH
 git clone https://github.com/FedeDP/libmodule.git
@@ -133,7 +137,7 @@ install python3-pyqt5.qtwebengine lightdm liblightdm-gobject-1-dev python3-gi
 
 cd $PROGRAMS_PATH
 wget https://download.opensuse.org/repositories/home:/antergos/xUbuntu_17.10/amd64/lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
-dpkg -i lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
+sudo dpkg -i lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
 rm lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
 
 cd $PROGRAMS_PATH

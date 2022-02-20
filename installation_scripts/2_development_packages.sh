@@ -24,7 +24,7 @@ cd ctags
 make -j16
 sudo make install # may require extra privileges depending on where to install
 cd ..
-rm ctags
+rm -fr ctags
 
 # Install tmux plugin manager and install all plugins, this file should kept
 # out of git.
@@ -34,7 +34,7 @@ bash .tmux/plugins/tpm/tpm
 bash .tmux/plugins/tpm/scripts/install_plugins.sh
 
 # Neovim tooling - linters, formatters
-pip instalk pynvim
+pip install pynvim
 
 # Bash formatter, this will need latest golang on Ubuntu
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
