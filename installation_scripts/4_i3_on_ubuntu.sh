@@ -144,6 +144,7 @@ sudo python3 setup.py install
 cd ..
 rm -fr whither
 
+install lightdm
 install liblightdm-gobject-1-dev
 install python3-gi
 
