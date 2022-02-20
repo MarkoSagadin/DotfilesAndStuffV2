@@ -36,6 +36,13 @@ install curl \
 	figlet \
 	lolcat
 
+# Install Git Large File storage
+wget https://github.com/git-lfs/git-lfs/releases/download/v3.1.2/git-lfs-linux-amd64-v3.1.2.tar.gz
+mkdir tmp
+tar -xvf git-lfs-linux-amd64-v3.1.2.tar.gz -C tmp
+sudo bash tmp/install.sh
+rm -fr tmp
+
 #### System specific section ####
 if [ "$DISTRO" = "MANJARO" ]; then
 	# Manjaro Linux specific packages, some of them are named differently as on Ubuntu
@@ -62,8 +69,6 @@ if [ "$DISTRO" = "MANJARO" ]; then
 	install luarocks
 	install nodejs
 	install npm
-
-	figlet "AWW YEAH, DONE!" | lolcat
 else
 	install software-properties-common \
 		lsb-release \
@@ -94,6 +99,6 @@ else
 
 	# Ubuntu is a stable distro, bla bla bla
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
-	figlet "AWW YEAH, DONE!" | /usr/games/lolcat
 fi
+
+figlet "AWW YEAH, DONE!" | lolcat

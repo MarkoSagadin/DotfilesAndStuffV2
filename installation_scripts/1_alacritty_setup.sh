@@ -83,4 +83,5 @@ nautilus -q
 
 # Bye bye bash, hello zsh
 chsh -s $(which zsh)
-echo "Alacritty is ready! Logout and log back in."
+figlet "Done\!" | lolcat
+figlet "Logout and log back in." | lolcat

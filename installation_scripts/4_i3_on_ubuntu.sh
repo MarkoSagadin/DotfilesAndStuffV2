@@ -34,7 +34,7 @@ install libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev \
 	libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libpcre3-dev \
 	libevdev-dev uthash-dev libev-dev libx11-xcb-dev
 
-git clone https://github.com/yshui/picom.git
+git clone https://github.com/yshui/picom
 cd picom
 git submodule update --init --recursive
 meson --buildtype=release . build
@@ -174,3 +174,5 @@ cd WhiteSur-icon-theme
 ./install.sh
 cd ..
 rm -fr WhiteSur-icon-theme
+
+install policykit-desktop-privileges policykit-1-gnome

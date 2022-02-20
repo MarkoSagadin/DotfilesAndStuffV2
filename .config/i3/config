@@ -181,8 +181,13 @@ exec_always picom --config .config/picom/picom.conf --experimental-backends
 # Start polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
+# Start polkit for password popup windows
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
 # Switch between us and si layout with win + space
 exec_always --no-startup-id setxkbmap -layout us,si -option -option grp:win_space_toggle
+
+
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
@@ -190,8 +195,6 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 # Touchpad fixes, enable tap and natural scrolling, for futue xinput command
 # tells you what touchpad you have
-# exec_always xinput set-prop "SYNA32A5:00 06CB:CE17 Touchpad" "libinput Tapping Enabled" 1
-# exec_always xinput set-prop "SYNA32A5:00 06CB:CE17 Touchpad" "libinput Natural Scrolling Enabled" 1
 
 exec_always --no-startup-id feh --no-fehbg --bg-scale ~/wallpapers/big-sur.jpg
 
