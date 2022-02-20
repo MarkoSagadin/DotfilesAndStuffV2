@@ -28,10 +28,8 @@ rm -fr ctags
 
 # Install tmux plugin manager and install all plugins, this file should kept
 # out of git.
-cd $HOME
-git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
-bash .tmux/plugins/tpm/tpm
-bash .tmux/plugins/tpm/scripts/install_plugins.sh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+bash ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 # Neovim tooling - linters, formatters
 pip install pynvim
