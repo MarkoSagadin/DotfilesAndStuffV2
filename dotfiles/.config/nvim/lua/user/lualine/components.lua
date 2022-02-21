@@ -150,7 +150,7 @@ return {
 			if size == 0 then
 				size = vim.api.nvim_buf_get_option(0, "tabstop")
 			end
-			return "⯀ " .. size
+			return "ﱢ " .. size
 		end,
 		cond = nil,
 		color = {},

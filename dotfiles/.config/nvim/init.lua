@@ -16,7 +16,3 @@ require("user.plugins.telescope")
 require("user.plugins.tmux")
 require("user.plugins.trim")
 require("user.plugins.autopairs")
-
-require("transparent").setup({
-	enable = true, -- boolean: enable transparent
-})

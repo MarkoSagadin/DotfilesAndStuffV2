@@ -8,7 +8,7 @@ return {
 		offsetEncoding = { "utf-16" },
 	},
 	cmd = {
-		"/home/marko/.local/share/nvim/lsp_servers/clangd/clangd/bin/clangd",
+		"clangd",
 		"--background-index",
 		"-j=8",
 		"--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++,/home/marko/miniconda3/bin/arm-none-eabi-gcc",
