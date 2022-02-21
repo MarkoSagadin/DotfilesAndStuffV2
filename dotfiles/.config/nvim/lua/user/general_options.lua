@@ -52,5 +52,3 @@ augroup open_help_vertical
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
 ]])
-
-vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])

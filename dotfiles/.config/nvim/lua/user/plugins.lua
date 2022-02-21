@@ -54,11 +54,14 @@ return require("packer").startup(function(use)
 	use("cappyzawa/trim.nvim")
 	use("svermeulen/vim-subversive")
 	use("kyazdani42/nvim-web-devicons")
-	use("terrortylor/nvim-comment")
 	use("windwp/nvim-autopairs")
-	use("folke/todo-comments.nvim")
 	use("ThePrimeagen/harpoon")
 	use("xiyaowong/nvim-transparent")
+
+	-- Some commenting plugins
+	use("terrortylor/nvim-comment")
+	use("folke/todo-comments.nvim")
+	use("danymat/neogen")
 
 	-- Lazy load this one so it loads only on MarkdownPreview
 	use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" })
