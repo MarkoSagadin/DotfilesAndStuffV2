@@ -8,15 +8,14 @@ require("user.lsp")
 require("user.cmp")
 require("user.snippets")
 require("user.lualine")
+require("user.comments")
 require("user.plugins.nvim-tree")
 require("user.plugins.neoscroll")
 require("user.plugins.gitsigns")
 require("user.plugins.telescope")
 require("user.plugins.tmux")
 require("user.plugins.trim")
-require("user.plugins.nvim-comment")
 require("user.plugins.autopairs")
-require("user.plugins.todo-comments")
 
 require("transparent").setup({
 	enable = true, -- boolean: enable transparent

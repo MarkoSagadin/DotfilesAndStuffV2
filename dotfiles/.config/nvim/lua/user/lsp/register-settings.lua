@@ -3,45 +3,37 @@ if not status_ok then
 	return
 end
 
-local function lsp_highlight_document(client)
-	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
-		vim.api.nvim_exec(
-			[[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-			false
-		)
-	end
-end
-
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
 	local opts = {
-		on_attach = nil,
+		on_attach = require("user.lsp.handlers").on_attach,
 		capabilities = require("user.lsp.handlers").capabilities,
 	}
 
-	-- Import specific server settings if they exist, and then extend the
-	-- default ops.
-	local specific_settings_exists, server_specific_opts = pcall(require, "user.lsp.settings." .. server.name)
-
-	if specific_settings_exists then
-		opts = vim.tbl_deep_extend("force", server_specific_opts, opts)
+	if server.name == "jsonls" then
+		local jsonls_opts = require("user.lsp.settings.jsonls")
+		opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
 	end
 
-	-- Construct on attach cb, some clients require extra things here
-	opts.on_attach = function(client, bufnr)
-		lsp_highlight_document(client)
+	if server.name == "sumneko_lua" then
+		local sumneko_opts = require("user.lsp.settings.sumneko_lua")
+		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+	end
 
-		if client.name == "clangd" then
-			client.resolved_capabilities.document_formatting = false
-		end
+	if server.name == "pyright" then
+		local pyright_opts = require("user.lsp.settings.pyright")
+		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+	end
+
+	if server.name == "yamlls" then
+		local yamlls_opts = require("user.lsp.settings.yamlls")
+		opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+	end
+
+	if server.name == "clangd" then
+		local clangd_opts = require("user.lsp.settings.clangd")
+		opts = vim.tbl_deep_extend("force", clangd_opts, opts)
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function.

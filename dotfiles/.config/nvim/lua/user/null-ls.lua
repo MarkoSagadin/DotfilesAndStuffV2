@@ -25,7 +25,8 @@ null_ls.setup({
 
 	sources = {
 		-- Formaters
-		fmt.autopep8.with({ extra_args = { "--ignore=E402" } }),
+		-- fmt.autopep8.with({ extra_args = { "--ignore=E402" } }),
+		fmt.black.with({ extra_args = { "--experimental-string-processing" } }),
 		fmt.stylua.with({ extra_args = { "--quote-style", "ForceDouble" } }),
 		fmt.clang_format,
 		fmt.fixjson,
@@ -33,7 +34,7 @@ null_ls.setup({
 		fmt.cmake_format,
 
 		-- Diagnostics aka. Linters
-		diag.flake8.with({ extra_args = { "--extend-ignore", "E402" } }),
+		diag.flake8.with({ extra_args = { "--max-line-length=100" } }),
 		diag.luacheck.with({ extra_args = { "--globals", "vim" } }),
 	},
 })

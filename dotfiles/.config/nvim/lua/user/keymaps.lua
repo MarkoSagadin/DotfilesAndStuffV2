@@ -72,19 +72,3 @@ keymap("n", "<leader>e", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", o
 keymap("n", "<leader>j", ":lua require('harpoon.ui').nav_file(1)<CR>", opts)
 keymap("n", "<leader>k", ":lua require('harpoon.ui').nav_file(2)<CR>", opts)
 keymap("n", "<leader>;", ":lua require('harpoon.ui').nav_file(3)<CR>", opts)
-
--- LSP servers mappings
-keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-keymap("n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({ border = \"rounded\" })<CR>", opts)
-keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next({ border = \"rounded\" })<CR>", opts)
-keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
--- -- Specific to clangd
-keymap("n", "<leader>c", "<Cmd>ClangdSwitchSourceHeader<CR>", opts)
-
-keymap("n", "gl", ":lua vim.diagnostic.open_float(0, { border = \"rounded\" })<CR>", opts)

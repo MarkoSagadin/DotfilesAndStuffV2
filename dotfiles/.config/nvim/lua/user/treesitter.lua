@@ -41,7 +41,8 @@ configs.setup({
 	},
 	indent = {
 		enable = true,
-		disable = { "yaml", "python" },
+		-- C and cpp are disabled until they fix indenting of multiline comments
+		disable = { "yaml", "python", "c", "cpp" },
 	},
 	incremental_selection = {
 		enable = true,
