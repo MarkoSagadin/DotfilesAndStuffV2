@@ -164,3 +164,8 @@ cd ..
 rm -fr WhiteSur-icon-theme
 
 install policykit-desktop-privileges policykit-1-gnome
+
+# Enable writing to brightness file, maybe a bit of a overkill
+backend=$(ls -1 /sys/class/backlight/)
+sudo chmod 777 /sys/class/backlight/$backend/brightness
+

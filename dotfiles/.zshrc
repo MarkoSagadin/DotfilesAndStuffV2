@@ -54,6 +54,8 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/miniconda3/bin
+export PATH=$PATH:$HOME/.local/share/nvim/lsp_servers/clangd/clangd/bin/
 
 ### Various shell functions
 # Fixes the issue where pressing delete key would print tilda character
@@ -110,4 +112,20 @@ export GCC_COLORS
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/skobec/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/skobec/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/skobec/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/skobec/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 

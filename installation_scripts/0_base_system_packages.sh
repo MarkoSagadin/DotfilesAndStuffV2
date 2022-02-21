@@ -85,7 +85,8 @@ else
 		python3-wheel \
 		xz-utils \
 		lua5.1 \
-		luarocks
+		luarocks \  # arm-none-eabi-gdb fails otherwise
+        libncurses5
 
 	# Install a recent golang, cause apt version is veeery old
 	wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
