@@ -43,6 +43,7 @@ mkdir tmp
 tar -xvf git-lfs-linux-amd64-v3.1.2.tar.gz -C tmp
 sudo bash tmp/install.sh
 rm -fr tmp
+rm -fr git-lfs-linux-amd64-v3.1.2.tar.gz
 
 #### System specific section ####
 if [ "$DISTRO" = "MANJARO" ]; then
@@ -60,10 +61,7 @@ if [ "$DISTRO" = "MANJARO" ]; then
 	install zathura-djvu
 	install zathura-pdf-mupdf
 	install go
-	installyay nerd-fonts-meslo
-	install ttf-mac-fonts
 	install transmission-gtk
-	sudo npm install --global pure-prompt
 	install alacritty
 	install rust
 	install lua

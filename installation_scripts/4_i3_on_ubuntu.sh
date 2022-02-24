@@ -6,6 +6,9 @@ check_programs_path
 
 cd $PROGRAMS_PATH
 
+	# installyay nerd-fonts-meslo
+	# install ttf-mac-fonts
+	# sudo npm install --global pure-prompt
 # i3-gaps
 install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
 	libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
