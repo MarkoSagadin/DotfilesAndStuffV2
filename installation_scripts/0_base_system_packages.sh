@@ -33,6 +33,7 @@ install curl \
 	xdotool \
 	gperf \
 	file \
+	fzf \
 	figlet \
 	lolcat
 
@@ -86,7 +87,7 @@ else
 		xz-utils \
 		lua5.1 \
 		luarocks \  # arm-none-eabi-gdb fails otherwise
-        libncurses5
+	libncurses5
 
 	# Install a recent golang, cause apt version is veeery old
 	wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz

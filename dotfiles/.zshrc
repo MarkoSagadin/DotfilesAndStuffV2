@@ -35,10 +35,6 @@ alias cl='rm -fr build'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias gitc='/usr/bin/git --git-dir=$HOME/.DotfilesAndStuffV2/ --work-tree=$HOME'
-
-### Various exports
-#export GO111MODULE=on
 
 # Zephyr env var
 export ZEPHYR_BASE="$HOME/Programs/ncs/zephyr"
@@ -110,7 +106,8 @@ function gpr() {
 GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export GCC_COLORS
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 
 

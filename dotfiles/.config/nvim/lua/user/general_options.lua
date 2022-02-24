@@ -46,6 +46,7 @@ vim.cmd([[set tags+=$ZEPHYR_BASE/tags]])
 
 -- Autocommands
 vim.cmd([[
+au BufNewFile,BufRead [Dd]ockerfile* setf dockerfile
 au BufNewFile,BufRead /*.rasi setf css
 augroup open_help_vertical
   autocmd!

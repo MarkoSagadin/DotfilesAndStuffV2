@@ -79,7 +79,6 @@ return require("packer").startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("ludovicchabant/vim-gutentags")
-	use({ "kkoomen/vim-doge", run = ":call doge#install()" })
 
 	-- Completion plugins
 	use("hrsh7th/nvim-cmp")
