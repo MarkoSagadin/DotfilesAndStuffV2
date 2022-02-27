@@ -4,27 +4,7 @@
 check_distro
 check_programs_path
 
-# # Install dependencies common to all packages
-install ninja-build gettext libtool libtool-bin doxygen pkg-config autoconf automake
-
-# # Install Neovim
-cd $PROGRAMS_PATH
-git clone https://github.com/neovim/neovim
-cd neovim && make
-git checkout stable
-make -j16 CMAKE_BUILD_TYPE=RelWithDebInfo # Could also be set to Release
-sudo make install
-
-# Install Ctags
-cd $PROGRAMS_PATH
-git clone https://github.com/universal-ctags/ctags.git
-cd ctags
-./autogen.sh
-./configure #--prefix=/where/you/want # defaults to /usr/local
-make -j16
-sudo make install # may require extra privileges depending on where to install
-cd ..
-rm -fr ctags
+# Common
 
 # Install tmux plugin manager and install all plugins, this file should kept
 # out of git.
@@ -55,10 +35,40 @@ sudo npm install -g fixjson
 # Tree sitter
 cargo install tree-sitter-cli
 
-# Only for Ubuntu
-if [ "$DISTRO" = "UBUNTU" ]; then
-	cd $PROGRAMS_PATH
+# Fix for stupid markdown preview plugin thing
+sudo npm install -g tslib
+sudo npm install -g yarn
+sudo yarn add tslib
 
+if [ "$DISTRO" = "MANJARO" ]; then
+	# Manjaro specific
+	install neovim ctags ripgrep fd clang
+else
+	# Ubuntu specific
+
+	# Install dependencies common to all packages
+	install ninja-build gettext libtool libtool-bin doxygen pkg-config autoconf automake
+
+	# Install Neovim
+	cd $PROGRAMS_PATH
+	git clone https://github.com/neovim/neovim
+	cd neovim && make
+	git checkout stable
+	make -j16 CMAKE_BUILD_TYPE=RelWithDebInfo # Could also be set to Release
+	sudo make install
+
+	# Install Ctags
+	cd $PROGRAMS_PATH
+	git clone https://github.com/universal-ctags/ctags.git
+	cd ctags
+	./autogen.sh
+	./configure #--prefix=/where/you/want # defaults to /usr/local
+	make -j16
+	sudo make install # may require extra privileges depending on where to install
+	cd ..
+	rm -fr ctags
+
+	cd $PROGRAMS_PATH
 	# Rip grep
 	curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
 	sudo dpkg -i ripgrep_13.0.0_amd64.deb
@@ -76,9 +86,4 @@ if [ "$DISTRO" = "UBUNTU" ]; then
 	sudo ./llvm.sh 13 all # Install all packages, version 13
 	sudo ln -s /usr/bin/clang-format-13 /usr/bin/clang-format
 	rm llvm.sh
-
-	# Fix for stupid markdown thing
-	sudo npm install -g tslib
-	sudo npm install -g yarn
-	sudo yarn add tslib
 fi

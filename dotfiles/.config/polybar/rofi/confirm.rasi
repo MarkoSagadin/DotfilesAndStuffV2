@@ -11,6 +11,7 @@ mainbox {
     background-color:               @bg0;
     children:                       [ inputbar, listview ];
     spacing:                        12px;
+    border-radius:  30;
 }
 
 prompt {
@@ -42,7 +43,7 @@ element {
 
 element-text {
     expand:                         true;
-    padding:                         35px 70px 120px 50px;
+    padding:                         35px 70px 30px 50px;
     font: @font-big;
 }
 
@@ -53,10 +54,6 @@ element normal active {
 element selected normal, element selected active {
     background-color:   @bg2;
     text-color:         @fg1;
-}
-
-element-icon {
-    size:   1em;
 }
 
 element-text {

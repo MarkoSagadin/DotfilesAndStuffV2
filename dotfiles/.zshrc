@@ -106,8 +106,10 @@ function gpr() {
 GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export GCC_COLORS
 
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh 2> /dev/null
+source /usr/share/doc/fzf/examples/completion.zsh 2> /dev/null
+source /usr/share/fzf/key-bindings.zsh 2> /dev/null
+source /usr/share/fzf/completion.zsh 2> /dev/null
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 
 

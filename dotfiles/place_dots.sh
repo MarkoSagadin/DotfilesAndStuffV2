@@ -38,6 +38,7 @@ linkDotfile /home/$USER .config/nvim
 linkDotfile /home/$USER .config/picom
 linkDotfile /home/$USER .config/polybar
 linkDotfile /home/$USER .config/rofi
+linkDotfile /home/$USER .config/Thunar
 linkDotfile /home/$USER .ssh
 linkDotfile /home/$USER .gitconfig
 linkDotfile /home/$USER .tmux.conf
