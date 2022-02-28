@@ -130,7 +130,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 ##### i3-gaps ##############
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 2
 gaps inner 10
 gaps outer 1
 gaps horizontal 2
@@ -138,7 +138,11 @@ gaps horizontal 2
 ################# i3-radius #######################
 smart_borders on
 smart_borders no_gaps
-border_radius 10
+# border_radius 20
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #FFFFFF #285577 #ffffff #2e9ef4   #BEBEBE
+client.unfocused        #333333 #222222 #888888 #292d2e   #404040
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

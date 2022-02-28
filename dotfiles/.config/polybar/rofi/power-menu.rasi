@@ -33,10 +33,6 @@ element selected normal, element selected active {
     text-color:         @fg1;
 }
 
-element-icon {
-    size:   1em;
-}
-
 element-text {
     text-color: inherit;
 }

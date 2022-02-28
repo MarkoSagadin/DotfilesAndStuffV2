@@ -15,7 +15,6 @@ install curl \
 	cmake \
 	gcc-multilib \
 	gcc \
-	g++ \
 	unzip \
 	bash \
 	wget \
@@ -43,36 +42,35 @@ mkdir tmp
 tar -xvf git-lfs-linux-amd64-v3.1.2.tar.gz -C tmp
 sudo bash tmp/install.sh
 rm -fr tmp
+rm -fr git-lfs-linux-amd64-v3.1.2.tar.gz
 
 #### System specific section ####
 if [ "$DISTRO" = "MANJARO" ]; then
 	# Manjaro Linux specific packages, some of them are named differently as on Ubuntu
-	install gvim
-	install base-devel
-	install python-pip
-	install ninja
-	install python-setuptools
-	install python-wheel
-	install xz
-	install texlive-core
-	install texlive-latexextra
-	install texlive-science
-	install zathura-djvu
-	install zathura-pdf-mupdf
-	install go
-	installyay nerd-fonts-meslo
-	install ttf-mac-fonts
-	install transmission-gtk
-	sudo npm install --global pure-prompt
-	install alacritty
-	install rust
-	install lua
-	install luarocks
-	install nodejs
-	install npm
+	sudo pacman -R vim -y
+	install gvim \
+		base-devel \
+		python-pip \
+		ninja \
+		python-setuptools \
+		python-wheel \
+		xz \
+		texlive-core \
+		texlive-latexextra \
+		texlive-science \
+		zathura-djvu \
+		zathura-pdf-mupdf \
+		go \
+		transmission-gtk \
+		rust \
+		lua \
+		luarocks \
+		nodejs \
+		npm
 else
 	install software-properties-common \
 		lsb-release \
+		g++ \
 		vim-gtk \
 		python3-pip \
 		dconf-editor \

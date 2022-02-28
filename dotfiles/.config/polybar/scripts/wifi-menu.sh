@@ -28,7 +28,7 @@ WIFI_MENU_THEME=~/.config/polybar/rofi/wifi-menu.rasi
 WIFI_PASSWORD_THEME=~/.config/polybar/rofi/wifi-password.rasi
 
 # display menu; store user choice
-CHENTRY=$(echo -e "$TOGGLE\n$LIST" | uniq -u | rofi -dmenu -selected-row 1 -config $WIFI_MENU_THEME)
+CHENTRY=$(echo -e "$TOGGLE\n$LIST" | uniq -u | rofi -dmenu -selected-row 1 -theme $WIFI_MENU_THEME)
 # store selected SSID
 CHSSID=$(echo "$CHENTRY" | sed 's/\s\{2,\}/\|/g' | awk -F "|" '{print $1}')
 
@@ -52,7 +52,7 @@ else
 		nmcli con up "$CHSSID"
 	else
 		if [[ "$CHENTRY" =~ "" ]]; then
-			WIFIPASS=$(echo " Press Enter if network is saved" | rofi -dmenu -lines 1 -config $WIFI_PASSWORD_THEME)
+			WIFIPASS=$(echo " Press Enter if network is saved" | rofi -dmenu -lines 1 -theme $WIFI_PASSWORD_THEME)
 		fi
 		if nmcli dev wifi con "$CHSSID" password "$WIFIPASS"; then
 			notify-send 'Connection successful'
