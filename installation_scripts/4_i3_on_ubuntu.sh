@@ -176,3 +176,9 @@ mkdir litarvan
 tar -xvzf lightdm-webkit-theme-litarvan-3.2.0.tar.gz -C litarvan
 rm lightdm-webkit-theme-litarvan-3.2.0.tar.gz
 sudo mv litarvan /usr/share/lightdm-webkit/themes
+
+git clone --recursive https://github.com/Ventto/mons.git
+cd mons
+sudo make install
+cd ..
+rm -fr mons
