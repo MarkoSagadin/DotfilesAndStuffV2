@@ -39,7 +39,7 @@ alias ....="cd ../../.."
 # Zephyr env var
 export ZEPHYR_BASE="$HOME/Programs/ncs/zephyr"
 export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
-export GNUARMEMB_TOOLCHAIN_PATH="$HOME/miniconda3"
+export GNUARMEMB_TOOLCHAIN_PATH="$HOME/Programs/gnuarmemb/gcc-arm-none-eabi-9-2019-q4-major/"
 export INVOKE_PATHS_NRF5_SDK="$HOME/Work/nrf5_sdk"
 
 # Various other paths

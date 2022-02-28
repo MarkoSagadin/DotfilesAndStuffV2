@@ -45,6 +45,9 @@ lsp_installer.on_server_ready(function(server)
 		if client.name == "sumneko_lua" then
 			client.resolved_capabilities.document_formatting = false
 		end
+		if client.name == "jsonls" then
+			client.resolved_capabilities.document_formatting = false
+		end
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function.
