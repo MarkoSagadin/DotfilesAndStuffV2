@@ -47,7 +47,7 @@ rm -fr git-lfs-linux-amd64-v3.1.2.tar.gz
 #### System specific section ####
 if [ "$DISTRO" = "MANJARO" ]; then
 	# Manjaro Linux specific packages, some of them are named differently as on Ubuntu
-	sudo pacman -R vim -y
+	remove vim
 	install gvim \
 		base-devel \
 		python-pip \
@@ -66,6 +66,7 @@ if [ "$DISTRO" = "MANJARO" ]; then
 		lua \
 		luarocks \
 		nodejs \
+		firefox \
 		npm
 else
 	install software-properties-common \

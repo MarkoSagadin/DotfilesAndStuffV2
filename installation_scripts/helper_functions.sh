@@ -52,6 +52,21 @@ function check_programs_path {
 	mkdir -p $PROGRAMS_PATH
 }
 
+# Usage: update
+# It expects that the variable 'DISTRO' is set
+function update {
+	echo "Updating: $* ..."
+	if [ "$DISTRO" = "MANJARO" ]; then
+		sudo pacman -Syu --noconfirm
+	elif [ "$DISTRO" = "UBUNTU" ]; then
+		sudo apt update -y
+		sudo apt upgrade -y
+	else
+		echo "Ops, something went wrong, time to debug!"
+		exit
+	fi
+}
+
 # Usage: install <package_name> <more_packages>
 # It expects that the variable 'DISTRO' is set
 function install {
@@ -60,6 +75,20 @@ function install {
 		sudo pacman -S --noconfirm $*
 	elif [ "$DISTRO" = "UBUNTU" ]; then
 		sudo apt install $* -y
+	else
+		echo "Ops, something went wrong, time to debug!"
+		exit
+	fi
+}
+
+# Usage: remove <package_name> <more_packages>
+# It expects that the variable 'DISTRO' is set
+function remove {
+	echo "Removing: $* ..."
+	if [ "$DISTRO" = "MANJARO" ]; then
+		sudo pacman -R --noconfirm $*
+	elif [ "$DISTRO" = "UBUNTU" ]; then
+		sudo apt purge $* -y
 	else
 		echo "Ops, something went wrong, time to debug!"
 		exit

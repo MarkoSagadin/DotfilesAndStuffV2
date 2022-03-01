@@ -30,8 +30,9 @@ if [ "$DISTRO" = "MANJARO" ]; then
 	install dunst lightdm-webkit2-greeter bluez bluez-utils
 
 	# Remove some packages as they are in conflict with desired ones
-	pacman -R manjaro-i3-settings i3-gaps pcmanfm
-	installyay i3-gaps-rounded-git polybar zscroll thunar
+	remove manjaro-i3-settings pcmanfm palemoon-bin
+	installyay polybar zscroll thunar
+	install pulseaudio
 
 	# Enable bluetooth, sometimes is not
 	echo "AutoEnable=true" | sudo tee -a /etc/bluetooth/main.conf
