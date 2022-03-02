@@ -38,6 +38,13 @@ if [ "$DISTRO" = "MANJARO" ]; then
 	echo "AutoEnable=true" | sudo tee -a /etc/bluetooth/main.conf
 	sudo systemctl start bluetooth.service
 	sudo systemctl enable bluetooth.service
+
+	# Prepare for a different desktop manager
+	sudo systemctl disable lightdm.service
+	installyay sddm chili-sddm-theme
+	sudo systemctl enable sddm.service
+	sudo cp ../wallpapers/big-sur.jpg /usr/share/sddm/themes/chili/asseet/background.jpg
+
 else
 	# i3-gaps
 	install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
@@ -169,14 +176,14 @@ else
 
 	install policykit-desktop-privileges policykit-1-gnome
 
-fi
+	cd $PROGRAMS_PATH
+	wget https://github.com/Litarvan/lightdm-webkit-theme-litarvan/releases/download/v3.2.0/lightdm-webkit-theme-litarvan-3.2.0.tar.gz
+	mkdir litarvan
+	tar -xvzf lightdm-webkit-theme-litarvan-3.2.0.tar.gz -C litarvan
+	rm lightdm-webkit-theme-litarvan-3.2.0.tar.gz
+	sudo mv litarvan /usr/share/lightdm-webkit/themes
 
-cd $PROGRAMS_PATH
-wget https://github.com/Litarvan/lightdm-webkit-theme-litarvan/releases/download/v3.2.0/lightdm-webkit-theme-litarvan-3.2.0.tar.gz
-mkdir litarvan
-tar -xvzf lightdm-webkit-theme-litarvan-3.2.0.tar.gz -C litarvan
-rm lightdm-webkit-theme-litarvan-3.2.0.tar.gz
-sudo mv litarvan /usr/share/lightdm-webkit/themes
+fi
 
 git clone --recursive https://github.com/Ventto/mons.git
 cd mons
