@@ -6,7 +6,7 @@ check_programs_path
 
 cd $PROGRAMS_PATH
 
-install rofi feh playerctl pavucontrol jq brightnessctl
+install feh playerctl pavucontrol jq brightnessctl
 
 # Enable writing to brightness file, maybe a bit of a overkill
 backend=$(ls -1 /sys/class/backlight/)
@@ -157,7 +157,7 @@ else
 	rm -fr zscroll
 
 	install libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
-		libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev
+		libglib2.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev
 
 	cd $PROGRAMS_PATH
 	git clone https://github.com/dunst-project/dunst.git
@@ -183,6 +183,15 @@ else
 	rm lightdm-webkit-theme-litarvan-3.2.0.tar.gz
 	sudo mv litarvan /usr/share/lightdm-webkit/themes
 
+	install libpangocairo-1.0-0 flex
+
+	cd $PROGRAMS_PATH
+	git clone --recursive https://github.com/davatorium/rofi.git
+	cd rofi
+	git checkout 1.7.3
+	meson setup build
+	ninja -C build
+	ninja -C build install
 fi
 
 git clone --recursive https://github.com/Ventto/mons.git
