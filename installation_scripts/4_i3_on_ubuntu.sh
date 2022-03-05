@@ -43,8 +43,6 @@ if [ "$DISTRO" = "MANJARO" ]; then
 	sudo systemctl disable lightdm.service
 	installyay sddm chili-sddm-theme
 	sudo systemctl enable sddm.service
-	sudo cp ../wallpapers/big-sur.jpg /usr/share/sddm/themes/chili/asseet/background.jpg
-
 else
 	# i3-gaps
 	install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
@@ -79,6 +77,7 @@ else
 
 	git clone https://github.com/yshui/picom
 	cd picom
+	git checkout v9.1
 	git submodule update --init --recursive
 	meson --buildtype=release . build
 	ninja -C build
@@ -192,10 +191,32 @@ else
 	meson setup build
 	ninja -C build
 	ninja -C build install
+	cd ..
+	rm -fr rofi
+
+	install qml-module-qtquick-controls qml-module-qtgraphicaleffects
+
+	cd $PROGRAMS_PATH
+	install sddm qt5-default
+	git clone https://github.com/MarianArlt/sddm-chili.git
+	sudo mv sddm-chili chili
+	sudo mv chili /usr/share/sddm/themes/
+	sudo cp ../wallpapers/big-sur.jpg /usr/share/sddm/themes/chili/asseet/background.jpg
+
+	echo "[Theme]" | sudo tee -a /etc/sddm.conf
+	echo "Current=chili" | sudo tee -a /etc/sddm.conf
+
+	cd $PROGRAMS_PATH
+	git clone https://github.com/phillipberndt/autorandr.git
+	cd autorandr
+	sudo make install
+	cd ..
+	rm -fr autorandr
 fi
 
-git clone --recursive https://github.com/Ventto/mons.git
-cd mons
-sudo make install
-cd ..
-rm -fr mons
+figlet "AWW YEAH, DONE!" | lolcat
+echo "Only thing left to do is to set login wallpaper"
+echo "You can do this with below commmand:"
+echo ""
+echo "cp <path to wallpaper> /usr/share/sddm/themes/chili/asseet/background.jpg"
+echo ""
