@@ -48,7 +48,6 @@ inputbar {
 prompt {
     enabled: 						true;
 	padding: 						20px 0px 5px 20px;
-	background-color: 				@bg3;
 	text-color: 					@fg0;
 	font:							"LigaSFMono Nerd Font Regular 24";
 }
