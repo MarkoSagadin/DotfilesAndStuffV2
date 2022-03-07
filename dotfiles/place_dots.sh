@@ -45,8 +45,4 @@ linkDotfile /home/$USER .gitconfig
 linkDotfile /home/$USER .tmux.conf
 linkDotfile /home/$USER .vimrc
 linkDotfile /home/$USER .zshrc
-
-# Various configuration files
-linkDotfile /etc/lightdm lightdm.conf
-linkDotfile /etc/lightdm lightdm-webkit2-greeter.conf
 linkDotfile /usr/share/X11/xorg.conf.d 70-touchpad.conf

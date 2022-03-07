@@ -43,11 +43,13 @@ sudo yarn add tslib
 if [ "$DISTRO" = "MANJARO" ]; then
 	# Manjaro specific
 	install neovim ctags ripgrep fd clang
+	installyay diff-so-fancy
 else
 	# Ubuntu specific
-
 	# Install dependencies common to all packages
-	install ninja-build gettext libtool libtool-bin doxygen pkg-config autoconf automake
+	sudo add-apt-repository ppa:aos1/diff-so-fancy
+	sudo apt-get update
+	install diff-so-fancy ninja-build gettext libtool libtool-bin doxygen pkg-config autoconf automake
 
 	# Install Neovim
 	cd $PROGRAMS_PATH
