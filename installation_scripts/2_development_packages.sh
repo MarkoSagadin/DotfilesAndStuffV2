@@ -22,7 +22,7 @@ cargo install stylua
 sudo luarocks install luacheck
 
 # Python formatter, linter and lsp server
-pip install autopep8
+pip install black
 pip install flake8
 pip install pyright
 

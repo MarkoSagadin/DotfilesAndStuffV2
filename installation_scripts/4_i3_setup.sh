@@ -27,7 +27,7 @@ cd ..
 rm -fr WhiteSur-icon-theme
 
 if [ "$DISTRO" = "MANJARO" ]; then
-	install dunst lightdm-webkit2-greeter bluez bluez-utils
+	install dunst bluez bluez-utils
 
 	# Remove some packages as they are in conflict with desired ones
 	remove manjaro-i3-settings pcmanfm palemoon-bin
@@ -40,7 +40,6 @@ if [ "$DISTRO" = "MANJARO" ]; then
 	sudo systemctl enable bluetooth.service
 
 	# Prepare for a different desktop manager
-	sudo systemctl disable lightdm.service
 	installyay sddm chili-sddm-theme
 	sudo systemctl enable sddm.service
 else
@@ -166,22 +165,7 @@ else
 	cd ..
 	rm -fr dunst
 
-	install python3-pyqt5.qtwebengine lightdm liblightdm-gobject-1-dev python3-gi
-
-	cd $PROGRAMS_PATH
-	wget https://download.opensuse.org/repositories/home:/antergos/xUbuntu_17.10/amd64/lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
-	sudo dpkg -i lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
-	rm lightdm-webkit2-greeter_2.2.5-1+15.31_amd64.deb
-
 	install policykit-desktop-privileges policykit-1-gnome
-
-	cd $PROGRAMS_PATH
-	wget https://github.com/Litarvan/lightdm-webkit-theme-litarvan/releases/download/v3.2.0/lightdm-webkit-theme-litarvan-3.2.0.tar.gz
-	mkdir litarvan
-	tar -xvzf lightdm-webkit-theme-litarvan-3.2.0.tar.gz -C litarvan
-	rm lightdm-webkit-theme-litarvan-3.2.0.tar.gz
-	sudo mv litarvan /usr/share/lightdm-webkit/themes
-
 	install libpangocairo-1.0-0 flex
 
 	cd $PROGRAMS_PATH
