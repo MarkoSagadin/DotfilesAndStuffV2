@@ -70,6 +70,7 @@ return require("packer").startup(function(use)
 
 	-- Lock to a certain commit, as the author decided to do a rewrite.
 	use({ "kyazdani42/nvim-tree.lua", commit = "0a2f6b0b6ba558a88c77a6b262af647760e6eca8" })
+	use({ "liuchengxu/vista.vim" })
 
 	use("aserowy/tmux.nvim")
 	use("lewis6991/gitsigns.nvim")

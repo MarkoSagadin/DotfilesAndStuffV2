@@ -40,13 +40,12 @@ end
 vim.opt.clipboard:prepend("unnamed,unnamedplus")
 
 -- Used to tell where tags are located
-vim.cmd([[set tags+=~/work/nrf5_sdk/tags]])
-vim.cmd([[set tags+=~/Work/nrf5_sdk/tags]])
 vim.cmd([[set tags+=$ZEPHYR_BASE/tags]])
 
 -- Autocommands
 vim.cmd([[
 au BufNewFile,BufRead [Dd]ockerfile* setf dockerfile
+au BufNewFile,BufRead *.ino setf cpp
 au BufNewFile,BufRead /*.rasi setf css
 augroup open_help_vertical
   autocmd!

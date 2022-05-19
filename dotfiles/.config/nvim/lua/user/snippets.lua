@@ -72,7 +72,7 @@ ls.filetype_extend("lua", { "c" })
 -- in a cpp file: search c-snippets, then all-snippets only (no cpp-snippets!!).
 ls.filetype_set("cpp", { "c" })
 
-ls.snippets = {
+ls.add_snippets(nil, {
 	-- When trying to expand a snippet, luasnip first searches the tables for
 	-- each filetype specified in 'filetype' followed by 'all'.
 	-- If ie. the filetype is 'lua.c'
@@ -138,7 +138,7 @@ ls.snippets = {
 			t({ "", "}" }),
 		}),
 	},
-}
+})
 
 -- autotriggered snippets have to be defined in a separate table, luasnip.autosnippets.
 ls.autosnippets = {
