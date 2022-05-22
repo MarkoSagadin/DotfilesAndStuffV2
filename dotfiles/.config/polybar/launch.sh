@@ -7,6 +7,13 @@ killall polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch polybar
-# polybar main -c $(dirname $0)/config.ini &
 
-polybar main -c $(dirname $0)/config.ini &
+backlight=$(ls -1 /sys/class/backlight)
+
+if [[ $backlight == "intel_backlight" ]]; then
+	polybar main -c $(dirname $0)/amdgpu_conf.ini &
+elif [[ $backlight == "amdgpu_bl1" ]]; then
+	polybar main -c $(dirname $0)/intel_conf.ini &
+else
+	echo "This backlight is not supported"
+fi
