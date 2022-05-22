@@ -12,7 +12,6 @@ install curl \
 	xclip \
 	tree \
 	make \
-	cmake \
 	gcc-multilib \
 	gcc \
 	unzip \
@@ -67,12 +66,17 @@ if [ "$DISTRO" = "MANJARO" ]; then
 		luarocks \
 		nodejs \
 		firefox \
+		cmake \
 		npm
 else
+	# Needed for latest cmake binary
+	wget https://apt.kitware.com/kitware-archive.sh
+	sudo bash kitware-archive.sh
 	install software-properties-common \
 		lsb-release \
 		g++ \
 		vim-gtk \
+		cmake \
 		python3-pip \
 		dconf-editor \
 		dconf-cli \
