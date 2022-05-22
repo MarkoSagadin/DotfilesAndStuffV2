@@ -10,10 +10,11 @@
     commmit = commit
     st = status
     co = checkout
+    dif = --no-pager diff
 [core]
 	autocrlf = input
 	editor = nvim
-	pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
 	ui = true
 [filter "lfs"]
