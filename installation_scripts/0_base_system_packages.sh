@@ -32,6 +32,7 @@ install curl \
 	gperf \
 	file \
 	fzf \
+	flameshot \
 	figlet \
 	lolcat
 

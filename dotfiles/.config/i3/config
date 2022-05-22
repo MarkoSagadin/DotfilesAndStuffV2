@@ -180,6 +180,12 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec_always --no-startup-id "setxkbmap -layout us,si"
 exec_always --no-startup-id "setxkbmap -option 'grp:win_space_toggle'"
 
+# Screenshots
+bindsym Print               exec flameshot full -p ~/Pictures
+bindsym Ctrl+Print          exec flameshot full -c
+bindsym Shift+Print         exec flameshot gui -p ~/Pictures
+bindsym Ctrl+Shift+Print    exec flameshot gui -c
+
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
