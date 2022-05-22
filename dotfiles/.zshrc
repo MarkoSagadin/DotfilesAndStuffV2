@@ -25,11 +25,11 @@ export EDITOR="nvim"
 bindkey -e
 
 ### aliases
+alias ls='exa'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias ll='ls -aFlh --color=auto --group-directories-first'
-alias ls='ls -h --color=auto --group-directories-first'
+alias ll='ls -agFlh --color=auto --group-directories-first'
 alias ml='minicom'
 alias cl='rm -fr build'
 alias ..="cd .."
@@ -40,7 +40,6 @@ alias ....="cd ../../.."
 export ZEPHYR_BASE="$HOME/Programs/ncs/zephyr"
 export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
 export GNUARMEMB_TOOLCHAIN_PATH="$HOME/Programs/gnuarmemb/gcc-arm-none-eabi-9-2019-q4-major/"
-export INVOKE_PATHS_NRF5_SDK="$HOME/Work/nrf5_sdk"
 
 # Various other paths
 export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
@@ -106,6 +105,7 @@ function gpr() {
 GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export GCC_COLORS
 
+# FZF settings
 source /usr/share/doc/fzf/examples/key-bindings.zsh 2> /dev/null
 source /usr/share/doc/fzf/examples/completion.zsh 2> /dev/null
 source /usr/share/fzf/key-bindings.zsh 2> /dev/null

@@ -41,6 +41,16 @@ cp *.ttf ~/.fonts
 cd ..
 rm -fr MaterialDesign-Font
 
+# Exa tool, replacement for ls
+wget https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip
+unzip exa-linux-x86_64-v0.10.1.zip -d exa
+rm exa-linux-x86_64-v0.10.1.zip
+sudo mv exa/bin/exa /usr/local/bin
+sudo mv exa/man/exa.1 /usr/share/man/man1
+sudo mkdir -p /usr/local/share/zsh/site-functions
+sudo mv exa/completions/exa.zsh /usr/local/share/zsh/site-functions
+rm -fr exa
+
 # Update new fonts
 fc-cache -fv
 
@@ -59,28 +69,19 @@ else
 	cargo build --release
 
 	# Desktop entry
-	sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
+	sudo cp target/release/alacritty /usr/local/bin
 	sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
 	sudo desktop-file-install extra/linux/Alacritty.desktop
 	sudo update-desktop-database
 	sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 
 	# Configure context menu in nautilus
-	# Remove Open in Terminal option, this should be changed for manjaro!!!!!!!
+	# Remove Open in Terminal option
 	sudo apt purge nautilus-extension-gnome-terminal -y
 
-	#Below is another way
-	#sudo mv -vi /usr/lib/x86_64-linux-gnu/nautilus/extensions-3.0/libterminal-nautilus.so{,.bak}
-
 	# Add Open in Alacritty option
-	cd $PROGRAMS_PATH
-	## FOR MANJARO
-	#yay -S nautilus-open-any-terminal
-	## ONLY FOR UBUNTU
 	install python3-nautilus
 	pip install nautilus-open-any-terminal
-
-	#THIS is COMMON
 	nautilus -q
 	glib-compile-schemas ~/.local/share/glib-2.0/schemas/
 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
