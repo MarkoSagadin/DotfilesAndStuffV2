@@ -2,3 +2,4 @@ tags
 tags.*
 dotfiles/.config/nvim/plugin/
 dotfiles/.ssh/known_hosts
+dotfiles/.ssh/known_hosts.old
