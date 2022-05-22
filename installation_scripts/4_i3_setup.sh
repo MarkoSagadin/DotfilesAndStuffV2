@@ -32,7 +32,7 @@ if [ "$DISTRO" = "MANJARO" ]; then
 	# Remove some packages as they are in conflict with desired ones
 	remove manjaro-i3-settings pcmanfm palemoon-bin
 	installyay polybar zscroll thunar
-	install pulseaudio
+	install pulseaudio pulseaudio-bluetooth
 
 	# Enable bluetooth, sometimes is not
 	echo "AutoEnable=true" | sudo tee -a /etc/bluetooth/main.conf
