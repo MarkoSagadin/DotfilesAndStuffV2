@@ -177,9 +177,8 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
 # Switch between us and si layout with win + space
-exec_always --no-startup-id setxkbmap -layout us,si -option -option grp:win_space_toggle
-
-
+exec_always --no-startup-id "setxkbmap -layout us,si"
+exec_always --no-startup-id "setxkbmap -option 'grp:win_space_toggle'"
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
