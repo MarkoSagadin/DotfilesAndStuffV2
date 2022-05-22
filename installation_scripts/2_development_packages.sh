@@ -11,6 +11,9 @@ check_programs_path
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 bash ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
+# Not related to development, but it makes life easier when learning new commands
+pip install tldr
+
 # Neovim tooling - linters, formatters
 pip install pynvim
 
@@ -39,6 +42,13 @@ cargo install tree-sitter-cli
 sudo npm install -g tslib
 sudo npm install -g yarn
 sudo yarn add tslib
+
+mkdir vale
+wget https://github.com/errata-ai/vale/releases/download/v2.15.2/vale_2.15.2_Linux_64-bit.tar.gz
+tar xf vale_2.15.2_Linux_64-bit.tar.gz -C vale
+sudo mv vale/vale /usr/bin
+rm -fr vale
+rm -fr vale_2.15.2_Linux_64-bit.tar.gz
 
 if [ "$DISTRO" = "MANJARO" ]; then
 	# Manjaro specific
@@ -85,7 +95,6 @@ else
 	# clang tooling, plus I had to do symlinks. Not so happy about this.
 	wget https://apt.llvm.org/llvm.sh
 	chmod +x llvm.sh
-	sudo ./llvm.sh 13 all # Install all packages, version 13
-	sudo ln -s /usr/bin/clang-format-13 /usr/bin/clang-format
+	sudo ./llvm.sh 14 all # Install all packages, version 14
 	rm llvm.sh
 fi
