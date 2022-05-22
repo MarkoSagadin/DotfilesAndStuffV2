@@ -168,7 +168,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Window Compositor (transparency)
-exec_always picom --config .config/picom/picom.conf --experimental-backends
+exec_always --no-startup-id picom --config .config/picom/picom.conf --experimental-backends
 
 # Start polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
@@ -184,10 +184,8 @@ exec_always --no-startup-id "setxkbmap -option 'grp:win_space_toggle'"
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
-# Touchpad fixes, enable tap and natural scrolling, for futue xinput command
-# tells you what touchpad you have
-
-exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Programs/DotfilesAndStuffV2/wallpapers/big-sur.jpg
+# Wallpaper
+exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Programs/DotfilesAndStuffV2/wallpapers/firewatch2.png
 
 # Media volume controls
 bindsym XF86AudioMute exec amixer -D pulse sset 'Master' toggle
