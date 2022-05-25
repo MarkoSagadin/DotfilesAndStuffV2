@@ -28,6 +28,7 @@ local options = {
 	termguicolors = true, -- Needed for proper coloring
 	inccommand = "nosplit",
 	signcolumn = "yes", -- Always show signcolumn for gitsigns
+	pumheight = 20,
 }
 
 -- Pairs returns key-value pair from table `options` in no particular order
