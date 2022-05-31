@@ -37,5 +37,6 @@ null_ls.setup({
 		diag.flake8.with({ extra_args = { "--max-line-length=100" } }),
 		diag.luacheck.with({ extra_args = { "--globals", "vim" } }),
 		diag.vale,
+		diag.hadolint,
 	},
 })

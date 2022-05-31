@@ -43,12 +43,18 @@ sudo npm install -g tslib
 sudo npm install -g yarn
 sudo yarn add tslib
 
+# Vale for linting markdown files
 mkdir vale
 wget https://github.com/errata-ai/vale/releases/download/v2.15.2/vale_2.15.2_Linux_64-bit.tar.gz
 tar xf vale_2.15.2_Linux_64-bit.tar.gz -C vale
 sudo mv vale/vale /usr/bin
 rm -fr vale
 rm -fr vale_2.15.2_Linux_64-bit.tar.gz
+
+# Hadolint for linting docker files
+wget https://github.com/hadolint/hadolint/releases/download/v2.10.0/hadolint-Linux-x86_64
+sudo chmod +x hadolint-Linux-x86_64
+sudo mv hadolint-Linux-x86_64 /usr/local/bin/hadolint
 
 if [ "$DISTRO" = "MANJARO" ]; then
 	# Manjaro specific
