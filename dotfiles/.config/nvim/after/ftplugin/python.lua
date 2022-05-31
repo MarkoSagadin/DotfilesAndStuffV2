@@ -4,7 +4,8 @@
 
 -- Construct a table, where keys are on the left, values are on the right
 local options = {
-	colorcolumn = "100", -- Highlight specified column for line wrapin
+	colorcolumn = "88", -- Highlight specified column for line wrapin
+	textwidth = 88,
 }
 
 -- Pairs returns key-value pair from table `options` in no particular order
