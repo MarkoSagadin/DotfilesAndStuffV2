@@ -52,8 +52,34 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
+		-- Select next item in completion menu with ctrl + n
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		-- Select prev item in completion menu with ctrl + p
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+
+		-- Move forward in snippets with ctrl + k
+		["<C-j>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_locally_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		-- Move backward in snippets with ctrl + k
+		["<C-k>"] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+
+		-- Accept currently selected item. If none selected, `select` first
+		-- item.
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -62,16 +88,6 @@ cmp.setup({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
 		}),
-		-- Accept currently selected item. If none selected, `select` first item.
-		-- Set `select` to `false` to only confirm explicitly selected items.
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if luasnip.expand_or_locally_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
 	},
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
