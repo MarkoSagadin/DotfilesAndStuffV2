@@ -2,6 +2,10 @@ local status_ok, ls = pcall(require, "luasnip")
 if not status_ok then
 	return
 end
+local status_ok_extra, ls_extra = pcall(require, "luasnip.extras")
+if not status_ok_extra then
+	return
+end
 
 -- some shorthands...
 local s = ls.snippet
@@ -12,19 +16,17 @@ local f = ls.function_node
 local c = ls.choice_node
 local d = ls.dynamic_node
 local r = ls.restore_node
-local l = require("luasnip.extras").lambda
-local rep = require("luasnip.extras").rep
-local p = require("luasnip.extras").partial
-local m = require("luasnip.extras").match
-local n = require("luasnip.extras").nonempty
-local dl = require("luasnip.extras").dynamic_lambda
+local parse = ls.parser.parse_snippet
+local l = ls_extra.lambda
+local rep = ls_extra.rep
+local p = ls_extra.partial
+local m = ls_extra.match
+local n = ls_extra.nonempty
+local dl = ls_extra.dynamic_lambda
 local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.expand_conditions")
-
--- If you're reading this file for the first time, best skip to around line 190
--- where the actual snippet-definitions start.
 
 -- Every unspecified option will be set to the default.
 ls.config.set_config({
@@ -67,76 +69,94 @@ local date_input = function(args, state, fmt)
 	return sn(nil, i(1, os.date(fmt)))
 end
 
--- in a lua file: search lua-, then c-, then all-snippets.
+-- in a lua file: search lua-snippets, then c then all-snippets .
 ls.filetype_extend("lua", { "c" })
--- in a cpp file: search c-snippets, then all-snippets only (no cpp-snippets!!).
-ls.filetype_set("cpp", { "c" })
+-- in a cpp file: search cpp-snippets, then c then all-snippets .
+ls.filetype_extend("cpp", { "c" })
+
+local same = function(index)
+	return f(function(arg)
+		return arg[1]
+	end, { index })
+end
+
+local get_filename = function()
+	local full_path = vim.api.nvim_buf_get_name(0)
+	local names = vim.split(full_path, "/", { plain = true })
+	local name = vim.split(names[#names], ".", { plain = true })
+	return name[1]
+end
+
+local get_headername = function()
+	local filename = get_filename()
+	-- Use % to escape the dot, second argument of gsub is _patter_
+	return string.upper(string.gsub(filename, "%.", "_"))
+end
 
 ls.add_snippets(nil, {
-	-- When trying to expand a snippet, luasnip first searches the tables for
-	-- each filetype specified in 'filetype' followed by 'all'.
-	-- If ie. the filetype is 'lua.c'
-	--     - luasnip.lua
-	--     - luasnip.c
-	--     - luasnip.all
-	-- are searched in that order.
-	all = {
-		-- trigger is fn.
-		s("com", {
-			t("/* "),
-			i(1),
-			t(" */"),
-		}),
+	-- 	-- When trying to expand a snippet, luasnip first searches the tables for
+	-- 	-- each filetype specified in 'filetype' followed by 'all'.
+	-- 	-- If ie. the filetype is 'lua.c'
+	-- 	--     - luasnip.lua
+	-- 	--     - luasnip.c
+	-- 	--     - luasnip.all
+	-- 	-- are searched in that order.
 
-		s("fn", {
-			-- Simple static text.
-			t("//Parameters: "),
-			-- function, first parameter is the function, second the Placeholders
-			-- whose text it gets as input.
-			f(copy, 2),
-			t({ "", "function " }),
-			-- Placeholder/Insert.
-			i(1),
-			t("("),
-			-- Placeholder with initial text.
-			i(2, "int foo"),
-			-- Linebreak
-			t({ ") {", "\t" }),
-			-- Last Placeholder, exit Point of the snippet. EVERY 'outer' SNIPPET NEEDS Placeholder 0.
-			i(0),
-			t({ "", "}" }),
-		}),
-		s("class", {
-			-- Choice: Switch between two different Nodes, first parameter is its position, second a list of nodes.
-			c(1, {
-				t("public "),
-				t("private "),
-			}),
-			t("class "),
-			i(2),
-			t(" "),
-			c(3, {
-				t("{"),
-				-- sn: Nested Snippet. Instead of a trigger, it has a position, just like insert-nodes. !!! These don't expect a 0-node!!!!
-				-- Inside Choices, Nodes don't need a position as the choice node is the one being jumped to.
-				sn(nil, {
-					t("extends "),
-					-- restoreNode: stores and restores nodes.
-					-- pass position, store-key and nodes.
-					r(1, "other_class", i(1)),
-					t(" {"),
-				}),
-				sn(nil, {
-					t("implements "),
-					-- no need to define the nodes for a given key a second time.
-					r(1, "other_class"),
-					t(" {"),
-				}),
-			}),
-			t({ "", "\t" }),
-			i(0),
-			t({ "", "}" }),
-		}),
+	c = {
+		-- trigger is fn.
+		parse("com", "/* $1 */"),
+		s(
+			"emptyc",
+			fmta(
+				[[
+/** @file <>.c
+ *
+ * @brief <>
+ *
+ */
+
+#include "<>.h"
+]],
+				{
+					f(get_filename),
+					i(2, "Short description what the module does"),
+					f(get_filename),
+				}
+			)
+		),
+
+		s(
+			"emptyh",
+			fmta(
+				[[
+/** @file <>.h
+ *
+ * @brief <>
+ *
+ */
+
+#ifndef <>_H
+#define <>_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* <>_H */
+	]],
+				{
+					f(get_filename),
+					i(2, "Short description what the module does"),
+					f(get_headername),
+					f(get_headername),
+					f(get_headername),
+				}
+			)
+		),
 	},
 })
 
