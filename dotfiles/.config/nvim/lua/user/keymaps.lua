@@ -89,3 +89,6 @@ keymap("n", "<leader>c", "<Cmd>ClangdSwitchSourceHeader<CR>", opts)
 
 -- Documentation generation
 keymap("n", "<leader>d", "<cmd>Neogen<CR>", opts)
+
+-- Reload snippets
+vim.keymap.set("n", "<leader>m", "<cmd>source ~/.config/nvim/lua/user/snippets.lua<CR>")
