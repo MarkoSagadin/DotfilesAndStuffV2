@@ -65,13 +65,17 @@ keymap("n", "<leader>xl", "<cmd>Trouble loclist<cr>", opts)
 keymap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
 keymap("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
 
--- Harpoon mappings
+-- Harpoon mappings for file navigation
 keymap("n", "<leader>a", ":lua require('harpoon.mark').add_file()<CR>", opts)
 keymap("n", "<leader>e", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
-
 keymap("n", "<leader>j", ":lua require('harpoon.ui').nav_file(1)<CR>", opts)
 keymap("n", "<leader>k", ":lua require('harpoon.ui').nav_file(2)<CR>", opts)
 keymap("n", "<leader>;", ":lua require('harpoon.ui').nav_file(3)<CR>", opts)
+
+-- Harpoon mappings for tmux execution
+keymap("n", "<leader>w", ":lua require('harpoon.cmd-ui').toggle_quick_menu()<CR>", opts)
+keymap("n", "<leader>1", ":lua require('harpoon.tmux').sendCommand('{right-of}', 1)<CR>", opts)
+keymap("n", "<leader>2", ":lua require('harpoon.tmux').sendCommand('{right-of}', 2)<CR>", opts)
 
 -- LSP servers mappings
 keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
