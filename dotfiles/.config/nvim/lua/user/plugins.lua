@@ -50,6 +50,8 @@ return require("packer").startup(function(use)
 	use("ThePrimeagen/harpoon")
 	use("xiyaowong/nvim-transparent")
 
+	use("folke/which-key.nvim")
+
 	-- Some commenting plugins
 	use("terrortylor/nvim-comment")
 	use("folke/todo-comments.nvim")
@@ -85,6 +87,7 @@ return require("packer").startup(function(use)
 	-- LSP
 	use("neovim/nvim-lspconfig")
 	use("williamboman/nvim-lsp-installer")
+	use("folke/lua-dev.nvim")
 
 	-- snippet pluggins
 	use("L3MON4D3/LuaSnip")
