@@ -45,7 +45,6 @@ return require("packer").startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 	use("cappyzawa/trim.nvim")
 	use("svermeulen/vim-subversive")
-	use("kyazdani42/nvim-web-devicons")
 	use("windwp/nvim-autopairs")
 	use("ThePrimeagen/harpoon")
 	use("xiyaowong/nvim-transparent")
@@ -62,8 +61,7 @@ return require("packer").startup(function(use)
 
 	use("mzlogin/vim-markdown-toc")
 
-	-- Lock to a certain commit, as the author decided to do a rewrite.
-	use({ "kyazdani42/nvim-tree.lua", commit = "0a2f6b0b6ba558a88c77a6b262af647760e6eca8" })
+	use({ "kyazdani42/nvim-tree.lua" })
 	use({ "liuchengxu/vista.vim" })
 
 	use("aserowy/tmux.nvim")
