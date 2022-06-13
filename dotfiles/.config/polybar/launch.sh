@@ -12,8 +12,10 @@ backlight=$(ls /sys/class/backlight)
 
 if [[ $backlight == "intel_backlight" ]]; then
 	polybar main -c $(dirname $0)/intel_conf.ini &
+elif [[ $backlight == "amdgpu_bl0" ]]; then
+	polybar main -c $(dirname $0)/amdgpu_bl0_conf.ini &
 elif [[ $backlight == "amdgpu_bl1" ]]; then
-	polybar main -c $(dirname $0)/amdgpu_conf.ini &
+	polybar main -c $(dirname $0)/amdgpu_bl1_conf.ini &
 else
 	echo "This backlight is not supported"
 fi
