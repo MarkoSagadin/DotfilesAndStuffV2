@@ -36,11 +36,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-# Zephyr env var
-export ZEPHYR_BASE="$HOME/Programs/ncs/zephyr"
-export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
-export GNUARMEMB_TOOLCHAIN_PATH="$HOME/Programs/gnuarmemb/gcc-arm-none-eabi-9-2019-q4-major/"
-
 # Various other paths
 export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 export PATH=$PATH:$HOME/Programs
@@ -83,9 +78,10 @@ function fnd {
 # Open the Pull Request URL for your current directory's branch
 # (base branch defaults to dev)
 function openpr() {
+  parent=`git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//'`
   github_url=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%' | awk '/github/'`;
   branch_name=`git symbolic-ref HEAD | cut -d"/" -f 3,4`;
-  pr_url=$github_url"/compare/dev..."$branch_name
+  pr_url=$github_url"/compare/"$parent"..."$branch_name
   xdg-open $pr_url;
 }
 
@@ -112,6 +108,18 @@ source /usr/share/fzf/key-bindings.zsh 2> /dev/null
 source /usr/share/fzf/completion.zsh 2> /dev/null
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 
+# Graphite completion function
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -127,4 +135,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
