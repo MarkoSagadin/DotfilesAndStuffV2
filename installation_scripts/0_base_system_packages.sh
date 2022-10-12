@@ -89,9 +89,7 @@ else
 		python3-setuptools \
 		python3-wheel \
 		xz-utils \
-		lua5.1 \
-		luarocks \  # arm-none-eabi-gdb fails otherwise
-	libncurses5
+		libncurses5
 
 	# Install a recent golang, cause apt version is veeery old
 	wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
@@ -102,6 +100,23 @@ else
 	# Same here, npm will also get installed
 	curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
 	install nodejs
+
+	# Same here, install latest lua
+	curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
+	tar -zxf lua-5.3.5.tar.gz
+	cd lua-5.3.5
+	make linux test
+	sudo make install
+	cd .. && rm -fr lua-5.3.5*
+
+	# Same here, install latest luarocks package manager
+	wget https://luarocks.org/releases/luarocks-3.8.0.tar.gz
+	tar zxpf luarocks-3.8.0.tar.gz
+	cd luarocks-3.8.0
+	./configure --with-lua-include=/usr/local/include
+	make
+	sudo make install
+	cd .. && rm -fr luarocks-3.8.0*
 
 	# Ubuntu is a stable distro, bla bla bla
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
