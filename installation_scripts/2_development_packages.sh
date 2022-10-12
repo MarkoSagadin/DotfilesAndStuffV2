@@ -101,6 +101,6 @@ else
 	# clang tooling, plus I had to do symlinks. Not so happy about this.
 	wget https://apt.llvm.org/llvm.sh
 	chmod +x llvm.sh
-	sudo ./llvm.sh 14 all # Install all packages, version 14
+	sudo ./llvm.sh 15 all # Install all packages, version 14
 	rm llvm.sh
 fi
