@@ -56,6 +56,7 @@ keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<leader><space>", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
+keymap("n", "<leader>fd", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 
 -- Trouble mappings
 keymap("n", "<leader>xx", "<cmd>Trouble<cr>", opts)

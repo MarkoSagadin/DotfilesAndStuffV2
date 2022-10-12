@@ -9,7 +9,12 @@ telescope.setup({
 		selection_caret = " ",
 		path_display = { "smart" },
 	},
-
+	pickers = {
+		current_buffer_fuzzy_find = {
+			previewer = false,
+			theme = "dropdown",
+		},
+	},
 	extensions = {
 		fzf = {
 			fuzzy = true, -- false will only do exact matching
