@@ -44,12 +44,15 @@ null_ls.setup({
 
 	sources = {
 		-- Formaters
+		-- isort will run before black, as it is listed before it.
+		fmt.isort,
 		fmt.black.with({ extra_args = { "--preview" } }),
 		fmt.stylua.with({ extra_args = { "--quote-style", "ForceDouble" } }),
 		fmt.clang_format,
 		fmt.fixjson,
 		fmt.shfmt,
 		fmt.cmake_format,
+		fmt.prettier,
 
 		-- Diagnostics aka. Linters
 		diag.flake8.with({ extra_args = { "--max-line-length=88" } }),
