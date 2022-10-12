@@ -8,7 +8,8 @@ local options = {
 	softtabstop = 8, -- Number of spaces in tab when editing
 	shiftwidth = 8, -- The number of spaces inserted for each indentation
 	expandtab = false, -- Convert tabs to spaces
-	colorcolumn = "80", -- Highlight specified column for line wrapin
+	colorcolumn = "100", -- Highlight specified column for line wrapin
+	textwidth = 100,
 }
 
 -- Pairs returns key-value pair from table `options` in no particular order
