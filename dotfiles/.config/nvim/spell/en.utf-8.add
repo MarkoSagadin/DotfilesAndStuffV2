@@ -10,3 +10,13 @@ functionality
 GPIO
 gpio
 timestamp
+ncs
+yml
+config
+version
+sys
+toolchain
+init
+pytest
+conftest
+py
