@@ -46,4 +46,5 @@ linkDotfile /home/$USER .gitconfig
 linkDotfile /home/$USER .tmux.conf
 linkDotfile /home/$USER .vimrc
 linkDotfile /home/$USER .zshrc
+linkDotfile /home/$USER .prettierrc
 linkDotfile /usr/share/X11/xorg.conf.d 70-touchpad.conf

@@ -47,6 +47,8 @@ export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/miniconda3/bin
 export PATH=$PATH:$HOME/.local/share/nvim/lsp_servers/clangd/clangd/bin/
 
+export PRETTIERD_DEFAULT_CONFIG="~/.prettierrc"
+
 ### Various shell functions
 # Fixes the issue where pressing delete key would print tilda character
 bindkey  "^[[3~"  delete-char
