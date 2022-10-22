@@ -47,7 +47,6 @@ return require("packer").startup(function(use)
 	use("svermeulen/vim-subversive")
 	use("windwp/nvim-autopairs")
 	use("ThePrimeagen/harpoon")
-	use("xiyaowong/nvim-transparent")
 
 	use("folke/which-key.nvim")
 
@@ -58,7 +57,6 @@ return require("packer").startup(function(use)
 
 	-- Lazy load this one so it loads only on MarkdownPreview
 	use({ "iamcco/markdown-preview.nvim", ft = "markdown", run = "cd app && yarn install" })
-
 	use("mzlogin/vim-markdown-toc")
 
 	use({ "kyazdani42/nvim-tree.lua" })
@@ -67,7 +65,7 @@ return require("packer").startup(function(use)
 	use("aserowy/tmux.nvim")
 	use("lewis6991/gitsigns.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("nvim-treesitter/nvim-treesitter-textobjects")
+	use({"nvim-treesitter/nvim-treesitter-textobjects", requires = {{'nvim-treesitter/nvim-treesitter'}}})
 	use("nvim-telescope/telescope.nvim")
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use("jose-elias-alvarez/null-ls.nvim")
@@ -82,24 +80,35 @@ return require("packer").startup(function(use)
 	use("saadparwaiz1/cmp_luasnip")
 	use("hrsh7th/cmp-nvim-lsp")
 
+	-- Installers for LSP, Formatters, Linters
+	use("williamboman/mason.nvim")
+	use("jayp0521/mason-null-ls.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+
 	-- LSP
 	use("neovim/nvim-lspconfig")
 	use("williamboman/nvim-lsp-installer")
 	use("folke/lua-dev.nvim")
 
-	-- snippet pluggins
-	use("L3MON4D3/LuaSnip")
-	use("rafamadriz/friendly-snippets")
+	-- Debugging
+	use("sakhnik/nvim-gdb")
+	use("mfussenegger/nvim-dap")
+	use("rcarriga/nvim-dap-ui")
+
+	-- Formatters
 
 	-- Snippets
+	use("L3MON4D3/LuaSnip")
+	use("rafamadriz/friendly-snippets")
 
 	-- Colorschemes
 	use("tjdevries/colorbuddy.nvim")
 	use("bbenzikry/snazzybuddy.nvim")
 	use("shaunsingh/moonlight.nvim")
 	use("rktjmp/lush.nvim") -- Colorscheme creation plugin
-	use("dracula/vim")
+	use("Mofiqul/dracula.nvim")
 	use("ellisonleao/gruvbox.nvim")
+	use("xiyaowong/nvim-transparent")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

@@ -49,10 +49,16 @@ null_ls.setup({
 		fmt.black.with({ extra_args = { "--preview" } }),
 		fmt.stylua.with({ extra_args = { "--quote-style", "ForceDouble" } }),
 		fmt.clang_format,
-		fmt.fixjson,
 		fmt.shfmt,
 		fmt.cmake_format,
-		fmt.prettier,
+		-- Prettierd is a faster, deamon, version of prettier.
+		-- You can not set arguments for it from here, this has to be done by
+		-- setting PRETTIERD_DEFAULT_CONFIG env virable to the .prettierrc file
+		-- Right now I only set equvivalent of below:
+		-- extra_args = { "--prose-wrap", "always" },
+		fmt.prettierd.with({
+			filetypes = { "js", "html", "yaml", "markdown" },
+		}),
 
 		-- Diagnostics aka. Linters
 		diag.flake8.with({ extra_args = { "--max-line-length=88" } }),

@@ -1,0 +1,58 @@
+local mason_status_ok, mason = pcall(require, "mason")
+if not mason_status_ok then
+	return
+end
+local mason_null_ls_status_ok, mason_null_ls = pcall(require, "mason-null-ls")
+if not mason_null_ls_status_ok then
+	return
+end
+
+local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not mason_lspconfig_status_ok then
+	return
+end
+
+local M = {}
+
+-- List the formatters, diagnostics, linters you want to have
+-- installed by default
+local null_ls_tools = {
+	-- Keep list of this programs in sync with the one in null-ls.lua file
+	"isort",
+	"black",
+	"stylua",
+	"clang_format",
+	"fixjson",
+	"shfmt",
+	"cmake_format",
+	"prettier",
+	"flake8",
+	"luacheck",
+	"vale",
+	"hadolin",
+	"markdownlint",
+	"prettierd",
+}
+
+-- List the lsp servers you want to have installed by default
+M.lsp_servers = {
+	"bashls",
+	"pyright",
+	"jsonls",
+	"yamlls",
+	"clangd",
+	"cmake",
+	"sumneko_lua",
+}
+
+mason.setup()
+mason_null_ls.setup({
+	ensure_installed = null_ls_tools,
+	automatic_installation = true,
+})
+mason_lspconfig.setup({
+	ensure_installed = lsp_servers,
+	automatic_installation = true,
+})
+
+return M

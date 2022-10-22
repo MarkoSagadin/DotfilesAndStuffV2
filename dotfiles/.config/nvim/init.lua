@@ -1,14 +1,14 @@
 -- Needs to be first, otherwise comments break
 require("user.general_options")
 require("user.keymaps")
+require("user.plugins")
+require("user.colorscheme")
 
 require("user.cmp")
-require("user.colorscheme")
-require("user.comments")
 require("user.lsp")
+
+require("user.comments")
 require("user.lualine")
-require("user.null-ls")
-require("user.plugins")
 require("user.snippets")
 require("user.treesitter")
 
