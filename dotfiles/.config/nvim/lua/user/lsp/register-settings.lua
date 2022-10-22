@@ -3,8 +3,11 @@ if not lspconfig_status_ok then
 	return
 end
 
-servers = require("user.lsp.mason").lsp_servers
-handlers = require("user.lsp.handlers")
+local servers = require("user.lsp.mason").lsp_servers
+local handlers = require("user.lsp.handlers")
+
+local keymap = vim.api.nvim_set_keymap
+local k_opts = { noremap = true, silent = true }
 
 for _, server in pairs(servers) do
 	local opts = {
@@ -23,6 +26,7 @@ for _, server in pairs(servers) do
 
 		if client.name == "clangd" then
 			client.server_capabilities.documentFormattingProvider = false
+			keymap("n", "<leader>c", "<Cmd>ClangdSwitchSourceHeader<CR>", k_opts)
 		end
 		if client.name == "sumneko_lua" then
 			client.server_capabilities.documentFormattingProvider = false
@@ -30,6 +34,8 @@ for _, server in pairs(servers) do
 		if client.name == "jsonls" then
 			client.server_capabilities.documentFormattingProvider = false
 		end
+
+		-- -- Specific to clangd
 	end
 
 	lspconfig[server].setup(opts)

@@ -14,10 +14,13 @@ local keymap = vim.api.nvim_set_keymap
 -- jk is now escape
 keymap("i", "jk", "<ESC>", opts)
 
---Remap space as leader key, but first unmap it from any other mode
+-- Remap space as leader key, but first unmap it from any other mode
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- For refreshing neovim config
+keymap("n", "<F5>", ":source $MYVIMRC<cr>", opts)
 
 -- Jumping in and out of tags
 keymap("n", "<leader>i", "g<C-]>", opts)
@@ -77,21 +80,6 @@ keymap("n", "<leader>;", ":lua require('harpoon.ui').nav_file(3)<CR>", opts)
 keymap("n", "<leader>w", ":lua require('harpoon.cmd-ui').toggle_quick_menu()<CR>", opts)
 keymap("n", "<leader>1", ":lua require('harpoon.tmux').sendCommand('{right-of}', 1)<CR>", opts)
 keymap("n", "<leader>2", ":lua require('harpoon.tmux').sendCommand('{right-of}', 2)<CR>", opts)
-
--- LSP servers mappings
-keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-keymap("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-keymap("n", "gl", ":lua vim.diagnostic.open_float(0, { border = \"rounded\" })<CR>", opts)
-keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({ border = \"rounded\" })<CR>", opts)
-keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next({ border = \"rounded\" })<CR>", opts)
-keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
--- -- Specific to clangd
-keymap("n", "<leader>c", "<Cmd>ClangdSwitchSourceHeader<CR>", opts)
 
 -- Documentation generation
 keymap("n", "<leader>d", "<cmd>Neogen<CR>", opts)
