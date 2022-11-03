@@ -84,5 +84,26 @@ keymap("n", "<leader>2", ":lua require('harpoon.tmux').sendCommand('{right-of}',
 -- Documentation generation
 keymap("n", "<leader>d", "<cmd>Neogen<CR>", opts)
 
+-- Comments
+keymap("n", "<leader>ll", "<cmd>CommentToggle<CR>", opts)
+keymap("n", "<leader>l", "<cmd>'<,'>CommentToggle<CR>", opts)
+
+-- keymap("n", "<F5>", ":Termdebug --iex='app/build/nrf52832_xxaa' <CR>", opts)
+--
+-- keymap("n", "<F5>", " <Cmd>lua require'dap'.continue()<CR>", opts)
+-- keymap("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>", opts)
+-- keymap("n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>", opts)
+-- keymap("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>", opts)
+-- keymap("n", "<Leader>b", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", opts)
+-- keymap("n", "<Leader>B", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
+-- keymap(
+-- 	"n",
+-- 	"<Leader>lp",
+-- 	"<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+-- 	opts
+-- )
+-- keymap("n", "<Leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>", opts)
+-- keymap("n", "<Leader>dl", "<Cmd>lua require'dap'.run_last()<CR>", opts)
+
 -- Reload snippets
-vim.keymap.set("n", "<leader>m", "<cmd>source ~/.config/nvim/lua/user/snippets.lua<CR>")
+keymap("n", "<leader>m", "<cmd>source ~/.config/nvim/lua/user/snippets.lua<CR>", opts)

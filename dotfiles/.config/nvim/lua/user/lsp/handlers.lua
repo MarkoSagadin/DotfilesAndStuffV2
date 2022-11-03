@@ -78,7 +78,7 @@ end
 
 -- This function will check if the given lsp client supports highlighting.
 -- If it does it will enable it.
-M.lsp_highlight_document = function(client)
+M.lsp_highlight_document = function(client, bufnr)
 	if client.server_capabilities.documentHighlightProvider then
 		vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
 		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })

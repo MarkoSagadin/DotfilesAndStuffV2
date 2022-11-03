@@ -11,7 +11,6 @@ local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, "mason-lspconf
 if not mason_lspconfig_status_ok then
 	return
 end
-
 local M = {}
 
 -- List the formatters, diagnostics, linters you want to have
@@ -29,7 +28,7 @@ local null_ls_tools = {
 	"flake8",
 	"luacheck",
 	"vale",
-	"hadolin",
+	"hadolint",
 	"markdownlint",
 	"prettierd",
 }
@@ -44,15 +43,18 @@ M.lsp_servers = {
 	"cmake",
 	"sumneko_lua",
 }
-
-mason.setup()
-mason_null_ls.setup({
-	ensure_installed = null_ls_tools,
-	automatic_installation = true,
-})
-mason_lspconfig.setup({
-	ensure_installed = lsp_servers,
-	automatic_installation = true,
-})
+M.setup = function()
+	mason.setup({
+		PATH = "prepend", -- "skip" seems to cause the spawning error
+	})
+	mason_null_ls.setup({
+		ensure_installed = null_ls_tools,
+		automatic_installation = true,
+	})
+	mason_lspconfig.setup({
+		ensure_installed = M.lsp_servers,
+		automatic_installation = true,
+	})
+end
 
 return M

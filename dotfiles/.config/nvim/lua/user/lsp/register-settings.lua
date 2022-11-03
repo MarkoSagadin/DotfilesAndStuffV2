@@ -1,26 +1,10 @@
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-	return
-end
-
-local servers = require("user.lsp.mason").lsp_servers
 local handlers = require("user.lsp.handlers")
 
 local keymap = vim.api.nvim_set_keymap
 local k_opts = { noremap = true, silent = true }
 
-for _, server in pairs(servers) do
-	local opts = {
-		on_attach = nil,
-		capabilities = require("user.lsp.handlers").capabilities,
-	}
-
-	local require_ok, server_specific_opts = pcall(require, "user.lsp.settings." .. server)
-	if require_ok then
-		opts = vim.tbl_deep_extend("force", server_specific_opts, opts)
-	end
-
-	opts.on_attach = function(client, bufnr)
+local default_opts = {
+	on_attach = function(client, bufnr)
 		handlers.lsp_highlight_document(client)
 		handlers.lsp_keymaps(bufnr)
 
@@ -34,9 +18,22 @@ for _, server in pairs(servers) do
 		if client.name == "jsonls" then
 			client.server_capabilities.documentFormattingProvider = false
 		end
+	end,
+	capabilities = require("user.lsp.handlers").capabilities,
+}
 
-		-- -- Specific to clangd
-	end
+local setup_opts = {
+	-- The first entry (without a key) will be the default handler
+	-- and will be called for each installed server that doesn't have
+	-- a dedicated handler.
+	function(server_name)
+		local opts = {}
+		local require_ok, server_specific_opts = pcall(require, "user.lsp.settings." .. server_name)
+		if require_ok then
+			opts = vim.tbl_deep_extend("force", server_specific_opts, default_opts)
+		end
+		require("lspconfig")[server_name].setup(opts)
+	end,
+}
 
-	lspconfig[server].setup(opts)
-end
+require("mason-lspconfig").setup_handlers(setup_opts)

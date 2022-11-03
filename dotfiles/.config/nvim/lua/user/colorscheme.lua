@@ -1,14 +1,8 @@
--- require("colorbuddy").colorscheme("snazzybuddy")
-
 local colorscheme = "dracula"
 
--- Uncomment below line, when using gruvbox to specify which gruvbox theme you
--- want
-vim.o.background = "light"
-
+-- Do protected call so nothing fails on the first run
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
-	vim.notify("Colorscheme " .. colorscheme .. " not found!")
 	return
 end
 
