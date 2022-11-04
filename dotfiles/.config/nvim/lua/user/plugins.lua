@@ -20,7 +20,7 @@ local plugin_fun = function(use)
 	use({
 		"karb94/neoscroll.nvim",
 		opt = true,
-		setup = "require('user.lazy_load').on_file_open('neoscroll.nvim')",
+		keys = { "<C-a>", "<C-d>" },
 		config = "require('user.plugins.neoscroll')",
 	})
 
@@ -33,7 +33,7 @@ local plugin_fun = function(use)
 	use({
 		"cappyzawa/trim.nvim",
 		opt = true,
-		setup = "require('user.lazy_load').on_file_open('trim.nvim')",
+		events = "BufWrite",
 		config = function()
 			require("trim").setup({
 				patterns = {
@@ -56,11 +56,10 @@ local plugin_fun = function(use)
 		cmd = "CommentToggle",
 		config = "require('user.comments').nvim_comment_setup()",
 	})
-	-- TODO: Figure out how to lazy_load
 	use({
 		"folke/todo-comments.nvim",
 		opt = true,
-		setup = "require('user.lazy_load').on_file_open('todo-comments.nvim')",
+		event = { "BufRead", "BufNewFile" },
 		config = "require('todo-comments').setup()",
 	})
 	use({
@@ -117,7 +116,6 @@ local plugin_fun = function(use)
 	-- Installers for LSP, Formatters, Linters
 	use({
 		"williamboman/mason.nvim",
-		cmd = require("user.lazy_load").mason_cmds,
 		config = "require('user.lsp.mason').setup()",
 	})
 	use({ "jayp0521/mason-null-ls.nvim" })
@@ -126,8 +124,6 @@ local plugin_fun = function(use)
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",
-		opt = true,
-		setup = "require('user.lazy_load').on_file_open('nvim-lspconfig')",
 		config = "require('user.lsp')",
 	})
 	-- use("folke/lua-dev.nvim")
