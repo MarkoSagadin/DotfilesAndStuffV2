@@ -88,6 +88,18 @@ keymap("n", "<leader>d", "<cmd>Neogen<CR>", opts)
 keymap("n", "<leader>ll", "<cmd>CommentToggle<CR>", opts)
 keymap("n", "<leader>l", "<cmd>'<,'>CommentToggle<CR>", opts)
 
+keymap("n", "s", "<cmd>lua require('substitute').operator()<cr>", opts)
+keymap("n", "ss", "<cmd>lua require('substitute').line()<cr>", opts)
+keymap("n", "S", "<cmd>lua require('substitute').eol()<cr>", opts)
+keymap("x", "s", "<cmd>lua require('substitute').visual()<cr>", opts)
+keymap("n", "<leader>s", "<cmd>lua require('substitute.range').operator()<cr>", opts)
+keymap("x", "<leader>s", "<cmd>lua require('substitute.range').visual()<cr>", opts)
+keymap("n", "<leader>ss", "<cmd>lua require('substitute.range').word()<cr>", opts)
+keymap("n", "sx", "<cmd>lua require('substitute.exchange').operator()<cr>", opts)
+keymap("n", "sxx", "<cmd>lua require('substitute.exchange').line()<cr>", opts)
+keymap("x", "X", "<cmd>lua require('substitute.exchange').visual()<cr>", opts)
+keymap("n", "sxc", "<cmd>lua require('substitute.exchange').cancel()<cr>", opts)
+
 -- keymap("n", "<F5>", ":Termdebug --iex='app/build/nrf52832_xxaa' <CR>", opts)
 --
 -- keymap("n", "<F5>", " <Cmd>lua require'dap'.continue()<CR>", opts)

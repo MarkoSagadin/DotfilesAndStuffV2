@@ -44,7 +44,18 @@ local plugin_fun = function(use)
 	})
 
 	-- TODO: Figure out how to lazy_load or replace
-	use("svermeulen/vim-subversive")
+	use({
+		"gbprod/substitute.nvim",
+		opt = true,
+		module = "substitute",
+		config = function()
+			require("substitute").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
 	-- use("windwp/nvim-autopairs")
 	-- use("ThePrimeagen/harpoon")
 
