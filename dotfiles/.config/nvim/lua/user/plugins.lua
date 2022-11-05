@@ -131,16 +131,15 @@ local plugin_fun = function(use)
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("ludovicchabant/vim-gutentags")
 
-	-- Completion plugins, snippet engine and snippets
+    -- Completion plugins, snippet engine and snippets
 	use({ "hrsh7th/nvim-cmp", event = "InsertEnter", config = "require('user.cmp')" })
-	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
+	use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
+	use({ "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" })
 	use({ "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" })
 	use({ "hrsh7th/cmp-path", after = "cmp-buffer" })
 	use({ "hrsh7th/cmp-cmdline", after = "cmp-path" })
-	use({ "hrsh7th/cmp-nvim-lua", after = "cmp-cmdline" })
-	use({ "saadparwaiz1/cmp_luasnip", after = "cmp-nvim-lua" })
-	use({ "L3MON4D3/LuaSnip", after = "nvim-cmp" })
-	use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
+	use({ "saadparwaiz1/cmp_luasnip", after = "cmp-cmdline" })
+	use({ "L3MON4D3/LuaSnip", after = "cmp_luasnip", requires = "rafamadriz/friendly-snippets" })
 
 	-- Installers for LSP, Formatters, Linters
 	use({
@@ -153,6 +152,8 @@ local plugin_fun = function(use)
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",
+		opt = true,
+		event = "BufReadPre",
 		config = "require('user.lsp')",
 	})
 	-- use("folke/lua-dev.nvim")

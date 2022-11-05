@@ -1,8 +1,3 @@
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-	return
-end
-
 -- This file contains lsp setup and lsp handlers.
 -- Setup communicates directly with the nvim api, no plugin here, it defines
 -- the visual behaviour of lsp.
@@ -100,6 +95,9 @@ end
 -- Prepares object which represents client capabilites
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+
+-- Specifically add cmp-nvim-lsp before loading it, as it is lazy loaded.
+vim.api.nvim_command([[packadd cmp-nvim-lsp]])
+M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 return M
