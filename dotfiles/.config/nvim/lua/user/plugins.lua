@@ -44,18 +44,11 @@ local plugin_fun = function(use)
 		end,
 	})
 
-	-- TODO: Figure out how to lazy_load or replace
 	use({
 		"gbprod/substitute.nvim",
 		opt = true,
 		module = "substitute",
-		config = function()
-			require("substitute").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			})
-		end,
+		config = "require('substitute').setup()",
 	})
 	-- use("windwp/nvim-autopairs")
 	-- use("ThePrimeagen/harpoon")
@@ -92,7 +85,7 @@ local plugin_fun = function(use)
 		event = "VimEnter",
 		config = function()
 			require("tmux").setup({
-				-- We want to use this pluging only for naviagtion,
+				-- We want to use this plugin only for naviagtion,
 				-- copy_sync feature only messes up the perfectly fine
 				-- "copy to clipboard" behavoiur.
 				copy_sync = { enable = false },
@@ -113,7 +106,10 @@ local plugin_fun = function(use)
 		event = "BufReadPost",
 		config = "require('user.treesitter')",
 	})
-	use({ "nvim-treesitter/nvim-treesitter-textobjects", requires = { { "nvim-treesitter/nvim-treesitter" } } })
+	use({
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
 	use({
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
