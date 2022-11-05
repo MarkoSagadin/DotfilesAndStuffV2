@@ -119,7 +119,14 @@ local plugin_fun = function(use)
 		config = "require('user.plugins.telescope')",
 	})
 
-	use({ "nvim-telescope/telescope-fzf-native.nvim", after = "telescope.nvim", run = "make" })
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		after = "telescope.nvim",
+		run = "make",
+		config = function()
+			require("telescope").load_extension("fzf")
+		end,
+	})
 
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("ludovicchabant/vim-gutentags")
