@@ -85,8 +85,19 @@ local plugin_fun = function(use)
 	use({ "mzlogin/vim-markdown-toc", ft = "markdown", cmd = "GenTocGFM" })
 
 	use({ "kyazdani42/nvim-tree.lua", cmd = "NvimTreeToggle", config = "require('user.plugins.nvim-tree')" })
-	-- TODO: Figure out how to lazy_load
-	use({ "aserowy/tmux.nvim", event = "VimEnter", config = "require('tmux').setup()" })
+
+	use({
+		"aserowy/tmux.nvim",
+		event = "VimEnter",
+		config = function()
+			require("tmux").setup({
+				-- We want to use this pluging only for naviagtion,
+				-- copy_sync feature only messes up the perfectly fine
+				-- "copy to clipboard" behavoiur.
+				copy_sync = { enable = false },
+			})
+		end,
+	})
 
 	use({
 		"lewis6991/gitsigns.nvim",
