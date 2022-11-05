@@ -28,6 +28,7 @@ local plugin_fun = function(use)
 		"nvim-lualine/lualine.nvim",
 		event = "VimEnter",
 		config = "require('user.lualine')",
+		requires = { "kyazdani42/nvim-web-devicons" },
 	})
 
 	use({

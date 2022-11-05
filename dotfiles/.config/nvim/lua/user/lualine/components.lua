@@ -97,7 +97,7 @@ return {
 		function()
 			local b = vim.api.nvim_get_current_buf()
 			if next(vim.treesitter.highlighter.active[b]) then
-				return "  "
+				return ""
 			end
 			return ""
 		end,
@@ -109,7 +109,6 @@ return {
 			msg = msg or "LS Inactive"
 			local buf_clients = vim.lsp.buf_get_clients()
 			if next(buf_clients) == nil then
-				-- TODO: clean up this if statement
 				if type(msg) == "boolean" or #msg == 0 then
 					return "LS Inactive"
 				end
@@ -135,7 +134,7 @@ return {
 
 			return "[" .. table.concat(buf_client_names, ", ") .. "]"
 		end,
-		-- icon = " ",
+		-- icon = "",
 		color = { gui = "bold" },
 		cond = conditions.hide_in_width,
 	},
@@ -144,7 +143,7 @@ return {
 	spaces = {
 		function()
 			if not vim.api.nvim_buf_get_option(0, "expandtab") then
-				return "Tab size: " .. vim.api.nvim_buf_get_option(0, "tabstop") .. " "
+				return "Tab size: " .. vim.api.nvim_buf_get_option(0, "tabstop")
 			end
 			local size = vim.api.nvim_buf_get_option(0, "shiftwidth")
 			if size == 0 then
@@ -161,7 +160,7 @@ return {
 		color = {},
 		cond = conditions.hide_in_width,
 	},
-	filetype = { "filetype", cond = nil, color = {} },
+	filetype = { "filetype", cond = nil, color = {}, icon = { align = "left" } },
 	scrollbar = {
 		function()
 			local current_line = vim.fn.line(".")

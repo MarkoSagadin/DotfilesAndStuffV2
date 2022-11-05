@@ -24,9 +24,9 @@ require("lualine").setup({
 			components.diagnostics,
 			components.treesitter,
 			components.lsp,
-			components.filetype,
 		},
 		lualine_y = {
+			components.filetype,
 			components.spaces,
 			components.fileformat,
 		},
