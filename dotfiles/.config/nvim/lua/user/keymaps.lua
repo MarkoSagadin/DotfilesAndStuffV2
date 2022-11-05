@@ -86,7 +86,7 @@ keymap("n", "<leader>d", "<cmd>Neogen<CR>", opts)
 
 -- Comments
 keymap("n", "<leader>ll", "<cmd>CommentToggle<CR>", opts)
-keymap("n", "<leader>l", "<cmd>'<,'>CommentToggle<CR>", opts)
+keymap("v", "<leader>l", ":CommentToggle<cr>", opts)
 
 keymap("n", "s", "<cmd>lua require('substitute').operator()<cr>", opts)
 keymap("n", "ss", "<cmd>lua require('substitute').line()<cr>", opts)
