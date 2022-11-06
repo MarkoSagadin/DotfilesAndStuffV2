@@ -16,6 +16,7 @@ pip install tldr
 
 # Neovim tooling - linters, formatters
 pip install pynvim
+pip install neovim
 
 # Bash formatter, this will need latest golang on Ubuntu
 go install mvdan.cc/sh/v3/cmd/shfmt@latest

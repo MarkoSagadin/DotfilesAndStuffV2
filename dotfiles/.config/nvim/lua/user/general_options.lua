@@ -43,6 +43,10 @@ vim.opt.clipboard:prepend("unnamed,unnamedplus")
 -- Used to tell where tags are located
 vim.cmd([[set tags+=$ZEPHYR_BASE/tags]])
 
+-- Tell neovim where to look for python provider, startups that require python
+-- tooling are faster
+vim.cmd("let g:python3_host_prog = '/usr/bin/python3'")
+
 -- Autocommands
 vim.cmd([[
 au BufNewFile,BufRead [Dd]ockerfile* setf dockerfile
