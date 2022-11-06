@@ -50,7 +50,12 @@ local plugin_fun = function(use)
 		module = "substitute",
 		config = "require('substitute').setup()",
 	})
-	-- use("windwp/nvim-autopairs")
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
 	-- use("ThePrimeagen/harpoon")
 
 	-- use("folke/which-key.nvim")
@@ -126,9 +131,9 @@ local plugin_fun = function(use)
 	})
 
 	use("jose-elias-alvarez/null-ls.nvim")
-	use("ludovicchabant/vim-gutentags")
+	-- use("ludovicchabant/vim-gutentags")
 
-    -- Completion plugins, snippet engine and snippets
+	-- Completion plugins, snippet engine and snippets
 	use({ "hrsh7th/nvim-cmp", event = "InsertEnter", config = "require('user.cmp')" })
 	use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" })
