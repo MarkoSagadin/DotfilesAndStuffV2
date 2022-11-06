@@ -113,6 +113,8 @@ local plugin_fun = function(use)
 	})
 	use({
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		opt = true,
+		keys = { "gnn", "grn", "grc", "grm", "af", "if", "ab", "ib", "][", "[[", "[]" },
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
 	use({
@@ -141,7 +143,12 @@ local plugin_fun = function(use)
 	use({ "hrsh7th/cmp-path", after = "cmp-buffer" })
 	use({ "hrsh7th/cmp-cmdline", after = "cmp-path" })
 	use({ "saadparwaiz1/cmp_luasnip", after = "cmp-cmdline" })
-	use({ "L3MON4D3/LuaSnip", after = "cmp_luasnip", requires = "rafamadriz/friendly-snippets" })
+	use({
+		"L3MON4D3/LuaSnip",
+		after = "cmp_luasnip",
+		requires = "rafamadriz/friendly-snippets",
+		config = "require('user.snippets')",
+	})
 
 	-- Installers for LSP, Formatters, Linters
 	use({
@@ -172,6 +179,7 @@ local plugin_fun = function(use)
 	-- use("bbenzikry/snazzybuddy.nvim")
 	-- use("rktjmp/lush.nvim") -- Colorscheme creation plugin
 	-- use("Mofiqul/dracula.nvim")
+	use("folke/tokyonight.nvim")
 	use("dracula/vim")
 	-- use("ellisonleao/gruvbox.nvim")
 	use("xiyaowong/nvim-transparent")

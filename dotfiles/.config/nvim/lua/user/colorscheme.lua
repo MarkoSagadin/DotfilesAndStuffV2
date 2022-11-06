@@ -1,4 +1,4 @@
-local colorscheme = "dracula"
+local colorscheme = "tokyonight"
 
 -- Do protected call so nothing fails on the first run
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
@@ -12,5 +12,5 @@ if not status_ok_tr then
 end
 
 transparent.setup({
-	enable = true, -- boolean: enable transparent
+	enable = false, -- boolean: enable transparent
 })
