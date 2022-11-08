@@ -87,7 +87,7 @@ local plugin_fun = function(use)
 
 	use({
 		"aserowy/tmux.nvim",
-		event = "VimEnter",
+		keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
 		config = function()
 			require("tmux").setup({
 				-- We want to use this plugin only for naviagtion,
