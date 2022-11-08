@@ -88,6 +88,7 @@ keymap("n", "<leader>d", "<cmd>Neogen<CR>", opts)
 keymap("n", "<leader>ll", "<cmd>CommentToggle<CR>", opts)
 keymap("v", "<leader>l", ":CommentToggle<cr>", opts)
 
+-- Substitute plugin
 keymap("n", "s", "<cmd>lua require('substitute').operator()<cr>", opts)
 keymap("n", "ss", "<cmd>lua require('substitute').line()<cr>", opts)
 keymap("n", "S", "<cmd>lua require('substitute').eol()<cr>", opts)
@@ -99,6 +100,13 @@ keymap("n", "sx", "<cmd>lua require('substitute.exchange').operator()<cr>", opts
 keymap("n", "sxx", "<cmd>lua require('substitute.exchange').line()<cr>", opts)
 keymap("x", "X", "<cmd>lua require('substitute.exchange').visual()<cr>", opts)
 keymap("n", "sxc", "<cmd>lua require('substitute.exchange').cancel()<cr>", opts)
+
+-- Diagnostics - they are needed here so they can be also used for null-ls,
+-- not only lspconfig
+keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
+keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
+keymap("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", opts)
 
 -- keymap("n", "<F5>", ":Termdebug --iex='app/build/nrf52832_xxaa' <CR>", opts)
 --

@@ -63,7 +63,13 @@ null_ls.setup({
 		-- Diagnostics aka. Linters
 		diag.flake8.with({ extra_args = { "--max-line-length=88" } }),
 		diag.luacheck.with({ extra_args = { "--globals", "vim" } }),
-		diag.vale,
+		diag.vale.with({
+			-- Use vale only on save, not while editing, in other case it makes
+			-- saving markdowns with prettierd very slow. I know that it does
+			-- not make sense but
+			-- it works.
+			method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+		}),
 		diag.hadolint,
 	},
 })

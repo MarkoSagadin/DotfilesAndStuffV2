@@ -7,7 +7,7 @@ end
 -- attach the lsp servers to the nvim.
 -- Mason needs to be setup before it, as the lspconfig needs it.
 require("user.lsp.mason").setup()
-require("user.lsp.null-ls")
+-- require("user.lsp.null-ls")
 
 require("user.lsp.handlers").setup()
 require("user.lsp.register-settings")
