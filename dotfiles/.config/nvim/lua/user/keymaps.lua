@@ -54,8 +54,7 @@ keymap("x", "<Leader>ss", "<plug>(SubversiveSubstituteRange)", reopts)
 keymap("n", "<Leader>S", "<plug>(SubversiveSubstituteWordRange)", reopts)
 
 -- Telescope mappings
-keymap("n", "<C-p>", "<cmd>Telescope git_files<cr>", opts)
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<C-p>", ":lua require('user.plugins.telescope').project_files()<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<leader><space>", "<cmd>Telescope buffers<cr>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts)
