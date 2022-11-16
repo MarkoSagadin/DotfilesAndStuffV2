@@ -53,6 +53,8 @@ au BufNewFile,BufRead [Dd]ockerfile* setf dockerfile
 au BufNewFile,BufRead *.ino setf cpp
 au BufNewFile,BufRead *.h setf c
 au BufNewFile,BufRead /*.rasi setf css
+au FileType markdown setlocal  spell spelllang=en_gb
+au FileType gitcommit setlocal spell spelllang=en_gb
 augroup open_help_vertical
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
