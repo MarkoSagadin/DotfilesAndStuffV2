@@ -24,7 +24,6 @@ local null_ls_tools = {
 	"fixjson",
 	"shfmt",
 	"cmake_format",
-	"prettier",
 	"flake8",
 	"luacheck",
 	"vale",
