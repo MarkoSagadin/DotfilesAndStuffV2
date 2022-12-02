@@ -3,6 +3,8 @@ M.nvim_comment_setup = function()
 	require("nvim_comment").setup({
 		-- should comment out empty or whitespace only lines
 		comment_empty = false,
+		line_mapping = "<leader>ll",
+		operator_mapping = "<leader>l",
 		-- Hook function to call before commenting takes place
 		hook = function()
 			local filetype = vim.api.nvim_buf_get_option(0, "filetype")

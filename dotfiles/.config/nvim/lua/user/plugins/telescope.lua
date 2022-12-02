@@ -7,7 +7,7 @@ telescope.setup({
 	defaults = {
 		prompt_prefix = " ",
 		selection_caret = " ",
-		path_display = { "truncate" },
+		path_display = { "smart" },
 	},
 	pickers = {
 		current_buffer_fuzzy_find = {

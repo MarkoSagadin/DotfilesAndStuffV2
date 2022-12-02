@@ -16,6 +16,7 @@ local plugin_fun = function(use)
 
 	-- Call it the first thing in the main init.lua
 	use({ "lewis6991/impatient.nvim" })
+	use({ "dstein64/vim-startuptime" })
 
 	use({
 		"karb94/neoscroll.nvim",
@@ -56,14 +57,13 @@ local plugin_fun = function(use)
 			require("nvim-autopairs").setup({})
 		end,
 	})
-	-- use("ThePrimeagen/harpoon")
+	use("ThePrimeagen/harpoon")
 
 	-- use("folke/which-key.nvim")
 
 	-- Some commenting plugins
 	use({
 		"terrortylor/nvim-comment",
-		cmd = "CommentToggle",
 		config = "require('user.comments').nvim_comment_setup()",
 	})
 	use({
@@ -108,13 +108,15 @@ local plugin_fun = function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
-		event = "BufReadPost",
 		config = "require('user.treesitter')",
+		setup = function()
+			require("user.lazy_load").on_file_open("nvim-treesitter")
+		end,
+		cmd = require("user.lazy_load").treesitter_cmds,
 	})
 	use({
 		"nvim-treesitter/nvim-treesitter-textobjects",
-		opt = true,
-		keys = { "gnn", "grn", "grc", "grm", "af", "if", "ab", "ib", "][", "[[", "[]" },
+		after = "nvim-treesitter",
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
 	use({
@@ -132,7 +134,15 @@ local plugin_fun = function(use)
 		end,
 	})
 
-	use("jose-elias-alvarez/null-ls.nvim")
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		setup = function()
+			require("user.lazy_load").on_file_open("null-ls.nvim")
+		end,
+		config = function()
+			require("user.lsp.null-ls")
+		end,
+	})
 	-- use("ludovicchabant/vim-gutentags")
 
 	-- Completion plugins, snippet engine and snippets
@@ -151,10 +161,7 @@ local plugin_fun = function(use)
 	})
 
 	-- Installers for LSP, Formatters, Linters
-	use({
-		"williamboman/mason.nvim",
-		config = "require('user.lsp.mason').setup()",
-	})
+	use({ "williamboman/mason.nvim" })
 	use({ "jayp0521/mason-null-ls.nvim" })
 	use({ "williamboman/mason-lspconfig.nvim" })
 

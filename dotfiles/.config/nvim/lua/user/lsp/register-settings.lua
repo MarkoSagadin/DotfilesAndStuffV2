@@ -5,7 +5,7 @@ local k_opts = { noremap = true, silent = true }
 
 local default_opts = {
 	on_attach = function(client, bufnr)
-		handlers.lsp_highlight_document(client)
+		-- handlers.lsp_highlight_document(client)
 		handlers.lsp_keymaps(bufnr)
 
 		if client.name == "clangd" then

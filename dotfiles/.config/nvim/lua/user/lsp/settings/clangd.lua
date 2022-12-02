@@ -9,7 +9,7 @@ return {
 	},
 	cmd = {
 		"clangd",
-		"--compile-commands-dir=tests/test_build/artifacts",
+		-- "--compile-commands-dir=tests/basic/build",
 		"--background-index",
 		"-j=8",
 		"--log=error",
