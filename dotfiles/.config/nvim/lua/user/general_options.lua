@@ -54,6 +54,7 @@ au BufNewFile,BufRead *.ino setf cpp
 au BufNewFile,BufRead *.h setf c
 au BufNewFile,BufRead /*.rasi setf css
 au BufNewFile,BufRead /*.overlay setf devicetree
+au BufNewFile,BufRead /*.conf setf kconfig
 au FileType markdown setlocal  spell spelllang=en_gb
 au FileType gitcommit setlocal spell spelllang=en_gb
 augroup open_help_vertical
