@@ -76,7 +76,6 @@ else
 
 	git clone https://github.com/yshui/picom
 	cd picom
-	git checkout v9.1
 	git submodule update --init --recursive
 	meson --buildtype=release . build
 	ninja -C build
