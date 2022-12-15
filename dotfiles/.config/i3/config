@@ -168,7 +168,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Window Compositor (transparency)
-exec_always --no-startup-id picom --config .config/picom/picom.conf --experimental-backends
+exec_always --no-startup-id picom --config .config/picom/picom.conf 
 
 # Start polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
