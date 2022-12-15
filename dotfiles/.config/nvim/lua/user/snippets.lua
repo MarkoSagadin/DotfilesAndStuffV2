@@ -32,7 +32,7 @@ local conds = require("luasnip.extras.expand_conditions")
 ls.config.set_config({
 	history = true,
 	-- Update more often, :h events for more info.
-	updateevents = "TextChanged,TextChangedI",
+	update_events = "TextChanged,TextChangedI",
 	ext_opts = {
 		[types.choiceNode] = {
 			active = {
