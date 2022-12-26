@@ -36,7 +36,6 @@ local options = {
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
-
 -- Some options need to be appended or removed, this has to be done separately
 vim.opt.clipboard:prepend("unnamed,unnamedplus")
 
@@ -60,5 +59,9 @@ au FileType gitcommit setlocal spell spelllang=en_gb
 augroup open_help_vertical
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup END
+augroup open_man_vertical
+  autocmd!
+  autocmd BufEnter * if &ft ==? 'man' | wincmd L | endif
 augroup END
 ]])
