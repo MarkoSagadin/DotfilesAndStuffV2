@@ -24,6 +24,8 @@ setopt menu_complete # Tab completion when choice ambiguous
 export EDITOR="nvim"
 bindkey -e
 
+export MANPAGER='nvim +Man!'
+
 ### aliases
 alias ls='exa'
 alias cp="cp -i"                          # confirm before overwriting something
