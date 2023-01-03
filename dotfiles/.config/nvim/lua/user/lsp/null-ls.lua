@@ -60,6 +60,8 @@ null_ls.setup({
 			filetypes = { "js", "html", "yaml", "markdown" },
 		}),
 
+		fmt.rustfmt.with({ "--edition", "2021" }),
+
 		-- Diagnostics aka. Linters
 		diag.flake8.with({ extra_args = { "--max-line-length=88" } }),
 		diag.luacheck.with({ extra_args = { "--globals", "vim" } }),

@@ -16,7 +16,6 @@ local M = {}
 -- List the formatters, diagnostics, linters you want to have
 -- installed by default
 local null_ls_tools = {
-	-- Keep list of this programs in sync with the one in null-ls.lua file
 	"isort",
 	"black",
 	"stylua",
@@ -27,6 +26,7 @@ local null_ls_tools = {
 	"flake8",
 	"luacheck",
 	"vale",
+	"rustfmt",
 	"hadolint",
 	"markdownlint",
 	"prettierd",
