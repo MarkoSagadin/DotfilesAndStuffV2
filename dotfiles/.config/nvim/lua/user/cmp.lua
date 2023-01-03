@@ -45,6 +45,10 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
+local trim = function(s)
+	return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -59,9 +63,7 @@ cmp.setup({
 
 		-- Move forward in snippets with ctrl + k
 		["<C-j>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_locally_jumpable() then
+			if luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
 			else
 				fallback()
@@ -94,6 +96,7 @@ cmp.setup({
 		format = function(entry, vim_item)
 			-- Kind icons
 			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+			vim_item.abbr = trim(vim_item.abbr)
 			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
@@ -102,11 +105,7 @@ cmp.setup({
 				nvim_lua = "[Lua]",
 				path = "[Path]",
 			})[entry.source.name]
-			vim_item.dup = ({
-				buffer = 0,
-				path = 0,
-				nvim_lsp = 0,
-			})[entry.source.name] or 0
+
 			return vim_item
 		end,
 	},
@@ -118,18 +117,20 @@ cmp.setup({
 		},
 	},
 	sources = {
-		{ name = "luasnip" },
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lua" },
-		{ name = "path" },
-		{ name = "buffer" },
+		-- group indxes key solves the issue with the duplicated entries
+		{ name = "luasnip", group_index = 1 },
+		{ name = "nvim_lsp", group_index = 1 },
+		{ name = "nvim_lua", group_index = 1 },
+		{ name = "path", group_index = 1 },
+		{ name = "buffer", group_index = 2 },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
-		select = false,
+		select = true,
 	},
 	window = {
 		documentation = cmp.config.window.bordered({ "╭", "─", "╮", "│", "╯", "─", "╰", "│" }),
+		completion = cmp.config.window.bordered({ "╭", "─", "╮", "│", "╯", "─", "╰", "│" }),
 	},
 	experimental = {
 		ghost_text = false,
