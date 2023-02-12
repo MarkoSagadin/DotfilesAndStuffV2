@@ -11,15 +11,15 @@ SIGNAL_STRENGHT=$(
 STATE=$(nmcli g | awk '/\*/{if (NR!=1) {print $0}}')
 
 # get current connection status
-CONSTATE=$(nmcli -fields STATE g)
-if [[ "$CONSTATE" =~ "disconnected" ]]; then
-    WIFISTATE=$(nmcli -fields WIFI g)
-    if [[ "$WIFISTATE" =~ "disabled" ]]; then
-	    STATUS="󰤮"
-    else
-	    STATUS="󰤫"
-    fi
-elif [[ "$CONSTATE" =~ "connected" ]]; then
+CONSTATE=$(nmcli -fields CONNECTIVITY g)
+if [[ "$CONSTATE" =~ "none" ]]; then
+	WIFISTATE=$(nmcli -fields WIFI g)
+	if [[ "$WIFISTATE" =~ "disabled" ]]; then
+		STATUS="󰤮"
+	else
+		STATUS="󰤫"
+	fi
+elif [[ "$CONSTATE" =~ "full" ]]; then
 	STATUS=$(
 		nmcli dev wifi list | awk '/\*/{if (NR!=1) {print $9}}' |
 			sed "s/▂▄▆█/󰤨/g" |
