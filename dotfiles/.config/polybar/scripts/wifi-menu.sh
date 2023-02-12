@@ -19,16 +19,16 @@ ENABLE_WIFI="          Enable WiFi 󰤨 "
 # get current connection status
 CONSTATE=$(nmcli -fields WIFI g)
 if [[ "$CONSTATE" =~ "enabled" ]]; then
-	TOGGLE=$DISABLE_WIFI
+	CHOICE="$DISABLE_WIFI\n$LIST"
 elif [[ "$CONSTATE" =~ "disabled" ]]; then
-	TOGGLE=$ENABLE_WIFI
+	CHOICE=$ENABLE_WIFI
 fi
 
 WIFI_MENU_THEME=~/.config/polybar/rofi/wifi-menu.rasi
 WIFI_PASSWORD_THEME=~/.config/polybar/rofi/wifi-password.rasi
 
 # display menu; store user choice
-CHENTRY=$(echo -e "$TOGGLE\n$LIST" | uniq -u | rofi -dmenu -selected-row 1 -theme $WIFI_MENU_THEME)
+CHENTRY=$(echo -e "$CHOICE" | uniq -u | rofi -dmenu -selected-row 1 -theme $WIFI_MENU_THEME)
 # store selected SSID
 CHSSID=$(echo "$CHENTRY" | sed 's/\s\{2,\}/\|/g' | awk -F "|" '{print $1}')
 
