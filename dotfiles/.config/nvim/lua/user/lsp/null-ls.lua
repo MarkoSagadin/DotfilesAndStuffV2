@@ -45,8 +45,8 @@ null_ls.setup({
 	sources = {
 		-- Formaters
 		-- isort will run before black, as it is listed before it.
-		fmt.isort,
-		fmt.black.with({ extra_args = { "--preview" } }),
+		fmt.isort.with({ extra_args = { "--profile", "black" } }),
+		fmt.black,
 		fmt.stylua.with({ extra_args = { "--quote-style", "ForceDouble" } }),
 		fmt.clang_format,
 		fmt.shfmt,
