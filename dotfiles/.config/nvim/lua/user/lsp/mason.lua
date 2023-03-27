@@ -40,7 +40,7 @@ M.lsp_servers = {
 	"yamlls",
 	"clangd",
 	"cmake",
-	"sumneko_lua",
+	"lua_ls",
 }
 M.setup = function()
 	mason.setup({

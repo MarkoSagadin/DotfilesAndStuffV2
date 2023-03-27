@@ -12,7 +12,7 @@ local default_opts = {
 			client.server_capabilities.documentFormattingProvider = false
 			keymap("n", "<leader>c", "<Cmd>ClangdSwitchSourceHeader<CR>", k_opts)
 		end
-		if client.name == "sumneko_lua" then
+		if client.name == "lua_ls" then
 			client.server_capabilities.documentFormattingProvider = false
 		end
 		if client.name == "jsonls" then

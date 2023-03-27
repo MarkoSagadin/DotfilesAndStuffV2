@@ -28,6 +28,4 @@ if not status_ok_tr then
 	return
 end
 
-transparent.setup({
-	enable = false, -- boolean: enable transparent
-})
+transparent.setup({})
