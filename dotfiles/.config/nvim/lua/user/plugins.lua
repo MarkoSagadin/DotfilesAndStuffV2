@@ -153,6 +153,7 @@ local plugin_fun = function(use)
 	use({ "hrsh7th/cmp-path", after = "cmp-buffer" })
 	use({ "hrsh7th/cmp-cmdline", after = "cmp-path" })
 	use({ "saadparwaiz1/cmp_luasnip", after = "cmp-cmdline" })
+	use({ "hrsh7th/cmp-copilot", after = "saadparwaiz1/cmp_luasnip" })
 	use({
 		"L3MON4D3/LuaSnip",
 		after = "cmp_luasnip",
@@ -171,6 +172,15 @@ local plugin_fun = function(use)
 		opt = true,
 		event = "BufReadPre",
 		config = "require('user.lsp')",
+	})
+
+	use({
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({})
+		end,
 	})
 	-- use("folke/lua-dev.nvim")
 
