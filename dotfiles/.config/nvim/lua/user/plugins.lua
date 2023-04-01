@@ -17,6 +17,7 @@ local plugin_fun = function(use)
 	-- Call it the first thing in the main init.lua
 	use({ "lewis6991/impatient.nvim" })
 	use({ "dstein64/vim-startuptime" })
+	use({ "tpope/vim-fugitive" })
 
 	use({
 		"karb94/neoscroll.nvim",
