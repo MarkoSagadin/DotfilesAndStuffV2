@@ -65,3 +65,6 @@ augroup open_man_vertical
   autocmd BufEnter * if &ft ==? 'man' | wincmd L | endif
 augroup END
 ]])
+
+-- Make colors for clever f nicer
+vim.cmd("let g:clever_f_mark_char_color = 'WinBar'")

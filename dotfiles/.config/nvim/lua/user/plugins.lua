@@ -17,8 +17,6 @@ local plugin_fun = function(use)
 	-- Call it the first thing in the main init.lua
 	use({ "lewis6991/impatient.nvim" })
 	use({ "dstein64/vim-startuptime" })
-	use({ "tpope/vim-fugitive" })
-
 	use({
 		"karb94/neoscroll.nvim",
 		opt = true,
@@ -105,6 +103,8 @@ local plugin_fun = function(use)
 		setup = "require('user.lazy_load').gitsigns()",
 		config = "require('user.plugins.gitsigns')",
 	})
+	use({ "tpope/vim-fugitive" })
+	use({ "rhysd/clever-f.vim" })
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
