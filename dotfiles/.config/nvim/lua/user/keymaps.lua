@@ -45,14 +45,6 @@ keymap("n", "gb", ":ls<CR>:b<Space>", opts)
 -- Open and close Nvim Tree
 keymap("n", "<C-c>", ":NvimTreeToggle<CR>", opts)
 
--- Change and paste in one go
-keymap("n", "s", "<plug>(SubversiveSubstitute)", reopts)
-keymap("n", "ss", "<plug>(SubversiveSubstituteLine)", reopts)
-keymap("n", "S", "<plug>(SubversiveSubstituteToEndOfLine)", reopts)
-keymap("n", "<Leader>s", "<plug>(SubversiveSubstituteRange)", reopts)
-keymap("x", "<Leader>ss", "<plug>(SubversiveSubstituteRange)", reopts)
-keymap("n", "<Leader>S", "<plug>(SubversiveSubstituteWordRange)", reopts)
-
 -- Telescope mappings
 keymap("n", "<C-p>", ":lua require('user.plugins.telescope').project_files()<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
