@@ -20,3 +20,9 @@ init
 pytest
 conftest
 py
+baud
+param
+termios
+ENOTSUP
+uart
+devicetree
