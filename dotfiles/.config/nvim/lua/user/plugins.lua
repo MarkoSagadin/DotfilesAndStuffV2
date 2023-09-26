@@ -144,7 +144,13 @@ local plugin_fun = function(use)
 			require("user.lsp.null-ls")
 		end,
 	})
-	-- use("ludovicchabant/vim-gutentags")
+
+	use({
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({})
+		end,
+	})
 
 	-- Completion plugins, snippet engine and snippets
 	use({ "hrsh7th/nvim-cmp", event = "InsertEnter", config = "require('user.cmp')" })
