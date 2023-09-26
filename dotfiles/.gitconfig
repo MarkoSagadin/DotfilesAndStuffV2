@@ -12,7 +12,7 @@
     co = checkout
     dif = --no-pager diff
 [core]
-	autocrlf = input
+	autocrlf = false
 	editor = nvim
     pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
