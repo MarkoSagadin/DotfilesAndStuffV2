@@ -104,7 +104,6 @@ cmp.setup({
 				buffer = "[Buffer]",
 				nvim_lua = "[Lua]",
 				path = "[Path]",
-				copilot = "[Copilot]",
 			})[entry.source.name]
 
 			return vim_item
@@ -124,7 +123,6 @@ cmp.setup({
 		{ name = "nvim_lua", group_index = 1 },
 		{ name = "path", group_index = 1 },
 		{ name = "buffer", group_index = 2 },
-		{ name = "copilot", group_index = 1 },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
