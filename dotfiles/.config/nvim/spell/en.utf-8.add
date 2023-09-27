@@ -20,3 +20,5 @@ init
 pytest
 conftest
 py
+typedef
+notecard
