@@ -10,6 +10,7 @@
     commmit = commit
     st = status
     co = checkout
+    ca = commit --amend
     dif = --no-pager diff
 [core]
 	autocrlf = input
