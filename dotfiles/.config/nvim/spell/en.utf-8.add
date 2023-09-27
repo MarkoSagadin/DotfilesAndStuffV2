@@ -22,3 +22,9 @@ conftest
 py
 typedef
 notecard
+baud
+param
+termios
+ENOTSUP
+uart
+devicetree
