@@ -75,6 +75,9 @@ keymap("n", "<leader>2", ":lua require('harpoon.tmux').sendCommand('{right-of}',
 -- Documentation generation
 keymap("n", "<leader>d", "<cmd>Neogen<CR>", opts)
 
+-- Fugitive mappings
+keymap("n", "<C-s>", "<cmd>vertical Git<CR>", opts)
+
 -- Substitute plugin
 keymap("n", "s", "<cmd>lua require('substitute').operator()<cr>", opts)
 keymap("n", "ss", "<cmd>lua require('substitute').line()<cr>", opts)
