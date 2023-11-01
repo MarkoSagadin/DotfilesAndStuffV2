@@ -1,7 +1,7 @@
 @import "colors.rasi"
 
 window {
-    width:            400px;
+    width:            350px;
     location:         north east;
     x-offset:         0px;
     y-offset:         30px;

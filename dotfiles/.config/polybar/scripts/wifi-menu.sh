@@ -3,13 +3,15 @@
 # this prints a beautifully formatted list. bash was a mistake
 nmcli -t d wifi rescan
 LIST=$(
-	nmcli --fields SSID,SECURITY,BARS device wifi list | sed '/^--/d' |
+	nmcli --fields SSID,SECURITY,BARS,IN-USE device wifi list | sed '/^--/d' |
 		sed 1d | sed -E "s/WPA*.?\S/~~/g" |
 		sed "s/~~ ~~/~~/g;s/802\.1X//g;s/--/~~/g;s/  *~/~/g;s/~  */~/g;s/_/ /g" |
 		sed "s/▂▄▆█/󰤨/g" |
 		sed "s/▂▄▆ /󰤥/g" |
 		sed "s/▂▄  /󰤢/g" |
 		sed "s/▂   /󰤟/g" |
+		sed -E "s/\*/󰁍/g" | # Replace asterix * with an arrow, this network is in-use
+		sed "s/[ \t]*$//" | # Trim trailing whitespace
 		column -t -s '~'
 )
 
