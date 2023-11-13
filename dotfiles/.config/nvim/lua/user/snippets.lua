@@ -115,7 +115,6 @@ ls.add_snippets(nil, {
  *
  * @par
  * COPYRIGHT NOTICE: (c) <> Irnas. All rights reserved.
- * Author: Marko Sagadin <>
  */
 
 #include "<>.h"
@@ -123,7 +122,6 @@ ls.add_snippets(nil, {
 				{
 					f(get_filename),
 					f(date_input, {}, { user_args = { "%Y" } }),
-					i(3, "<marko@irnas.eu>"),
 					f(get_filename),
 				}
 			)
@@ -139,7 +137,6 @@ ls.add_snippets(nil, {
  *
  * @par
  * COPYRIGHT NOTICE: (c) <> Irnas. All rights reserved.
- * Author: Marko Sagadin <>
  */
 
 #ifndef <>_H
@@ -158,7 +155,6 @@ extern "C" {
 				{
 					f(get_filename),
 					f(date_input, {}, { user_args = { "%Y" } }),
-					i(3, "<marko@irnas.eu>"),
 					f(get_headername),
 					f(get_headername),
 					f(get_headername),
