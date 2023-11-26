@@ -20,10 +20,14 @@ curl -L git.io/antigen >~/.zsh/antigen/antigen.zsh
 mkdir -p ~/.fonts
 
 cd $PROGRAMS_PATH
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
 unzip Meslo.zip
 mv *.ttf ~/.fonts
 rm Meslo.zip
+
+cd $PROGRAMS_PATH
+wget https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf
+mv NotoColorEmoji.ttf ~/.fonts
 
 # Install SFMono font
 cd $PROGRAMS_PATH

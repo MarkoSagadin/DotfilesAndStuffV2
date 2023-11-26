@@ -4,19 +4,22 @@ import:
 font:
   # The normal (roman) font face to use.
   normal:
-    family: MesloLGSDZ Nerd Font Mono # should be "Menlo" or something on macOS.
+    # terminal-font is an alias font, which must be defined in the
+    # ~/.config/fontconfig/fonts.conf. Idea is to use Menlo font for normal
+    # characters and Noto Sans Emoji for the emojis.
+    family: terminal-font
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: MesloLGSDZ Nerd Font Mono # should be "Menlo" or something on macOS.
+    family: terminal-font
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: MesloLGSDZ Nerd Font Mono # should be "Menlo" or something on macOS.
+    family: terminal-font
     # Style can be specified to pick a specific face.
     style: Italic
 

@@ -42,6 +42,7 @@ linkDotfile /home/$USER .config/Thunar
 linkDotfile /home/$USER .config/autorandr
 linkDotfile /home/$USER .config/vale-styles
 linkDotfile /home/$USER .config/zathura
+linkDotfile /home/$USER .config/fontconfig
 linkDotfile /home/$USER .ssh
 linkDotfile /home/$USER .gitconfig
 linkDotfile /home/$USER .tmux.conf
