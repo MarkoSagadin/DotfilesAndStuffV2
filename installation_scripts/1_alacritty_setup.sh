@@ -20,22 +20,16 @@ curl -L git.io/antigen >~/.zsh/antigen/antigen.zsh
 mkdir -p ~/.fonts
 
 cd $PROGRAMS_PATH
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
-unzip Meslo.zip
-mv *.ttf ~/.fonts
-rm Meslo.zip
+git clone https://github.com/andreberg/Meslo-Font.git
+cd Meslo-Font/dist/v1.2.1
+unzip Meslo\ LG\ DZ\ v1.2.1.zip
+mv Meslo\ LG\ DZ\ v1.2.1/*.ttf ~/.fonts
+cd ../../../
+rm -fr Meslo-Font
 
 cd $PROGRAMS_PATH
 wget https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf
 mv NotoColorEmoji.ttf ~/.fonts
-
-# Install SFMono font
-cd $PROGRAMS_PATH
-git clone https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized.git
-cd SFMono-Nerd-Font-Ligaturized
-mv *.otf ~/.fonts
-cd ..
-rm -fr SFMono-Nerd-Font-Ligaturized
 
 # Material design icons
 cd $PROGRAMS_PATH
