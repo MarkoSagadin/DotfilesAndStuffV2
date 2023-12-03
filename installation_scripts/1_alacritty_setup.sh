@@ -31,6 +31,14 @@ cd $PROGRAMS_PATH
 wget https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf
 mv NotoColorEmoji.ttf ~/.fonts
 
+# Install SFMono font
+cd $PROGRAMS_PATH
+git clone https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized.git
+cd SFMono-Nerd-Font-Ligaturized
+mv *.otf ~/.fonts
+cd ..
+rm -fr SFMono-Nerd-Font-Ligaturized
+
 # Material design icons
 cd $PROGRAMS_PATH
 git clone https://github.com/Templarian/MaterialDesign-Font.git
