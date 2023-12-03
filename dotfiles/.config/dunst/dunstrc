@@ -19,7 +19,7 @@
 	separator_color = frame
 	sort = yes
 	idle_threshold = 120
-	font = Liga SFMono Nerd Font 12
+	font = Liga SFMono Nerd Font 8
 	line_height = 4
 	markup = full
 	format = "%a\n%s\n%b"
@@ -35,7 +35,7 @@
 	sticky_history = yes
 	history_length = 20
 	dmenu = /usr/bin/dmenu -p dunst:
-	browser = /usr/bin/google-chrome-stable -new-tab
+	browser = /usr/bin/firefox -new-tab
 	always_run_script = true
 	title = Dunst
 	class = Dunst
@@ -43,7 +43,7 @@
 	force_xinerama = false
 	corner_radius = 0
     [experimental]
-	per_monitor_dpi = false
+	per_monitor_dpi = true
 [Discord]
 appname = Discord
 format = "Discord\n%s\n%b"
