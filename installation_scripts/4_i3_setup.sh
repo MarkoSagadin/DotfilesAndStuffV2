@@ -31,7 +31,7 @@ if [ "$DISTRO" = "MANJARO" ]; then
 
 	# Remove some packages as they are in conflict with desired ones
 	remove manjaro-i3-settings pcmanfm palemoon-bin
-	installyay polybar zscroll thunar
+	installyay polybar zscroll thunar picom-git
 	install pulseaudio pulseaudio-bluetooth
 
 	# Enable bluetooth, sometimes is not
