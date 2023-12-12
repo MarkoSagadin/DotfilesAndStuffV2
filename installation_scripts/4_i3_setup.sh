@@ -26,6 +26,16 @@ cd WhiteSur-icon-theme
 cd ..
 rm -fr WhiteSur-icon-theme
 
+# Install cronie, for scheduling
+git clone https://github.com/cronie-crond/cronie
+cd cronie
+git checkout cronie-1.7.0
+./configure
+make
+sudo make install
+cd ..
+rm -fr cronie
+
 if [ "$DISTRO" = "MANJARO" ]; then
 	install dunst bluez bluez-utils
 

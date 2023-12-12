@@ -191,7 +191,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 # Wallpaper
-exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Programs/DotfilesAndStuffV2/wallpapers/firewatch2.png
+exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Programs/DotfilesAndStuffV2/wallpapers/astronaut.png
 
 # Media volume controls
 bindsym XF86AudioMute exec amixer -D pulse sset 'Master' toggle
