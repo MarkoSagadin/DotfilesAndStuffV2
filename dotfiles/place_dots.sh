@@ -31,7 +31,7 @@ mkdir -p ~/.config
 
 # Create symlink for a file/folder on a right in the folder on the left
 linkDotfile /home/$USER .config/alacritty
-linkDotfile /home/$USER .config/dunst
+linkDotfile /home/$USER .config/deadd
 linkDotfile /home/$USER .config/gtk-3.0
 linkDotfile /home/$USER .config/i3
 linkDotfile /home/$USER .config/nvim
@@ -43,6 +43,8 @@ linkDotfile /home/$USER .config/autorandr
 linkDotfile /home/$USER .config/vale-styles
 linkDotfile /home/$USER .config/zathura
 linkDotfile /home/$USER .config/fontconfig
+linkDotfile /home/$USER .config/icons
+linkDotfile /home/$USER .config/scripts
 linkDotfile /home/$USER .ssh
 linkDotfile /home/$USER .gitconfig
 linkDotfile /home/$USER .tmux.conf
@@ -51,3 +53,7 @@ linkDotfile /home/$USER .zshrc
 linkDotfile /home/$USER .prettierrc
 linkDotfile /home/$USER toggle_theme.sh
 linkDotfile /usr/share/X11/xorg.conf.d 70-touchpad.conf
+linkDotfile /etc/udev/rules.d 99-charging_notification.rules
+
+# This will run battery notification script every 5 minutes
+echo "*/5 * * * * ~/.config/scripts/battery_alert.sh" | crontab -

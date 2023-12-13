@@ -7,15 +7,17 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 if [[ "$1" == "plugged" ]]; then
 	SOUND_FILE="power-plug"
 	ICON_FILE="battery-charging"
-	MESSAGE="Plugged"
+	MESSAGE="Charger was plugged"
 else
 	SOUND_FILE="power-unplug"
 	ICON_FILE="power-plug-unplugged"
-	MESSAGE="Unplugged"
+	MESSAGE="Charger was unplugged"
 
 fi
 
-notify-send --icon ~/.config/icons/$ICON_FILE.png "$MESSAGE" --expire-time=4000
+notify-send.py -a "System" "Power" \
+	"$MESSAGE" \
+	--hint string:image-path:file://home/${USER}/.config/icons/${ICON_FILE}.png
 
 # Without --server flag it does not start the sound from the udev rule.
 /usr/bin/sudo -u $USER /usr/bin/paplay \

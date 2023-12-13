@@ -173,6 +173,9 @@ exec_always --no-startup-id picom --config .config/picom/picom.conf
 # Start polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
+# Start notification center
+exec_always --no-startup-id deadd-notification-center &
+
 # Start polkit for password popup windows
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 

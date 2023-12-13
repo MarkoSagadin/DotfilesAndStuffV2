@@ -36,8 +36,12 @@ sudo make install
 cd ..
 rm -fr cronie
 
+# Needed for notification center
+pip install notify-send.py
+
 if [ "$DISTRO" = "MANJARO" ]; then
 	install dunst bluez bluez-utils
+	installyay deadd-notification-center-bin.
 
 	# Remove some packages as they are in conflict with desired ones
 	remove manjaro-i3-settings pcmanfm palemoon-bin
@@ -166,13 +170,14 @@ else
 	install libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev \
 		libglib2.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev
 
-	cd $PROGRAMS_PATH
-	git clone https://github.com/dunst-project/dunst.git
-	cd dunst
-	make
+	git clone https://github.com/phuhl/linux_notification_center.git
+	cd linux_notification_center
+	wget https://github.com/phuhl/linux_notification_center/releases/download/2.1.1/deadd-notification-center
+	mkdir -p .out
+	mv deadd-notification-center .out
 	sudo make install
 	cd ..
-	rm -fr dunst
+	rm -fr linux_notification_center
 
 	install policykit-desktop-privileges policykit-1-gnome
 	install libpangocairo-1.0-0 flex
