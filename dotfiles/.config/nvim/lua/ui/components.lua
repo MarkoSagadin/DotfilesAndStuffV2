@@ -1,5 +1,5 @@
-local conditions = require("user.lualine.conditionals")
-local colors = require("user.lualine.colors")
+local conditions = require("ui.conditionals")
+local colors = require("ui.colors")
 
 -- Helper functions
 local function diff_source()
@@ -105,34 +105,31 @@ return {
 		cond = conditions.hide_in_width,
 	},
 	lsp = {
-		function(msg)
-			msg = msg or "LS Inactive"
-			local buf_clients = vim.lsp.buf_get_clients()
-			if next(buf_clients) == nil then
-				if type(msg) == "boolean" or #msg == 0 then
-					return "LS Inactive"
-				end
-				return msg
-			end
-			local buf_ft = vim.bo.filetype
+		function(_)
 			local buf_client_names = {}
 
-			-- add client
-			for _, client in pairs(buf_clients) do
-				if client.name ~= "null-ls" then
+			-- add LSP clients
+			for _, client in ipairs(vim.lsp.get_active_clients()) do
+				if client.attached_buffers[vim.api.nvim_win_get_buf(0)] and client.name ~= "null-ls" then
 					table.insert(buf_client_names, client.name)
 				end
 			end
 
-			-- add formatter
-			local supported_formatters = list_registered_providers(buf_ft, "FORMATTING")
-			vim.list_extend(buf_client_names, supported_formatters)
+			-- add formatters
+			for _, formatter in ipairs(require("conform").list_formatters(0)) do
+				table.insert(buf_client_names, formatter.name)
+			end
 
-			-- add linter
-			local supported_linters = list_registered_providers(buf_ft, "DIAGNOSTICS")
-			vim.list_extend(buf_client_names, supported_linters)
+			-- add linters
+			for _, linter in ipairs(require("lint").get_running()) do
+				table.insert(buf_client_names, linter)
+			end
 
-			return "[" .. table.concat(buf_client_names, ", ") .. "]"
+			if #buf_client_names > 0 then
+				return "[" .. table.concat(buf_client_names, ", ") .. "]"
+			else
+				return "LSP Inactive"
+			end
 		end,
 		-- icon = "",
 		color = { gui = "bold" },

@@ -1,11 +1,5 @@
-local status_ok, ls = pcall(require, "luasnip")
-if not status_ok then
-	return
-end
-local status_ok_extra, ls_extra = pcall(require, "luasnip.extras")
-if not status_ok_extra then
-	return
-end
+local ls = require("luasnip")
+local ls_extra = require("luasnip.extras")
 
 -- some shorthands...
 local s = ls.snippet
@@ -64,8 +58,8 @@ local function bash(_, _, command)
 end
 -- Returns a snippet_node wrapped around an insert_node whose initial
 -- text value is set to the current date in the desired format.
-local date_input = function(_, _, fmt)
-	local fmt = fmt or "%Y-%m-%d"
+local date_input = function(_, _, format)
+	local fmt = format or "%Y-%m-%d"
 	return os.date(fmt)
 end
 
@@ -133,7 +127,7 @@ ls.add_snippets(nil, {
 				[[
 /** @file <>.h
  *
- * @brief 
+ * @brief
  *
  * @par
  * COPYRIGHT NOTICE: (c) <> Irnas. All rights reserved.

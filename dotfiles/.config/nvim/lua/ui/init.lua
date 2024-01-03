@@ -1,4 +1,4 @@
-local components = require("user.lualine.components")
+local components = require("ui.components")
 
 require("lualine").setup({
 	options = {

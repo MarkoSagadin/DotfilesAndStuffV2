@@ -1,11 +1,6 @@
-pcall(require, "impatient")
-
-require("user.bootstrap")
-
-require("user.general_options")
-require("user.keymaps")
-require("user.colorscheme")
-
-require("user.plugins.autopairs")
-require("user.plugins.harpoon")
--- require("user.plugins.which-key")
+require("core.general_options")
+require("core.keymaps")
+require("core.autocmds")
+require("core.bootstrap")
+require("core.lazy")
+require("core.colorscheme")
