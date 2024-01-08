@@ -1,0 +1,55 @@
+import = ["/home/skobec/.config/alacritty/tokyonight_storm.toml"]
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 9
+
+[font.bold]
+family = "terminal-font"
+style = "Bold"
+
+[font.italic]
+family = "terminal-font"
+style = "Italic"
+
+[font.normal]
+family = "MesloLGSDZ Nerd Font"
+style = "Regular"
+
+[hints]
+alphabet = "jfkdls;ahgurieowpq"
+
+[[hints.enabled]]
+command = "xdg-open"
+hyperlinks = true
+post_processing = true
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-<>\"\\s{-}\\^⟨⟩`]+"
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+
+[window]
+decorations = "None"
+dynamic_padding = true
+dynamic_title = true
+opacity = 0.8
+
+[window.padding]
+x = 10
+y = 10
