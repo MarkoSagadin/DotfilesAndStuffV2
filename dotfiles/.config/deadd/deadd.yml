@@ -197,22 +197,10 @@ notification:
     - match:
         app-name: "Spotify"
       modify:
-        image-size: 80
-        timeout: 1
+        image-size: 100
+        width: 500
         send-noti-closed: true
         class-name: "Spotify"
-        action-icons: true
-        actions:
-          - previous
-          - media-skip-backward
-          - play
-          - media-playback-start
-          - next
-          - media-skip-forward
-        action-commands:
-          play: playerctl play-pause
-          previous: playerctl previous
-          next: playerctl next
 
   # - match:
   #     title: Bildschirmhelligkeit
