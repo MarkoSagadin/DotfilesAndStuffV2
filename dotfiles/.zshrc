@@ -45,11 +45,13 @@ export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 export PATH=$PATH:$HOME/Programs
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/java/jre1.8.0_401/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/miniconda3/bin
 export PATH=$PATH:$HOME/.local/share/nvim/lsp_servers/clangd/clangd/bin/
+export PATH=$PATH:$HOME/.local/share/coursier/bin
 
 export PRETTIERD_DEFAULT_CONFIG="~/.prettierrc"
 
