@@ -19,6 +19,7 @@ M.lsp_keymaps = function(bufnr)
 	keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover (LSP)")
 	keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<cr>", "Show implementations (LSP)")
 	keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", "Show references (LSP)")
+	keymap(bufnr, "n", "ge", "<cmd>lua vim.lsp.buf.format()<cr>", "Format (LSP)")
 
 	vim.diagnostic.open_floatkeymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 	keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action (LSP)")
