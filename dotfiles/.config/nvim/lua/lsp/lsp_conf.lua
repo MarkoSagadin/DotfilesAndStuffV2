@@ -13,7 +13,7 @@ end
 
 -- This function defines keymaps for lsp functionalities
 M.lsp_keymaps = function(bufnr)
-	local opts = { noremap = true, silent = true }
+	-- local opts = { noremap = true, silent = true }
 	keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", "GoTo declaration (LSP)")
 	keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", "GoTo definition (LSP)")
 	keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover (LSP)")
@@ -21,7 +21,7 @@ M.lsp_keymaps = function(bufnr)
 	keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", "Show references (LSP)")
 	keymap(bufnr, "n", "ge", "<cmd>lua vim.lsp.buf.format()<cr>", "Format (LSP)")
 
-	vim.diagnostic.open_floatkeymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+	-- vim.diagnostic.open_floatkeymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 	keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action (LSP)")
 	keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename symbol (LSP)")
 	keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature help (LSP)")
@@ -46,6 +46,17 @@ M.lsp_highlight_document = function(client, bufnr)
 			desc = "Clear All the References",
 		})
 	end
+end
+
+-- This function will filter out below warning. I don't how to fix it, the clangd is configured to use utf-16, but this still happens.
+-- See: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+local notify = vim.notify
+vim.notify = function(msg, ...)
+	if msg:match("warning: multiple different client offset_encodings") then
+		return
+	end
+
+	notify(msg, ...)
 end
 
 return M
