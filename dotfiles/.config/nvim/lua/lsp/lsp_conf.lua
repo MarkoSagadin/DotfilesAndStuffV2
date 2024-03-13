@@ -31,20 +31,16 @@ end
 -- If it does it will enable it.
 M.lsp_highlight_document = function(client, bufnr)
 	if client.server_capabilities.documentHighlightProvider then
-		vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
-		vim.api.nvim_create_autocmd("CursorHold", {
-			callback = vim.lsp.buf.document_highlight,
-			buffer = bufnr,
-			group = "lsp_document_highlight",
-			desc = "Document Highlight",
-		})
-		vim.api.nvim_create_autocmd("CursorMoved", {
-			callback = vim.lsp.buf.clear_references,
-			buffer = bufnr,
-			group = "lsp_document_highlight",
-			desc = "Clear All the References",
-		})
+		-- You used to have here lua specific autocmd api however it was creating a lot of issues, like this one.
+		-- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/355
+		-- For some reason setting up the same thing with vim.cmd works.
+		vim.cmd([[
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]])
 	end
 end
 
