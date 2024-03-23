@@ -12,7 +12,6 @@ return {
 				markdown = { "vale" },
 				dockerfile = { "hadolint" },
 				lua = { "luacheck" },
-				python = { "ruff" },
 			}
 
 			-- Set specific settings for each linter

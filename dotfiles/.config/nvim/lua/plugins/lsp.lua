@@ -17,6 +17,7 @@ return {
 				"hadolint",
 				"markdownlint",
 				"prettierd",
+				"gofumpt",
 				-- LSPs
 				"bash-language-server",
 				"pyright",
@@ -25,6 +26,9 @@ return {
 				"clangd",
 				"cmake-language-server",
 				"lua-language-server",
+				"typescript-language-server",
+				"gopls",
+				"ruff-lsp",
 			},
 
 			PATH = "prepend", -- "skip" seems to cause the spawning error

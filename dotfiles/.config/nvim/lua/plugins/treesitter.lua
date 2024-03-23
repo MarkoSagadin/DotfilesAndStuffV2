@@ -28,6 +28,7 @@ return {
 			"rust",
 			"yaml",
 			"nix",
+			"go",
 		},
 
 		-- Install languages synchronously (only applied to `ensure_installed`)

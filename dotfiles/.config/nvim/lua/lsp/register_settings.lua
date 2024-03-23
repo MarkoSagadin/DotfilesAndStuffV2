@@ -29,6 +29,20 @@ local default_opts = {
 		if client.name == "jsonls" then
 			client.server_capabilities.documentFormattingProvider = false
 		end
+		if client.name == "ruff_lsp" then
+			-- Disable hover in favor of Pyright
+			client.server_capabilities.hoverProvider = false
+			--
+			-- vim.api.nvim_create_autocmd("BufWritePre", {
+			-- 	pattern = { "*.py" },
+			-- 	buffer = buffer,
+			-- 	callback = function()
+			-- 		vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
+			-- 		vim.lsp.buf.format({ async = false })
+			-- 		vim.cmd("w")
+			-- 	end,
+			-- })
+		end
 	end,
 	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
 }

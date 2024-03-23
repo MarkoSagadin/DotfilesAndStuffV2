@@ -9,16 +9,22 @@ return {
 		-- Define your formatters
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "ruff" },
+			python = {
+				-- To run the Ruff formatter.
+				"ruff_format",
+			},
 			javascript = { "prettierd" },
 			html = { "prettierd" },
 			yaml = { "prettierd" },
 			markdown = { "prettierd" },
+			typescript = { "prettierd" },
+			typescriptreact = { "prettierd" },
 			sh = { "shfmt" },
 			cmake = { "cmake_format" },
 			c = { "clang_format" },
 			cpp = { "clang_format" },
 			rust = { "rustfmt" },
+			go = { "gofumpt" },
 		},
 		-- Set up format-on-save
 		format_on_save = {
