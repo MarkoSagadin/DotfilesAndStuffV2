@@ -37,3 +37,10 @@ electricity/!
 application
 application
 TF
+KConfig
+EMQX
+MQTT
+nRF7002dk
+nRF9160dk
+eg
+disable
