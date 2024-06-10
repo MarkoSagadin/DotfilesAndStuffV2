@@ -87,7 +87,7 @@ function fnd {
 # (base branch defaults to dev)
 function openpr() {
   parent=`git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//'`
-  github_url=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%' | awk '/github/'`;
+  github_url=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%'`;
   branch_name=`git symbolic-ref HEAD | cut -d"/" -f 3,4`;
   pr_url=$github_url"/compare/"$parent"..."$branch_name
   xdg-open $pr_url;
