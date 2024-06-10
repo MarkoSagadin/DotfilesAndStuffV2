@@ -8,6 +8,11 @@ return {
 			view = {
 				signcolumn = "no",
 			},
+			actions = {
+				open_file = {
+					resize_window = false,
+				},
+			},
 			renderer = {
 				highlight_git = true,
 				full_name = true,
