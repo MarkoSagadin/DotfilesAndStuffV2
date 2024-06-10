@@ -27,11 +27,11 @@ bindkey -e
 export MANPAGER='nvim +Man!'
 
 ### aliases
-alias ls='exa'
+alias ls='eza'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias ll='ls -agFlh --color=auto --group-directories-first'
+alias ll='ls -aglh --color=auto --group-directories-first'
 alias ml='minicom'
 alias cl='rm -fr build'
 alias ..="cd .."
