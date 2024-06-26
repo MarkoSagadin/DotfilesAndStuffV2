@@ -47,15 +47,8 @@ cp *.ttf ~/.fonts
 cd ..
 rm -fr MaterialDesign-Font
 
-# Exa tool, replacement for ls
-wget https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip
-unzip exa-linux-x86_64-v0.10.1.zip -d exa
-rm exa-linux-x86_64-v0.10.1.zip
-sudo mv exa/bin/exa /usr/local/bin
-sudo mv exa/man/exa.1 /usr/share/man/man1
-sudo mkdir -p /usr/local/share/zsh/site-functions
-sudo mv exa/completions/exa.zsh /usr/local/share/zsh/site-functions
-rm -fr exa
+# Eza tool, replacement for ls
+cargo install eza
 
 # Update new fonts
 fc-cache -fv

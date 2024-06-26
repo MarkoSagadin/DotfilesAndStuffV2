@@ -27,11 +27,11 @@ bindkey -e
 export MANPAGER='nvim +Man!'
 
 ### aliases
-alias ls='exa'
+alias ls='eza'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias ll='ls -agFlh --color=auto --group-directories-first'
+alias ll='ls -aglh --color=auto --group-directories-first'
 alias ml='minicom'
 alias cl='rm -fr build'
 alias ..="cd .."
@@ -87,7 +87,7 @@ function fnd {
 # (base branch defaults to dev)
 function openpr() {
   parent=`git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//'`
-  github_url=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%' | awk '/github/'`;
+  github_url=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%'`;
   branch_name=`git symbolic-ref HEAD | cut -d"/" -f 3,4`;
   pr_url=$github_url"/compare/"$parent"..."$branch_name
   xdg-open $pr_url;
