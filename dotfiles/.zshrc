@@ -16,6 +16,7 @@ antigen apply
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
+zstyle :prompt:pure:git:stash show yes
 
 setopt histignoredups # Ignore command history duplicates
 setopt menu_complete # Tab completion when choice ambiguous
