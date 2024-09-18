@@ -45,6 +45,7 @@ linkDotfile /home/$USER .config/zathura
 linkDotfile /home/$USER .config/fontconfig
 linkDotfile /home/$USER .config/icons
 linkDotfile /home/$USER .config/scripts
+linkDotfile /home/$USER .config/zellij
 linkDotfile /home/$USER .ssh
 linkDotfile /home/$USER .gitconfig
 linkDotfile /home/$USER .tmux.conf
