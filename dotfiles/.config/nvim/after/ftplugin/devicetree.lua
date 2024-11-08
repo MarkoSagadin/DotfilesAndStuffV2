@@ -7,7 +7,7 @@ local options = {
 	tabstop = 4, -- Number of visual spaces per TAB
 	softtabstop = 4, -- Number of spaces in tab when editing
 	shiftwidth = 4, -- The number of spaces inserted for each indentation
-	expandtab = false, -- Convert tabs to spaces
+	expandtab = false, -- Don't convert tabs to spaces
 	colorcolumn = "80", -- Highlight specified column for line wrapin
 	textwidth = 80,
 }
