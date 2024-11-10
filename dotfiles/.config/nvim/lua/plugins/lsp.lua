@@ -28,7 +28,6 @@ return {
 				"lua-language-server",
 				"typescript-language-server",
 				"gopls",
-				"ruff-lsp",
 			},
 
 			PATH = "prepend", -- "skip" seems to cause the spawning error
