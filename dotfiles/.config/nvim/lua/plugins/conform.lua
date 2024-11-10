@@ -26,12 +26,12 @@ return {
 			rust = { "rustfmt" },
 			go = { "gofumpt" },
 		},
-		-- Set up format-on-save
 		format_on_save = {
-			quiet = true,
-			async = true,
+			lsp_format = "fallback",
 			timeout_ms = 500,
-			lsp_fallback = false,
+		},
+		format_after_save = {
+			lsp_format = "fallback",
 		},
 		-- Customize formatters
 		formatters = {
