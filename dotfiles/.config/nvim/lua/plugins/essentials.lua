@@ -22,6 +22,8 @@ return {
 		config = function(_, opts)
 			neoscroll = require("neoscroll")
 			neoscroll.setup({
+				-- Disable all mappings, we will set them below manually
+				mappings = {},
 				easing = "quadratic",
 			})
 			local keymap = {

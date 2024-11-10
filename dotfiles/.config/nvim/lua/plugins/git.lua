@@ -68,5 +68,45 @@ return {
 			end,
 		},
 	},
-	{ "tpope/vim-fugitive", cmd = "Git" },
+	-- { "tpope/vim-fugitive", cmd = "Git" },
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+			"nvim-telescope/telescope.nvim", -- optional
+		},
+
+		cmd = { "Neogit" },
+
+		opts = {
+			integrations = {
+				telescope = true,
+			},
+			commit_editor = {
+				staged_diff_split_kind = "vsplit",
+			},
+
+			initial_branch_name = "feature/",
+			mappings = {
+				commit_editor = {
+					["q"] = "Close",
+					["<c-e>"] = "Submit",
+					["<c-q>"] = "Abort",
+				},
+				commit_editor_I = {
+					["<c-e>"] = "Submit",
+					["<c-q>"] = "Abort",
+				},
+				rebase_editor_I = {
+					["<c-e>"] = "Submit",
+					["<c-q>"] = "Abort",
+				},
+			},
+		},
+
+		config = function(_, opts)
+			require("neogit").setup(opts)
+		end,
+	},
 }

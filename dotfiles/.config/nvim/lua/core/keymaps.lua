@@ -57,8 +57,8 @@ keymap("n", "<leader>fd", "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep 
 -- Documentation generation
 keymap("n", "<leader>d", "<cmd>Neogen<CR>", "Generate docs (Neogen)")
 
--- Fugitive mappings
-keymap("n", "<C-s>", "<cmd>vertical Git<CR>", "Git status (Fugitive)")
+-- Neogit mappings
+keymap("n", "<C-s>", "<cmd>Neogit<CR>", "Git status (Neogit)")
 
 -- Substitute plugin
 keymap("n", "s", "<cmd>lua require('substitute').operator()<cr>", "Operator (Substitute)")
