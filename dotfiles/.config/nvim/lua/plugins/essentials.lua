@@ -18,17 +18,25 @@ return {
 	{
 		"karb94/neoscroll.nvim",
 		keys = { "<C-a>", "<C-d>" },
+
 		config = function(_, opts)
-			require("neoscroll").setup(opts)
-
-			local t = {}
-			t["<C-a>"] = { "scroll", { "-vim.wo.scroll", "true", "350" } }
-			t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "350" } }
-			t["zt"] = { "zt", { "300" } }
-			t["zz"] = { "zz", { "300" } }
-			t["zb"] = { "zb", { "300" } }
-
-			require("neoscroll.config").set_mappings(t)
+			neoscroll = require("neoscroll")
+			neoscroll.setup({
+				easing = "quadratic",
+			})
+			local keymap = {
+				-- Use the "sine" easing function
+				["<C-a>"] = function()
+					neoscroll.ctrl_u({ duration = 300 })
+				end,
+				["<C-d>"] = function()
+					neoscroll.ctrl_d({ duration = 300 })
+				end,
+			}
+			local modes = { "n", "v", "x" }
+			for key, func in pairs(keymap) do
+				vim.keymap.set(modes, key, func)
+			end
 		end,
 	},
 	{
