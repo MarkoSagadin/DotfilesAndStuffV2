@@ -18,6 +18,16 @@ pip install tldr
 pip install pynvim
 pip install neovim
 
+# Install git-absorb
+GIT_ABSORB_VERSION=0.6.16
+GIT_ABSORB_NAME=git-absorb-${GIT_ABSORB_VERSION}-x86_64-unknown-linux-musl
+GIT_ABSORB_URL=https://github.com/tummychow/git-absorb/releases/download
+wget --output-document git-absorb.tar.gz \
+    ${GIT_ABSORB_URL}/${GIT_ABSORB_VERSION}/${GIT_ABSORB_NAME}.tar.gz
+tar zxfv git-absorb.tar.gz
+sudo cp ${GIT_ABSORB_NAME}/git-absorb /usr/bin/
+rm -rf ${GIT_ABSORB_NAME} git-absorb.tar.gz
+
 if [ "$DISTRO" = "MANJARO" ]; then
 	# Manjaro specific
 	install neovim ctags ripgrep fd clang
