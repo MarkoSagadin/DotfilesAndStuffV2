@@ -37,12 +37,14 @@ install curl \
 	lolcat
 
 # Install Git Large File storage
-wget https://github.com/git-lfs/git-lfs/releases/download/v3.1.2/git-lfs-linux-amd64-v3.1.2.tar.gz
+GIT_LFS_VERSION=v3.5.1
+GIT_LFS=git-lfs-linux-amd64-${GIT_LFS_VERSION}
+wget https://github.com/git-lfs/git-lfs/releases/download/${GIT_LFS_VERSION}/${GIT_LFS}.tar.gz
 mkdir tmp
-tar -xvf git-lfs-linux-amd64-v3.1.2.tar.gz -C tmp
+tar -xvf ${GIT_LFS}.tar.gz -C tmp
 sudo bash tmp/install.sh
 rm -fr tmp
-rm -fr git-lfs-linux-amd64-v3.1.2.tar.gz
+rm -fr ${GIT_LFS}.tar.gz
 
 #### System specific section ####
 if [ "$DISTRO" = "MANJARO" ]; then
@@ -88,35 +90,36 @@ else
 		ninja-build \
 		python3-setuptools \
 		python3-wheel \
+        python3-pip \
 		xz-utils \
 		libncurses5
 
 	# Install a recent golang, cause apt version is veeery old
-	wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
+	wget https://go.dev/dl/go1.23.3.linux-amd64.tar.gz
 	sudo rm -rf /usr/local/go
-	sudo tar -C /usr/local -xzf go1.17.6.linux-amd64.tar.gz
-	rm go1.17.6.linux-amd64.tar.gz
+	sudo tar -C /usr/local -xzf go1.23.3.linux-amd64.tar.gz
+	rm go1.23.3.linux-amd64.tar.gz
 
 	# Same here, npm will also get installed
-	curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+	curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 	install nodejs
 
 	# Same here, install latest lua
-	curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
-	tar -zxf lua-5.3.5.tar.gz
-	cd lua-5.3.5
+	curl -R -O http://www.lua.org/ftp/lua-5.4.7.tar.gz
+	tar -zxf lua-5.4.7.tar.gz
+	cd lua-5.4.7
 	make linux test
 	sudo make install
-	cd .. && rm -fr lua-5.3.5*
+	cd .. && rm -fr lua-5.4.7*
 
 	# Same here, install latest luarocks package manager
-	wget https://luarocks.org/releases/luarocks-3.8.0.tar.gz
-	tar zxpf luarocks-3.8.0.tar.gz
-	cd luarocks-3.8.0
+	wget https://luarocks.org/releases/luarocks-3.11.1.tar.gz
+	tar zxpf luarocks-3.11.1.tar.gz
+	cd luarocks-3.11.1
 	./configure --with-lua-include=/usr/local/include
 	make
 	sudo make install
-	cd .. && rm -fr luarocks-3.8.0*
+	cd .. && rm -fr luarocks-3.11.1*
 
 	# Ubuntu is a stable distro, bla bla bla
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
