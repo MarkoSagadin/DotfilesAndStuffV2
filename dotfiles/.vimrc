@@ -14,15 +14,12 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
 Plug 'scrooloose/nerdtree'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'SirVer/ultisnips'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-gitgutter'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'junegunn/goyo.vim'
 Plug 'rhysd/vim-grammarous'
 Plug 'majutsushi/tagbar'
-Plug 'vim-pandoc/vim-pandoc'
 Plug 'wincent/terminus'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdcommenter'
@@ -31,8 +28,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'svermeulen/vim-subversive'
 Plug 'tpope/vim-fugitive'
-Plug 'chazy/cscope_maps'
-Plug 'rhysd/vim-clang-format'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'tell-k/vim-autopep8'
 
@@ -44,13 +39,10 @@ Plug 'zeis/vim-kolor'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'srcery-colors/srcery-vim'
-Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'goldie-lin/vim-dts'
 " should be last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
-
-let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-yaml']
 
 let g:lsp_cxx_hl_use_text_props = 1
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -66,15 +58,11 @@ let g:lightline = {
 \ 'colorscheme': 'snazzy',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-\ },
-\ 'component_function': {
-\   'cocstatus': 'coc#status'
+\             [ 'readonly', 'filename', 'modified' ] ]
 \ },
 \ }
 
 " Use autocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 colorscheme snazzy
 set background=dark
 elseif used_colorscheme ==# "dracula"
@@ -82,15 +70,11 @@ let g:lightline = {
 \ 'colorscheme': 'dracula',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-\ },
-\ 'component_function': {
-\   'cocstatus': 'coc#status'
+\             [ 'readonly', 'filename', 'modified' ] ]
 \ },
 \ }
 
 " Use autocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 colorscheme dracula
 "set background=dark
 elseif used_colorscheme ==# "gruvbox"
@@ -149,8 +133,6 @@ set ignorecase                  " Ignore case when searching...
 set smartcase                   " ...unless we type a capital
 set signcolumn=number           " Merge sign cloumn into numbers column
 set hidden                      " TextEdit might fail if hidden is not set.
-set nobackup                    " Needed for CoC, server stuff
-set nowritebackup               " Needed for CoC
 set noswapfile                  " Copy large files without problems from
                                 " System clipboard
 set shortmess+=c                " Don't pass messages to |ins-completion-menu|.
