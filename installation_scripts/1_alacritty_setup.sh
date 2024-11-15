@@ -80,7 +80,7 @@ else
 
 	# Add Open in Alacritty option
 	install python3-nautilus
-	pip install nautilus-open-any-terminal
+    pip install nautilus-open-any-terminal --break-system-packages
 	nautilus -q
 	glib-compile-schemas ~/.local/share/glib-2.0/schemas/
 	gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty

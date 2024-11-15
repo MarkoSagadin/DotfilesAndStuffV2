@@ -12,11 +12,11 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 bash ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 # Not related to development, but it makes life easier when learning new commands
-pip install tldr
+pipx install tldr
 
 # Neovim tooling - linters, formatters
-pip install pynvim
-pip install neovim
+pip install pynvim --break-system-packages
+pip install neovim --break-system-packages
 
 # Install git-absorb
 GIT_ABSORB_VERSION=0.6.16
@@ -30,7 +30,7 @@ rm -rf ${GIT_ABSORB_NAME} git-absorb.tar.gz
 
 if [ "$DISTRO" = "MANJARO" ]; then
 	# Manjaro specific
-	install neovim ctags ripgrep fd clang
+	install neovim ripgrep fd clang
 	installyay diff-so-fancy
 else
 	# Ubuntu specific
@@ -42,7 +42,7 @@ else
 	# Install Neovim
 	cd $PROGRAMS_PATH
 	git clone https://github.com/neovim/neovim
-	cd neovim && make
+	cd neovim
 	git checkout stable
 	make -j16 CMAKE_BUILD_TYPE=RelWithDebInfo # Could also be set to Release
 	sudo make install
@@ -62,6 +62,6 @@ else
 	# clang tooling, plus I had to do symlinks. Not so happy about this.
 	wget https://apt.llvm.org/llvm.sh
 	chmod +x llvm.sh
-	sudo ./llvm.sh 17 all # Install all packages, version 17
+	sudo ./llvm.sh 18 all # Install all packages, version 18
 	rm llvm.sh
 fi
