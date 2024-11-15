@@ -91,8 +91,13 @@ else
 		python3-setuptools \
 		python3-wheel \
         python3-pip \
+        pipx \
 		xz-utils \
 		libncurses5
+
+    rm kitware-archive.sh
+    
+    pipx ensurepath
 
 	# Install a recent golang, cause apt version is veeery old
 	wget https://go.dev/dl/go1.23.3.linux-amd64.tar.gz
