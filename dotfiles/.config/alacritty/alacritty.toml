@@ -1,4 +1,4 @@
-import = ["/home/skobec/.config/alacritty/dracula.toml"]
+general.import = ["/home/skobec/.config/alacritty/dracula.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -11,15 +11,15 @@ WINIT_X11_SCALE_FACTOR="1"
 size = 12
 
 [font.bold]
-family = "MesloLGSDZ Nerd Font"
+family = "MesloLGSDZ"
 style = "Bold"
 
 [font.italic]
-family = "MesloLGSDZ Nerd Font"
+family = "MesloLGSDZ"
 style = "Italic"
 
 [font.normal]
-family = "MesloLGSDZ Nerd Font"
+family = "MesloLGSDZ"
 style = "Regular"
 
 [hints]
