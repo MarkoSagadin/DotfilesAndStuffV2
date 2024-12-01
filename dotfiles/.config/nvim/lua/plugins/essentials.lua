@@ -65,4 +65,11 @@ return {
 		cmd = "WhichKey",
 		opts = {},
 	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		event = "VimEnter",
+		config = function(_, _)
+			require("colorizer").setup()
+		end,
+	},
 }
