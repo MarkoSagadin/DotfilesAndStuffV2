@@ -58,7 +58,7 @@ return {
 	diff = {
 		"diff",
 		source = diff_source,
-		symbols = { added = "  ", modified = "柳", removed = " " },
+		symbols = { added = "  ", modified = " ", removed = " " },
 		diff_color = {
 			added = { fg = colors.green },
 			modified = { fg = colors.yellow },
@@ -89,7 +89,7 @@ return {
 	diagnostics = {
 		"diagnostics",
 		sources = { "nvim_diagnostic" },
-		symbols = { error = " ", warn = " ", info = " ", hint = " " },
+		symbols = { error = " ", warn = " ", info = " ", hint = " " },
 		color = {},
 		cond = nil,
 	},
@@ -140,13 +140,13 @@ return {
 	spaces = {
 		function()
 			if not vim.api.nvim_buf_get_option(0, "expandtab") then
-				return "Tab size: " .. vim.api.nvim_buf_get_option(0, "tabstop")
+				return "󰌒 " .. vim.api.nvim_buf_get_option(0, "tabstop")
 			end
 			local size = vim.api.nvim_buf_get_option(0, "shiftwidth")
 			if size == 0 then
 				size = vim.api.nvim_buf_get_option(0, "tabstop")
 			end
-			return "ﱢ " .. size
+			return " " .. size
 		end,
 		cond = nil,
 		color = {},
