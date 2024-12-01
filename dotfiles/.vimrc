@@ -1,9 +1,15 @@
 set nocompatible    " Work as VIM not like VI, should be on top
 
 " Will automaticaly install vim-plug and all plugins if empty
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" if empty(glob('~/.vim/autoload/plug.vim'))
+"   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -28,7 +34,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'svermeulen/vim-subversive'
 Plug 'tpope/vim-fugitive'
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'tell-k/vim-autopep8'
 
 " Color schemes and syntax highlight
@@ -186,23 +191,6 @@ hi SpellBad ctermfg=1
 
 
 """"""""""""""""""""""""""
-" Tmux *send commands* commands
-""""""""""""""""""""""""""
-" Very magical command, I can now send commands to other tmux panel
-" autocmd FileType python nnoremap <silent> <C-Y> :wa \| exe "!tmux send -t 1 'python3 uart_fetch.py' Enter"<CR>
-nnoremap <silent> <C-d> :wa \| exe "!tmux send -t 1 'arduino-cli compile --fqbn IRNAS:stm32l0:IRNAS-env-module-L072Z pmp --build-path /home/skobec/work/irnas-lorawan-base/build && arduino-cli upload --fqbn IRNAS:stm32l0:IRNAS-env-module-L072Z -p /dev/ttyACM0 --input-dir build' Enter"<CR>
-
-
-"nnoremap <silent> <C-m> :wa \| exe "!tmux send -t 2 'minicom' Enter"<CR>
-"nnoremap <silent> <C-f> :wa \| exe "!tmux send -t 1 'west build -b nrf52dk_nrf52832 && west flash --runner jlink' Enter"<CR>
-"nnoremap <silent> <C-f> :wa \| exe "!tmux send -t 1 'west build -b nrf52840dk_nrf52840 && west flash --runner jlink' Enter"<CR>
-"nnoremap <silent> <C-f> :wa \| exe "!tmux send -t 1 'west build -b nrf9160dk_nrf9160ns && west flash' Enter"<CR>
-"nnoremap <silent> <C-f> :wa \| exe "!tmux send -t 1 'west build -b nrf9160_pca10090ns && west flash' Enter"<CR>
-"nnoremap <silent> <C-f> :wa \| exe "!tmux send -t 1 'west build -b nucleo_wb55rg && west flash' Enter"<CR>
-nnoremap <silent> <C-y> :wa \| exe "!tmux send -t 1 'inv test -s test_action' Enter"<CR>
-
-
-""""""""""""""""""""""""""
 " Specific plugin settings
 """"""""""""""""""""""""""
 " Vimtex
@@ -244,8 +232,8 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCustomDelimiters = { 'c': { 'left': '//','right': '' } }
 
 " Toggle comments with ctrl+l
-nmap <C-l> <plug>NERDCommenterToggle
-xmap <C-l> <plug>NERDCommenterToggle
+nmap <leader>ll <plug>NERDCommenterToggle
+xmap <leader>l <plug>NERDCommenterToggle
 
 " FZF mappings
 let g:fzf_preview_window = []

@@ -1,0 +1,31 @@
+{
+    "include": "~/.config/waybar/modules.jsonc",
+    "margin": "10 10 0 10",
+    "layer": "top",
+    "exclusive": true,
+    "passthrough": false,
+    "position": "top",
+    "spacing": 0,
+    "fixed-center": true,
+    "ipc": true,
+    "reload_style_on_change": true,
+
+    "modules-left": [
+        "custom/launcher",
+        "hyprland/workspaces",
+        "hyprland/language"
+    ],
+    "modules-center": [
+        "group/media"
+    ],
+
+    "modules-right": [
+        "backlight",
+        "pulseaudio",
+        "group/connection",
+        "clock",
+        "group/menu",
+        "group/utilities",
+        "custom/power"
+    ]
+}

@@ -1,0 +1,112 @@
+@import "default.rasi"
+
+* {
+    background-color: transparent;
+}
+
+configuration {
+    modi: "dmenu";
+    show-icons: true;
+    hover-select: true;
+    drun-display-format: "{name}";
+    disable-history: false;
+    sidebar-mode: false;
+
+    display-drun: "";
+    separator-style: "none";
+}
+
+window {
+    width:            350px;
+    location:         north east;
+    x-offset:         -10px;
+    y-offset:         10px;
+    border:           2px ;
+    border-radius:    15px;
+    border-color: @border-color;
+    children: [mainbox];
+}
+
+inputbar {
+    font: @font-tiny;
+    background-color: @shade-bg;
+    border-radius: 12px;
+    children: [ prompt, entry];
+
+    padding: 0px;
+    margin: 20px 20px 0px 20px;
+}
+
+prompt {
+    font: @font-small;
+    margin: 7px 0px 7px 5px;
+    padding: 0px 10px 0px 10px;
+    /* background-color: @shade-bg; */
+}
+
+entry {
+    font: @font-tiny;
+    text-color: @fg;
+    /* padding: 5px 0px 5px 18px; */
+    margin: 10px 10px 10px 10px;
+    placeholder: "Search";
+    placeholder-color: @fg-dim-50;
+}
+
+
+mainbox {
+    padding:      0;
+    border:       0px ;
+    children:     [ inputbar,listview ];
+    background-color: transparent;
+}
+
+
+listview {
+    lines: 6;
+    columns: 1;
+
+    fixed-height: true;
+    margin: 15px 20px 20px 20px;
+
+    /* Needed to remove the thin dashed line between listview and inputbar. */
+    border: 0;
+}
+
+element-text {
+    text-color:       inherit;
+}
+
+element-icon {
+    enabled: false;
+}
+
+element {
+    padding:        5px 5px 5px 10px;
+    border:         0px ;
+    border-radius:  8px ;
+    horizontal-align: 0.5;
+    text-color:     @fg;
+    font:           @font-small;
+}
+
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+    margin: 0px 20px 0px 20px;
+}
+
+element selected.normal {
+    background-color: @active-bg;
+    text-color: @fg;
+    border-color: @selected-active-bg;
+    border: 0px;
+    /* margin: 5px; */
+    margin: 0px 20px 0px 20px;
+}
+
+element-text {
+    text-color: inherit;
+}

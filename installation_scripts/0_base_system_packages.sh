@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 . ./helper_functions.sh
 check_distro
+
+remove_snap=""
+install_firefox_deb=""
+
+if [ "$DISTRO" = "UBUNTU" ]; then
+    ask_yes_no "Do you want to completly remove Snap?" remove_snap
+    ask_yes_no "Do you want to install Firefox as a Debian package and not as Snap package?" install_firefox_deb
+fi
 
 #### Common section ####
 
@@ -34,32 +44,36 @@ install curl \
 	fzf \
 	flameshot \
 	figlet \
-	lolcat
+	lolcat \
+    vim
+
+if [ "$remove_snap" = "Y" ]; then
+    ./support_scripts/remove_snap.sh
+fi
+
+if [ "$install_firefox_deb" = "Y" ]; then
+    ./support_scripts/install_firefox_deb.sh
+fi
 
 # Install Git Large File storage
-GIT_LFS_VERSION=v3.5.1
-GIT_LFS=git-lfs-linux-amd64-${GIT_LFS_VERSION}
-wget https://github.com/git-lfs/git-lfs/releases/download/${GIT_LFS_VERSION}/${GIT_LFS}.tar.gz
-mkdir tmp
+GIT_LFS_VERSION=3.5.1
+GIT_LFS=git-lfs-linux-amd64-v${GIT_LFS_VERSION}
+wget https://github.com/git-lfs/git-lfs/releases/download/v${GIT_LFS_VERSION}/${GIT_LFS}.tar.gz
+mkdir -p tmp
 tar -xvf ${GIT_LFS}.tar.gz -C tmp
-sudo bash tmp/install.sh
+sudo bash tmp/git-lfs-${GIT_LFS_VERSION}/install.sh
 rm -fr tmp
 rm -fr ${GIT_LFS}.tar.gz
 
 #### System specific section ####
 if [ "$DISTRO" = "MANJARO" ]; then
 	# Manjaro Linux specific packages, some of them are named differently as on Ubuntu
-	remove vim
-	install gvim \
-		base-devel \
+	install base-devel \
 		python-pip \
 		ninja \
 		python-setuptools \
 		python-wheel \
 		xz \
-		texlive-core \
-		texlive-latexextra \
-		texlive-science \
 		zathura-djvu \
 		zathura-pdf-mupdf \
 		go \
@@ -78,24 +92,19 @@ else
 	install software-properties-common \
 		lsb-release \
 		g++ \
-		vim-gtk \
 		cmake \
 		python3-pip \
 		dconf-editor \
 		dconf-cli \
 		uuid-runtime \
-		latexmk \
-		texlive-latex-extra \
-		texlive-science \
 		ninja-build \
 		python3-setuptools \
 		python3-wheel \
         python3-pip \
         pipx \
-		xz-utils \
-		libncurses5
+		xz-utils
 
-    rm kitware-archive.sh
+    rm kitware-archive*
     
     pipx ensurepath
 
@@ -110,8 +119,8 @@ else
 	install nodejs
 
 	# Same here, install latest lua
-	curl -R -O http://www.lua.org/ftp/lua-5.4.7.tar.gz
-	tar -zxf lua-5.4.7.tar.gz
+	wget http://www.lua.org/ftp/lua-5.4.7.tar.gz
+	tar -xf lua-5.4.7.tar.gz
 	cd lua-5.4.7
 	make linux test
 	sudo make install
@@ -129,5 +138,3 @@ else
 	# Ubuntu is a stable distro, bla bla bla
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
-
-figlet "AWW YEAH, DONE!" | lolcat

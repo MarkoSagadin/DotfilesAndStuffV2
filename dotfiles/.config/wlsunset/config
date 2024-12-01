@@ -1,0 +1,8 @@
+temp_low="4000"
+temp_high="6500"
+location="on"
+#duration="900"
+sunrise="06:00"
+sunset="19:00"
+#longitude=36.7410161
+#latitude=-4.4887142,17

@@ -1,0 +1,383 @@
+{
+    "backlight":{
+        "interval":2,
+        "align":0,
+        "rotate":0,
+        "format":"{icon} {percent}%",
+        "format-icons":[
+            "󰃞",
+            "󰃟",
+            "󰃠"
+        ],
+        "icon-size":10,
+        "on-click":"",
+        "on-click-middle":"",
+        "on-click-right":"",
+        "on-update":"",
+        "on-scroll-up":"~/.config/hypr/scripts/brightnesscontrol.sh d",
+        "on-scroll-down":"~/.config/hypr/scripts/brightnesscontrol.sh i",
+        "smooth-scrolling-threshold":1
+    },
+    "battery":{
+        "interval":5,
+        "align":0,
+        "rotate":0,
+        "full-at":100,
+        "design-capacity":false,
+        "states":{
+            "good":95,
+            "warning":30,
+            "critical":15
+        },
+        "format":"{icon} {capacity}%",
+        "format-charging":" {capacity}%",
+        "format-plugged":"󱘖 {capacity}%",
+        "format-alt-click":"click",
+        "format-full":"{icon} Full",
+        "format-alt":"{icon} {time}",
+        "format-icons":[
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ],
+        "format-time":"{H}h {M}min",
+        "tooltip":true,
+        "tooltip-format":"{timeTo} {power}w"
+    },
+    "clock":{
+        "format":"{:%H:%M}",
+        "format-alt":" {:%H:%M   %Y, %d %B, %A}",
+        "tooltip-format":"<tt><small>{calendar}</small></tt>",
+        "calendar":{
+            "mode":"year",
+            "mode-mon-col":3,
+            "weeks-pos":"right",
+            "on-scroll":1,
+            "on-click-right":"mode",
+            "format":{
+                "months":"<span color='#ffead3'><b>{}</b></span>",
+                "days":"<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":"<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":"<span color='#ffcc66'><b>{}</b></span>",
+                "today":"<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+    "cpu":{
+        "format":" {usage}%",
+        "interval":1,
+        "format-alt-click":"click",
+        "format-alt":" {usage:>2}% {icon0}{icon1}{icon2}{icon3}",
+        "format-icons":[
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+        ],
+        "on-click-right":"alacritty --title btop -e 'htop'"
+    },
+    "disk":{
+        "interval":30,
+        "format":"󰋊",
+        "path":"/",
+        "format-alt-click":"click",
+        "format":"{percentage_used}% 󰋊",
+        "tooltip":true,
+        "tooltip-format":"{used} used out of {total} on {path} ({percentage_used}%)"
+    },
+    "temperature":{
+        "format-critical":"{temperatureC}°C ",
+        "format":"{temperatureC}°C "
+    },
+    "hyprland/window":{
+        "format":"{}",
+        "max-length":360,
+        "separate-outputs":true
+    },
+    "hyprland/language":{
+        "format":"{short}",
+        "on-click":"hyprctl switchxkblayout at-translated-set-2-keyboard next"
+    },
+    "memory":{
+        "interval":10,
+        "format":"󰾆 {used:0.1f}GB",
+        "format-alt":"󰾆 {percentage}%",
+        "format-alt-click":"click",
+        "tooltip":true,
+        "tooltip-format":"{used:0.1f}GB/{total:0.1f}GB",
+        "on-click-right":"alacritty --title btop -e 'htop'"
+    },
+    "network":{
+        "format":"{ifname}",
+        "format-wifi":"{icon}",
+        "format-ethernet":"󰈀",
+        "format-disconnected":"󰤮",
+        "format-icons":[
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "format-linked":" {ifname} (No IP)",
+        "tooltip-format-wifi":"{essid} - 󰒢 {signalStrength}%  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "tooltip-format-ethernet":"{ifname} ",
+        "tooltip-format-disconnected":" Disconnected",
+        "max-length":50,
+        "interval":1,
+        "on-click":"~/.config/hypr/scripts/wifi-menu.sh"
+    },
+    "pulseaudio":{
+        "format":"{icon} {volume}%",
+        "format-bluetooth":"{icon}  {volume}%",
+        "format-muted":"󰝟 Mute",
+        "format-icons":{
+            "headphone":"",
+            "hands-free":"",
+            "headset":"",
+            "phone":"",
+            "portable":"",
+            "car":"",
+            "default":[
+                "",
+                "󰖀",
+                "󰕾"
+            ],
+            "ignored-sinks":[
+                "Easy Effects Sink"
+            ]
+        },
+        "scroll-step":5.0,
+        "on-click":"~/.config/hypr/scripts/volumecontrol.sh -o m",
+        "on-click-right":"pavucontrol",
+        "on-scroll-up":"~/.config/hypr/scripts/volumecontrol.sh -o d",
+        "on-scroll-down":"~/.config/hypr/scripts/volumecontrol.sh -o i",
+        "smooth-scrolling-threshold":1
+    },
+    "hyprland/workspaces":{
+        "format":"{icon}",
+        "on-click":"activate",
+        "format-icons":{
+            "urgent":"",
+            "active":"",
+            "default":""
+        },
+        "sort-by-coordinates":true
+    },
+    "wlr/taskbar":{
+        "format":"{icon} {name} ",
+        "icon-size":16,
+        "all-outputs":false,
+        "tooltip-format":"{title}",
+        "on-click":"activate",
+        "on-click-middle":"close",
+        "ignore-list":[
+            "wofi"
+        ]
+    },
+    "custom/cycle_wall":{
+        "format":" ",
+        "on-click":"~/.config/hypr/scripts/WallpaperSelect.sh",
+        "on-click-right":"~/.config/hypr/scripts/Wallpaper.sh swww",
+        "on-click-middle":"~/.config/hypr/scripts/WaybarStyles.sh",
+        "tooltip":true,
+        "tooltip-format":"Change wallpaper or style"
+    },
+    "custom/light_dark":{
+        "format":"",
+        "on-click":"~/.config/hypr/scripts/DarkLight.sh",
+        "tooltip":false
+    },
+    "custom/lock":{
+        "format":"",
+        "on-click":"~/.config/hypr/scripts/LockScreen.sh",
+        "tooltip":false
+    },
+    "custom/launcher":{
+        "format":"🚀",
+        "tooltip":false,
+        "on-click":"~/.config/hypr/scripts/app_launcher.sh"
+    },
+    "custom/power":{
+        "format":"",
+        "tooltip":false,
+        "on-click":"~/.config/hypr/scripts/power-menu.sh"
+    },
+    "custom/media":{
+        "format":"{icon} {}",
+        "escape":true,
+        "return-type":"json",
+        "max-length":40,
+        "format-icons":{
+            "default":"",
+            "spotify":""
+        },
+        "on-click":"playerctl -p playerctld play-pause",
+        "smooth-scrolling-threshold":10,
+        "exec":"~/.config/hypr/scripts/mediaplayer.py 2> /dev/null"
+    },
+    "custom/media-previous":{
+        "format":"󰙣",
+        "escape":true,
+        "tooltip":false,
+        "on-click":"playerctl -p playerctld previous",
+        "exec":"~/.config/hypr/scripts/mediaplayer.py --status 2> /dev/null"
+    },
+    "custom/media-play-pause":{
+        "format":"{icon}",
+        "return-type":"json",
+        "escape":true,
+        "tooltip":false,
+        "format-icons":{
+            "Playing":"󰏥",
+            "Paused":""
+        },
+        "on-click":"playerctl -p playerctld play-pause",
+        "exec":"~/.config/hypr/scripts/mediaplayer.py --status 2> /dev/null",
+        "exec-on-event":true
+    },
+    "custom/media-next":{
+        "format":"󰙡",
+        "escape":true,
+        "tooltip":false,
+        "on-click":"playerctl -p playerctld next",
+        "exec":"~/.config/hypr/scripts/mediaplayer.py --status 2> /dev/null"
+    },
+    "group/media":{
+        "orientation":"horizontal",
+        "modules":[
+            "custom/media",
+            "custom/media-previous",
+            "custom/media-play-pause",
+            "custom/media-next"
+        ]
+    },
+    "group/menu":{
+        "orientation":"horizontal",
+        "modules":[
+            "battery",
+            "cpu",
+            "memory",
+            "disk",
+            "temperature"
+        ],
+        "drawer":{}
+    },
+    "group/connection":{
+        "orientation":"inherit",
+        "modules":[
+            "group/network",
+            "group/bluetooth"
+        ]
+    },
+    "group/network":{
+        "orientation":"inherit",
+        "drawer":{
+            "transition-duration":300,
+            "transition-left-to-right":false,
+            "click-to-reveal":true
+        },
+        "modules":[
+            "network",
+            "network#speed"
+        ]
+    },
+    "group/bluetooth":{
+        "orientation":"inherit",
+        "drawer":{
+            "transition-duration":300,
+            "transition-left-to-right":true
+        },
+        "modules":[
+            "bluetooth"
+        ]
+    },
+    "network":{
+        "format":"{ifname}",
+        "format-wifi":"{icon}",
+        "format-ethernet":"󰈀",
+        "format-disconnected":"󰤮",
+        "format-icons":[
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "format-linked":" {ifname} (No IP)",
+        "max-length":50,
+        "interval":1,
+        "tooltip": true,
+        "tooltip-format":"{ipaddr}",
+        "tooltip-format-wifi":"󰤨 {essid} | 󰘊 {signalStrength}%\n{ipaddr} | {frequency} MHz",
+        "tooltip-format-ethernet":"{ifname} 󰈀 \n{ipaddr} | {frequency} MHz",
+        "tooltip-format-disconnected":" Disconnected"
+
+    },
+    "network#speed":{
+        "format":" {essid}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "interval":5,
+        "tooltip-format":"{ipaddr}",
+        "tooltip-format-wifi":"󰤨 {essid} | 󰘊 {signalStrength}%\n{ipaddr} | {frequency} MHz",
+        "tooltip-format-ethernet":"󰈀 {ifname}\n{ipaddr} | {frequency} MHz",
+        "tooltip-format-disconnected":" Disconnected",
+        "tooltip":true,
+        "on-click":"~/.config/hypr/scripts/wifi-menu.sh"
+    },
+    "bluetooth":{
+        "format":"󰂯",
+        "format-disabled":"󰂲",
+        "format-connected":"󰂱",
+        "tooltip-format":"{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected":"{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected":"{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery":"{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click":"~/.config/hypr/scripts/bluetooth-menu.sh"
+    },
+    "group/utilities":{
+        "orientation":"horizontal",
+        "modules":[
+            "custom/utility",
+            "custom/wlsunset",
+            "custom/change_wallpaper",
+            "custom/toggle_dark_light_theme"
+        ],
+        "drawer":{
+            "transition-duration":300,
+            "transition-left-to-right":false,
+            "click-to-reveal":true
+        }
+    },
+    "custom/utility": {
+        "format": "󰌨",
+        "return-type": "json"
+    },
+    "custom/wlsunset":{
+        "format": "󱩌 {}",
+        "exec": "~/.config/hypr/scripts/wlsunset.sh status",
+        "on-click": "~/.config/hypr/scripts/wlsunset.sh toggle",
+        "return-type": "json"
+    },
+    "custom/change_wallpaper":{
+        "format": " change",
+        "on-click": "~/.config/hypr/scripts/random_wallpaper.sh",
+        "exec": "~/.config/hypr/scripts/random_wallpaper.sh",
+        "interval": 1800
+    },
+    "custom/toggle_dark_light_theme":{
+        "format": "󰔎 toggle",
+        "exec": "~/.config/hypr/scripts/wlsunset.sh status",
+        "on-click": "~/.config/hypr/scripts/wlsunset.sh toggle",
+        "return-type": "json"
+    }
+}

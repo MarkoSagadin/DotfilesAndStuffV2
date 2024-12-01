@@ -1,0 +1,106 @@
+@import "default.rasi"
+
+configuration {
+    modi: "drun";
+    show-icons: true;
+    hover-select: true;
+    drun-display-format: "{name}";
+    disable-history: false;
+    sidebar-mode: false;
+
+    display-drun: "🚀";
+    separator-style: "none";
+}
+
+
+window {
+    location: center;
+    width: 640;
+    border-radius: 30px;
+    border: 2px;
+    border-color: @border-color;
+}
+
+mainbox {
+    children: [ "inputbar", "listview"];
+    background-color: transparent;
+}
+
+inputbar {
+    font: @font-tiny;
+    background-color: @shade-bg;
+    border-radius: 12px;
+    padding: 0px 0px 0px 0px;
+    spacing: 10px;
+    children: [ prompt, entry];
+
+    padding: 14px;
+    margin: 20px 20px 0px 20px;
+}
+
+/* The search icon */
+prompt {
+    enabled: true;
+    padding: 0px 0px 0px 5px;
+    font: @font-medium;
+}
+
+icon-search,
+entry,
+element-icon,
+element-text {
+    vertical-align: 0.5;
+}
+
+entry {
+    font: @font-small;
+    text-color: @fg;
+    padding: 5px 0px 5px 18px;
+    placeholder: "Launch";
+    placeholder-color: @fg-dim-50;
+}
+
+listview {
+    scrollbar: false;
+
+    lines: 6;
+    columns: 1;
+
+    fixed-height: true;
+    margin: 20px 10px 20px 10px;
+
+    /* Needed to remove the thin dashed line between listview and inputbar. */
+    border: 0;
+}
+
+element {
+    font: @font-big;
+    border-color: @border-color;
+
+    border-radius: 12;
+    border: 0px;
+
+    margin: 0px 10px 0px 10px;
+    padding: 8px 16px;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @active-bg;
+    text-color: @fg;
+    border-color: @selected;
+    border: 0px;
+}
+
+element-icon {
+    size: 36px;
+}
+
+element-text {
+    text-color: inherit;
+}

@@ -1,0 +1,31 @@
+ /* wallust template - colors-rofi */
+
+* {
+    active-bg: {{color9}};
+    active-fg: {{foreground}};
+    normal-bg: {{background}};
+    normal-fg: {{foreground}};
+    urgent-bg: {{color12}};
+    urgent-fg: {{foreground}};
+
+    selected-active-bg: {{color9}};
+    selected-active-fg: {{foreground}};
+    selected-normal-bg: {{color7}};
+    selected-normal-fg: {{foreground}};
+    selected-urgent-bg: {{color12}};
+    selected-urgent-fg: {{foreground}};
+
+    bg: rgba(0,0,0,0.7);
+    fg: {{color15}};
+
+    fg-dim-10: {{color15 | darken(0.1)}};
+    fg-dim-20: {{color15 | darken(0.2)}};
+    fg-dim-30: {{color15 | darken(0.3)}};
+    fg-dim-40: {{color15 | darken(0.4)}};
+    fg-dim-50: {{color15 | darken(0.5)}};
+    fg-dim-60: {{color15 | darken(0.6)}};
+    fg-dim-70: {{color15 | darken(0.7)}};
+    fg-dim-80: {{color15 | darken(0.8)}};
+
+    border-color: {{color9}};
+}

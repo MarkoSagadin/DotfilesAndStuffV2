@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
 
-SUPPORTED_DISTROS=("UBUNTU" "MANJARO")
+SUPPORTED_DISTROS=("Ubuntu" "Manjaro Linux")
 
 # Usage: check_distro
 # Variable DISTRO should be exported before calling this function.
 # Variable DISTRO should be either set to MANJARO or UBUNTU
 # This function should be called first before calling any other function from this file
 function check_distro {
-	# -z checks if the given string has lenght of one
-	if [ -z "$DISTRO" ]; then
-		echo "DISTRO variable was not exported before calling this script!"
-		echo "This can be done with: "
-		echo ""
-		echo "    export DISTRO=<supported_distro>"
-		echo ""
+    # Get the distribution name from /etc/os-release
+    distro_name=$(grep -w "NAME" /etc/os-release | cut -d= -f2 | tr -d '"')
+
+	if [[ ! " ${SUPPORTED_DISTROS[*]} " =~ " ${distro_name} " ]]; then
+		echo "Given distro $distro_name is not supported!"
 		echo "Supported distros are:"
 		for SUPPORTED_DISTRO in ${SUPPORTED_DISTROS[@]}; do
 			echo " - $SUPPORTED_DISTRO"
@@ -21,36 +19,31 @@ function check_distro {
 		exit
 	fi
 
-	if [[ ! " ${SUPPORTED_DISTROS[*]} " =~ " ${DISTRO} " ]]; then
-		echo "Given distro $DISTRO is not supported!"
-		echo "Supported distros are:"
-		for SUPPORTED_DISTRO in ${SUPPORTED_DISTROS[@]}; do
-			echo " - $SUPPORTED_DISTRO"
-		done
-		exit
+    # If the distribution is supported, store the name
+	if [ "$distro_name" = "Manjaro Linux" ]; then
+        export DISTRO="MANJARO"
+	elif [ "$distro_name" = "Ubuntu" ]; then
+        export DISTRO="UBUNTU"
+	else
+        echo "Unsupported distribution: $distro_name"
+		exit 1
 	fi
 }
 
-# Usage: check_programs_path
-# Variable PROGRAMS_PATH should be exported before calling this function.
-# It should be set to a an absolute path where all packages built from source
-# will be stored.
-# If the folder does not yet exists, it will be created.
-function check_programs_path {
-	# -z checks if the given string has lenght of one
-	if [ -z "$PROGRAMS_PATH" ]; then
-		echo "PROGRAMS_PATH variable was not exported before calling this script!"
-		echo "This can be done with: "
-		echo ""
-		echo "    export PROGRAMS_PATH=<programs_directory>"
-		echo ""
-		echo ""
-		echo "It should be set to a an absolute path where all packages built from source will be stored."
-		echo "If the folder does not yet exists, it will be created."
-		exit
-	fi
-	mkdir -p $PROGRAMS_PATH
+# Function to ask a yes/no question and set the response in a variable
+# Usage: ask_yes_no <yes/no question> <variable to save anwser into>
+ask_yes_no() {
+    while true; do
+        read -p "$1 (y/n): " choice
+        case "$choice" in
+            [Yy]* ) eval "$2='Y'"; return 0;;
+            [Nn]* ) eval "$2='N'"; return 1;;
+            * ) echo "Please answer with y or n.";;
+        esac
+    done
 }
+
+
 
 # Usage: update
 # It expects that the variable 'DISTRO' is set

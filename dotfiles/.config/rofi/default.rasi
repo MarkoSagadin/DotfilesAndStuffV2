@@ -1,0 +1,30 @@
+@import "~/.config/rofi/wallust/colors-rofi.rasi" * {
+
+    font-tiny:      "LigaSFMono Nerd Font Bold 12";
+    font-small:     "LigaSFMono Nerd Font Bold 16";
+    font-medium:    "LigaSFMono Nerd Font Bold 24";
+    font-big:       "LigaSFMono Nerd Font Bold 40";
+    font-xxl:       "LigaSFMono Nerd Font Bold 70";
+    font-xxxl:       "LigaSFMono Nerd Font Bold 100";
+    icon-theme:     "WhiteSur";
+
+    shade-shadow: white / 6%;
+    shade-bg: white / 12%;
+    shade-border: white / 24%;
+
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    transparency: "real";
+    cursor: "default";
+    background-color: black / 20%;
+    border: 0px;
+    border-color: @border-color;
+}
+
+prompt {
+    text-color: @fg;
+}

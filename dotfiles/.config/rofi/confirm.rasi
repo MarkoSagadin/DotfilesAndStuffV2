@@ -1,0 +1,35 @@
+@import "bluetooth_menu.rasi"
+
+window {
+    location:       center;
+	width:			460px;
+	height:			310px;
+}
+
+prompt {
+    enabled: 		true;
+}
+
+inputbar {
+	children: 		[ prompt ];
+    text-color:     @fg;
+    position:       center;
+}
+
+listview {
+    cycle:          false;
+    dynamic:        true;
+    layout:         horizontal;
+}
+
+element {
+    border-radius:  20px;
+    padding:        10px;
+}
+
+element-text {
+    expand:         true;
+    padding:        15px 65px 15px 40px;
+    font:           @font-xxxl;
+}
+

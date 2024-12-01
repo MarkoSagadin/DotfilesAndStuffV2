@@ -1,40 +1,31 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 . ./helper_functions.sh
 check_distro
-check_programs_path
 
-cd $PROGRAMS_PATH
+mkdir -p ~/tmp
+cd ~/tmp
 
 if [ "$DISTRO" = "MANJARO" ]; then
-	installyay spotify slack-desktop otii nrf5x-command-line-tools nrfconnect-appimage
+    installyay spotify slack-desktop otii nrf5x-command-line-tools nrfconnect-appimage
 
 else
+    # Ubuntu specific
+    # spotify
+    # If this dir is not present then spotify can't be run from rofi, only from terminal.
+    sudo mkdir /usr/share/desktop-directories/
 
-	# Ubuntu specific
-	# spotify
-	curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | sudo apt-key add -
-	echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-	sudo apt-get update
-	install spotify-client
+    curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+    echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+    sudo apt-get update
+    install spotify-client
 
-	# otii
-	wget https://www.qoitech.com/downloads/otii_2.8.3.deb
-	sudo dpkg -i otii_2.8.3.deb
-	rm otii_2.8.3.deb
-
-	# nrf desktop
-	wget https://www.nordicsemi.com/-/media/Software-and-other-downloads/Desktop-software/nRF-Connect-for-Desktop/3-9-3/nrfconnect-3.9.3-x86_64.AppImage
-	sudo chmod +x nrfconnect-3.9.3-x86_64.AppImage
-
-	# nrf-command-line-tools-10
-	mkdir temp_folder
-	cd temp_folder
-	wget https://www.nordicsemi.com/-/media/Software-and-other-downloads/Desktop-software/nRF-command-line-tools/sw/Versions-10-x-x/10-15-0/nrf-command-line-tools-10.15.0_amd.zip
-	unzip nrf-command-line-tools-10.15.0_amd.zip
-	tar -xzvf nrf-command-line-tools*.tar.gz
-	sudo dpkg -i nrf-command-line-tools*.deb
-	sudo dpkg -i JLink_Linux*.deb
-	cd ..
-	rm -fr temp_folder
+    # nrf desktop
+    # wget https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-connect-for-desktop/5-1-0/nrfconnect-5.1.0-x86_64.appimage
+    # chmod +x nrfconnect-*
 fi
+
+cd ..
+rm -fr ~/tmp
