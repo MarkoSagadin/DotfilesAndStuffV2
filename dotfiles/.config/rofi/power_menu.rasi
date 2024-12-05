@@ -9,9 +9,8 @@ window {
     location:         north east;
     x-offset:         -10px;
     y-offset:         10px;
-    border:           2px ;
+    border:           4px ;
     border-radius:    15px;
-    border-color: @border-color;
     children: [mainbox];
 }
 
@@ -20,12 +19,9 @@ listview {
     columns: 1;
 
     fixed-height: true;
-    margin: 20px 20px 20px 20px;
+    margin: 20px;
 
     /* Needed to remove the thin dashed line between listview and inputbar. */
     border: 0;
 }
 
-element-text {
-    font:           @font-small;
-}

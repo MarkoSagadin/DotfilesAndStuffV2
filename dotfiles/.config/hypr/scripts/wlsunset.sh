@@ -54,7 +54,7 @@ case $1'' in
             tooltip="Night light off"
         fi
 
-        printf '{"text":"%s", "tooltip":"%s"}\n' "$text" "$tooltip"
+        printf '{"text":"%s", "tooltip":"%s", "class":"%s"}\n' "$text" "$tooltip" "$text"
         sleep 0.3
     done
     ;;

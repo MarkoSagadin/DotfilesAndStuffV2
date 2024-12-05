@@ -168,12 +168,21 @@
     "hyprland/workspaces":{
         "format":"{icon}",
         "on-click":"activate",
+        "all-outputs": true,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": []
+        },
         "format-icons":{
             "urgent":"",
             "active":"",
-            "default":""
-        },
-        "sort-by-coordinates":true
+            "default":"",
+            "empty":"",
+            "hidden":"",
+            "persistent": ""
+        }
     },
     "wlr/taskbar":{
         "format":"{icon} {name} ",
@@ -185,24 +194,6 @@
         "ignore-list":[
             "wofi"
         ]
-    },
-    "custom/cycle_wall":{
-        "format":" ",
-        "on-click":"~/.config/hypr/scripts/WallpaperSelect.sh",
-        "on-click-right":"~/.config/hypr/scripts/Wallpaper.sh swww",
-        "on-click-middle":"~/.config/hypr/scripts/WaybarStyles.sh",
-        "tooltip":true,
-        "tooltip-format":"Change wallpaper or style"
-    },
-    "custom/light_dark":{
-        "format":"",
-        "on-click":"~/.config/hypr/scripts/DarkLight.sh",
-        "tooltip":false
-    },
-    "custom/lock":{
-        "format":"",
-        "on-click":"~/.config/hypr/scripts/LockScreen.sh",
-        "tooltip":false
     },
     "custom/launcher":{
         "format":"🚀",
@@ -371,7 +362,6 @@
     "custom/change_wallpaper":{
         "format": " change",
         "on-click": "~/.config/hypr/scripts/random_wallpaper.sh",
-        "exec": "~/.config/hypr/scripts/random_wallpaper.sh",
         "interval": 1800
     },
     "custom/toggle_dark_light_theme":{

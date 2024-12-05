@@ -1,9 +1,12 @@
+@import "wallust/colors-waybar.css";
+
 *{
   font-family: "LigaSFMono Nerd Font";
   font-weight: bold;
   min-height: 0;
   /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
   font-size: 16px;
+  /* color: @foreground; */
   font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
   border: none;
   border-radius: 0;
@@ -12,8 +15,7 @@
 window#waybar {
   background-color: rgba(20, 20, 20, 0.5);
   border-radius: 12px;
-  color: #ffffff;
-  transition-property: background-color;
+  /* transition-property: background-color; */
   transition-duration: 0.5s;
 }
 
@@ -21,14 +23,10 @@ window#waybar.hidden {
   opacity: 0.1;
 }
 
-#window {
-  color: #64727d;
-}
-
 tooltip {
   border-radius: 10px;
   padding: 15px;
-  background-color: #1f232b;
+  background-color: @main-color-darker-30;
 }
 
 tooltip label {
@@ -55,29 +53,30 @@ tooltip label {
 /*     */
 /* } */
 
+
+
 #workspaces button {
-    padding: 2px;
-    color: #6E6A86;
-    margin-right: 5px;
+    color: alpha(@foreground, 0.3);
 }
 
 #workspaces button.active {
-  color: #ffffff;
-  border-radius: 10px;
-}
-
-#workspaces button.focused {
-    color: #d8dee9;
+  color: @foreground;
 }
 
 #workspaces button.urgent {
-    color: #FFAC1C;
-    border-radius: 10px;
+    color: @second-color;
 }
 
 #workspaces button:hover {
-    color: #9CCFD8;
-    border-radius: 10px;
+    /* Below is need due to the default hover effect:
+     * https://github.com/Alexays/Waybar/issues/60 */
+    box-shadow: none;
+    text-shadow: none;
+    background: none;
+    transition: none;
+    /* background: <original-color>; */
+    /* border: <original-color>; */
+    /* padding: 0 3px; */
 }
 
 #language,
@@ -95,21 +94,18 @@ tooltip label {
 #workspaces,
 #custom-light_dark,
 #custom-launcher,
-#custom-cycle_wall,
 #custom-power,
 #custom-power,
 #custom-lock,
+#custom-change_wallpaper,
 #connection,
 #utilities,
 #idle_inhibitor {
   color: #ffffff;
   border-radius: 10px;
-  padding: 2px 10px;
-  background-color: #1e1e32;
-  margin-left: 4px;
-  margin-right: 4px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  padding: 0px 10px;
+  background-color: alpha(@main-color-darker-70, 0.3);
+  margin: 4px;
 }
 
 #custom-launcher {
@@ -145,7 +141,7 @@ tooltip label {
 #custom-media-previous,
 #custom-media-play-pause,
 #custom-media-next {
-  background-color: #1e3232;
+  background-color: alpha(@second-color, 0.7);
   font-size: 22px;
   padding: 0px 10px 0px 0px;
 }
@@ -157,7 +153,7 @@ tooltip label {
 }
 
 #custom-media {
-  background-color: #1e3232;
+  background-color: alpha(@second-color, 0.7);
   padding: 0px 20px 0px 10px;
   border-radius: 10px 0px 0px 10px;
 }
@@ -178,6 +174,10 @@ tooltip label {
 #custom-wlsunset {
   font-size: 18px;
   padding: 0px 10px 0px 00px;
+}
+
+#custom-wlsunset.on {
+  color: #FFA500;
 }
 
 #cpu {
@@ -230,4 +230,22 @@ tooltip label {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+#custom-change_wallpaper {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)
+        0 0/100% 200%;
+    animation: gradient  10s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

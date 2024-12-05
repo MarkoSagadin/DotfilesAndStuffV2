@@ -1,30 +1,58 @@
-@import "~/.config/rofi/wallust/colors-rofi.rasi" * {
+@import "~/.config/rofi/wallust/colors-rofi.rasi"
 
+* {
     font-tiny:      "LigaSFMono Nerd Font Bold 12";
     font-small:     "LigaSFMono Nerd Font Bold 16";
     font-medium:    "LigaSFMono Nerd Font Bold 24";
     font-big:       "LigaSFMono Nerd Font Bold 40";
     font-xxl:       "LigaSFMono Nerd Font Bold 70";
-    font-xxxl:       "LigaSFMono Nerd Font Bold 100";
+    font-xxxl:      "LigaSFMono Nerd Font Bold 100";
     icon-theme:     "WhiteSur";
-
-    shade-shadow: white / 6%;
-    shade-bg: white / 12%;
-    shade-border: white / 24%;
 
     margin: 0;
     padding: 0;
     spacing: 0;
+    text-color: @foreground;
 }
 
 window {
     transparency: "real";
+    background-color: @main-color-a30;
+    border-color: @main-color-a80;
     cursor: "default";
-    background-color: black / 20%;
-    border: 0px;
-    border-color: @border-color;
+}
+
+mainbox {
+    background-color: transparent;
+}
+
+inputbar {
+    background-color: @foreground-darker-30-a30;
+}
+
+entry {
+    placeholder-color: @foreground-darker-30-a30;
+}
+
+listview {
+    /* Needed to remove the thin dashed line between listview and inputbar. */
+    border: 0;
 }
 
 prompt {
-    text-color: @fg;
+}
+
+element {
+    font: @font-big;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element selected.normal {
+    background-color: @main-color-a80;
+    text-color: @foreground;
 }

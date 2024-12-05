@@ -108,22 +108,25 @@ else
 
     sudo systemctl enable sddm
 
-    sddm_conf_dir=/etc/sddm.conf.d
-    wayland_sessions_dir=/usr/share/wayland-sessions
-    sudo mkdir -p "$sddm_conf_dir"
-    sudo cp assets/hyprland.desktop "$wayland_sessions_dir/"
 
-    git clone https://github.com/Keyitdev/sddm-astronaut-theme.git
+    sudo touch "/etc/sddm.conf"
+    tar -xf support_scripts/sugar-candy.tar.gz
     sudo mkdir -p /usr/share/sddm/themes
-    sudo mv sddm-astronaut-theme /usr/share/sddm/themes/
+    sudo mv sugar-candy /usr/share/sddm/themes/
+    sudo cp ../assets/sddm-wallpaper.jpg /usr/share/sddm/themes/
 
-    sudo tee -a "$sddm_conf_dir/theme.conf.user" > /dev/null <<EOT
+    theme_conf=/usr/share/sddm/themes/sugar-candy/theme.conf
+    sudo sed -i 's/^Background="[^"]*"/Background="sddm-wallpaper.jpg"/' $theme_conf
+    sudo sed -i 's/^ScreenWidth="[^"]*"/ScreenWidth="1920"/' $theme_conf
+    sudo sed -i 's/^ScreenHeight="[^"]*"/ScreenHeight="1080"/' $theme_conf
+
+    sudo tee -a "/etc/sddm.conf" > /dev/null <<EOT
     [Theme]
-    Current=sddm-astronaut-theme
-    FullBlur="true"
-    BlurMax="64"
-    Blur="1.0"
+    Current=sugar-candy
     EOT
+
+    sudo sed -i
+
 
     # rofi
     install libpango1.0-dev libstartup-notification0-dev libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-keysyms1-dev flex
@@ -193,6 +196,19 @@ else
     sudo ninja -C build install
     cd ..
     rm -fr wlsunset
+
+    install libgtk-4-dev libadwaita-1-dev
+
+    overskride_tag="v0.6.1"
+    git clone -b $overskride_tag https://github.com/kaii-lb/overskride
+    cd overskride
+    meson setup build && cd build
+    meson compile && meson devenv
+    mkdir -p ~/.local/share/glib-2.0/schemas
+    cp ../data/io.github.kaii_lb.Overskride.gschema.xml ~/.local/share/glib-2.0/schemas
+    glib-compile-schemas ~/.local/share/glib-2.0/schemas
+    cd ..
+    rm -fr overskride
 fi
 
 

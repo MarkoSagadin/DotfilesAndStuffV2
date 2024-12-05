@@ -2,8 +2,8 @@
 
 window {
     location:       center;
-	width:			460px;
-	height:			310px;
+	width:			465px;
+	height:			320px;
 }
 
 prompt {
@@ -12,7 +12,6 @@ prompt {
 
 inputbar {
 	children: 		[ prompt ];
-    text-color:     @fg;
     position:       center;
 }
 

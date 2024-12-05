@@ -1,0 +1,8 @@
+@define-color foreground {{foreground}};
+@define-color main-color {{color9}};
+@define-color main-color-darker-30 {{color9 | darken(0.3)}};
+@define-color main-color-darker-70 {{color9 | darken(0.7)}};
+
+@define-color second-color {{color11}};
+@define-color second-color-darker-30 {{color11 | darken(0.3)}};
+@define-color second-color-darker-70 {{color11 | darken(0.7)}};

@@ -10,7 +10,7 @@ configuration {
     hover-select: true;
     drun-display-format: "{name}";
     disable-history: false;
-    sidebar-mode: false;
+    sidebar-mode: true;
 
     display-drun: "";
     separator-style: "none";
@@ -23,13 +23,11 @@ window {
     y-offset:         10px;
     border:           2px ;
     border-radius:    15px;
-    border-color: @border-color;
     children: [mainbox];
 }
 
 inputbar {
     font: @font-tiny;
-    background-color: @shade-bg;
     border-radius: 12px;
     children: [ prompt, entry];
 
@@ -40,23 +38,20 @@ inputbar {
 prompt {
     font: @font-small;
     margin: 7px 0px 7px 5px;
-    padding: 0px 10px 0px 10px;
-    /* background-color: @shade-bg; */
+    padding: 0px 10px;
 }
 
 entry {
     font: @font-tiny;
-    text-color: @fg;
     /* padding: 5px 0px 5px 18px; */
-    margin: 10px 10px 10px 10px;
+    margin: 10px;
     placeholder: "Search";
-    placeholder-color: @fg-dim-50;
 }
 
 
 mainbox {
     padding:      0;
-    border:       0px ;
+    border:       0px;
     children:     [ inputbar,listview ];
     background-color: transparent;
 }
@@ -86,25 +81,17 @@ element {
     border:         0px ;
     border-radius:  8px ;
     horizontal-align: 0.5;
-    text-color:     @fg;
     font:           @font-small;
 }
 
 
 element normal.normal,
 element alternate.normal {
-    background-color: transparent;
-    text-color: @fg;
-    margin: 0px 20px 0px 20px;
+    margin: 0px 20px;
 }
 
 element selected.normal {
-    background-color: @active-bg;
-    text-color: @fg;
-    border-color: @selected-active-bg;
-    border: 0px;
-    /* margin: 5px; */
-    margin: 0px 20px 0px 20px;
+    margin: 0px 20px;
 }
 
 element-text {

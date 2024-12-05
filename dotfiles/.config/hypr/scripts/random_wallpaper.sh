@@ -23,10 +23,8 @@ SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration
 
 current_monitor=$(hyprctl -j activeworkspace | jq .monitor | tr -d '"')
 
-swww query || swww init && swww img -o $current_monitor $SWWW_PARAMS $RANDOM_PIC
+# Run wallust to get color scheme from the wallpaper, bit skip setting
+# terminal sequences (aka. terminal colors)
+wallust run --skip-sequences $RANDOM_PIC
 
-# ${scriptsDir}/PywalSwww.sh
-
-# sleep 1
-
-# ${scriptsDir}/RefreshNoWaybar.sh
+swww img $SWWW_PARAMS $RANDOM_PIC
