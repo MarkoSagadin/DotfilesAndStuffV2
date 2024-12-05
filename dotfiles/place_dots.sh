@@ -57,7 +57,7 @@ linkDotfile /home/$USER .tmux.conf
 linkDotfile /home/$USER .vimrc
 linkDotfile /home/$USER .zshrc
 
-linkDotfile /usr/share/X11/xorg.conf.d 70-touchpad.conf
+# linkDotfile /usr/share/X11/xorg.conf.d 70-touchpad.conf
 linkDotfile /etc/udev/rules.d 99-charging_notification.rules
 
 # This will run battery notification script every 5 minutes

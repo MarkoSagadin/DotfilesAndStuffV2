@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eu
+set -euo pipefail
 
 firefox_version() {
 	dpkg -l firefox | awk '/ii/ {print $3}' | sed 's/[~+-].*//'
@@ -51,14 +51,24 @@ mozilla_deb_install() {
 	printf "%s installed.\n" "$(firefox_version)"
 }
 
+echo "HEREERE"
+
 # Check if the Mozilla package is already installed
-dpkg -l firefox | grep -q 'build' && echo "Mozilla Firefox DEB package ($(firefox_version)) is already installed."; exit;
+#dpkg -l firefox | grep -q 'build' && echo "Mozilla Firefox DEB package ($(firefox_version)) is already installed."; exit;
 
-exists snap && rm_firefox_snap
+echo "HEREERE"
 
-# Install Mozilla DEB package
-if yes_or_no "Install Mozilla Firefox DEB package?"; then
-	mozilla_deb_install
-else
-	printf "Operation canceled. No action taken.\n"
-fi
+# THIS IS MISSING
+# exists snap && 
+    
+# rm_firefox_snap
+
+mozilla_deb_install
+
+
+## Install Mozilla DEB package
+#if yes_or_no "Install Mozilla Firefox DEB package?"; then
+#	mozilla_deb_install
+#else
+#	printf "Operation canceled. No action taken.\n"
+#fi

@@ -47,9 +47,12 @@ install curl \
 	lolcat \
     vim
 
-if [ "$remove_snap" = "Y" ]; then
-    ./support_scripts/remove_snap.sh
-fi
+echo "HERE"
+
+# TODO: running this script stopped the whole thing
+# if [ "$remove_snap" = "Y" ]; then
+#    ./support_scripts/remove_snap.sh
+# fi
 
 if [ "$install_firefox_deb" = "Y" ]; then
     ./support_scripts/install_firefox_deb.sh
@@ -138,3 +141,6 @@ else
 	# Ubuntu is a stable distro, bla bla bla
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
+
+echo ""
+echo "Stage 0 was installed"

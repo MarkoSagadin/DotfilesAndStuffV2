@@ -48,3 +48,8 @@ else
     sudo ./llvm.sh 18 all # Install all packages, version 18
     rm llvm.sh
 fi
+
+echo ""
+echo "Stage 2 done"
+
+

@@ -16,7 +16,7 @@ if [ "$DISTRO" = "MANJARO" ]; then
 
 else
     # Ubuntu specific
-    install meson wget build-essential ninja-build cmake-extras cmake gettext gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 hyprwayland-scanner libcairo2-dev libgbm-dev libglvnd-core-dev libglvnd-dev libjpeg-turbo-dev libpam0g-dev libpango1.0-dev libpipewire-0.3-dev libspa-0.2-dev libwayland-dev libwebp-dev libxcb-xkb-dev libxkbcommon-dev wayland-protocols xdg-desktop-portal xdg-desktop-portal-gtk xwayland
+    install meson wget build-essential ninja-build cmake-extras cmake gawk gettext gir1.2-graphene-1.0 glslang-tools gobject-introspection hwdata jq gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd scdoc libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 libcairo2-dev libgbm-dev libglvnd-core-dev libglvnd-dev libjpeg-turbo8-dev libpam0g-dev libpango1.0-dev libpipewire-0.3-dev libspa-0.2-dev libwayland-dev libwebp-dev libxcb-xkb-dev libxkbcommon-dev wayland-protocols xdg-desktop-portal xdg-desktop-portal-gtk xwayland openssl psmisc python3-mako python3-markdown python3-markupsafe python3-yaml python3-pyquery qt6-base-dev spirv-tools vulkan-validationlayers 
 
     sudo apt build-dep wlroots
 
@@ -120,13 +120,8 @@ else
     sudo sed -i 's/^ScreenWidth="[^"]*"/ScreenWidth="1920"/' $theme_conf
     sudo sed -i 's/^ScreenHeight="[^"]*"/ScreenHeight="1080"/' $theme_conf
 
-    sudo tee -a "/etc/sddm.conf" > /dev/null <<EOT
-    [Theme]
-    Current=sugar-candy
-    EOT
-
-    sudo sed -i
-
+    echo "[Theme]" | sudo tee -a /etc/sddm.conf > /dev/null 
+    echo "Current=sugar-candy" | sudo tee -a /etc/sddm.conf > /dev/null 
 
     # rofi
     install libpango1.0-dev libstartup-notification0-dev libxkbcommon-dev libxkbcommon-x11-dev libxcb-xkb-dev libxcb-keysyms1-dev flex
@@ -168,10 +163,8 @@ else
     # Make all netowork devices (wifi adapters) to be managed by NetworkManager
     NETPLAN_FILE=/etc/netplan/10-manage-devices-init.yaml
     touch $NETPLAN_FILE
-    sudo tee -a $NETPLAN_FILE > /dev/null <<EOT
-    network:
-        renderer: NetworkManager
-    EOT
+    echo "network" | sudo tee -a $NETPLAN_FILE > /dev/null 
+    echo "    renderer: NetworkManager" | sudo tee -a $NETPLAN_FILE > /dev/null 
     sudo chmod 600 $NETPLAN_FILE
     sudo net apply
     sudo systemctl restart NetworkManager.service
