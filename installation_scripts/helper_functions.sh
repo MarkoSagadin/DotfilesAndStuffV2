@@ -36,8 +36,8 @@ ask_yes_no() {
     while true; do
         read -p "$1 (y/n): " choice
         case "$choice" in
-            [Yy]* ) eval "$2='Y'"; return 0;;
-            [Nn]* ) eval "$2='N'"; return 1;;
+            [Yy]* ) eval "$2='Y'"; break;;
+            [Nn]* ) eval "$2='N'"; break;;
             * ) echo "Please answer with y or n.";;
         esac
     done

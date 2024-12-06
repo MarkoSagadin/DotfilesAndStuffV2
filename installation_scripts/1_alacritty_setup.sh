@@ -9,10 +9,10 @@ check_distro
 # Cargo was probably installed in the same session, source it to activate it
 source $HOME/.cargo/env
 
-install zsh
-
-# Install tmux plugin manager and install all plugins, this file should kept
-# out of git.
+# install zsh
+# 
+# # Install tmux plugin manager and install all plugins, this file should kept
+# # out of git.
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # bash ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 # 
@@ -60,18 +60,18 @@ if [ "$DISTRO" = "MANJARO" ]; then
     install alacritty
 else
     # Ubuntu specific
-    # install pkg-config libfontconfig-1dev desktop-file-utils
-    # cargo install alacritty
+    install pkg-config libfontconfig1-dev desktop-file-utils
+    cargo install alacritty
 
     # Add desktop entry and terminal info
-    # git clone https://github.com/alacritty/alacritty.git
-    # cd alacritty
-    # sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-    # sudo desktop-file-install extra/linux/Alacritty.desktop
-    # sudo update-desktop-database
-    # sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
-    # cd ..
-    # rm -fr alacritty
+    git clone https://github.com/alacritty/alacritty.git
+    cd alacritty
+    sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+    sudo desktop-file-install extra/linux/Alacritty.desktop
+    sudo update-desktop-database
+    sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+    cd ..
+    rm -fr alacritty
 
     # # Configure context menu in nautilus
     # # Remove Open in Terminal option
