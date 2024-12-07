@@ -24,8 +24,32 @@ Suitable both for Ubuntu Server and Manjaro.
 
 2. Run `place_dots.sh` in `dotfiles` folder.
 3. Run all numbered scripts in `installation_scripts` folder in ascending order
-   starting with `0_base_system_packages`. You will be prompted for sudo
+   starting with `0_base_system_packages.sh`. You will be prompted for sudo
    password.
+
+
+## Scripts
+
+The following scripts you can find in `installation_scripts` folder:
+- `0_base_system_packages.sh` - Installs basic system packages suitable for
+  general development on the Linux machine. Optional for Ubuntu: remove Snap
+  and install Firefox as `deb` package.
+
+- `1_terminal_setup.sh` - Installs several tools, plugins and fonts, that
+  in combination with dotfiles make working in terminal a nice experience.
+  After script is done ZSH will be set as a default shell. Terminal emulator
+  Alacritty is also installed.  
+
+> [!NOTE]
+> Gnome terminal users need to change the font in the Preferences menu to some 
+> [Nerd Font] font that supports extra glyphs. Try using the installed 
+> `MesloLGSDZ Nerd Font`, your terminal will look nicer.
+
+- `2_install_neovim.sh` - That one is quite clear.
+
+- `3_hyprland_for_ubuntu_24_04.sh` - Installs Hyprland on Ubuntu 24.04.
+
+[Nerd Font]: https://github.com/ryanoasis/nerd-fonts
 
 Improvements:
 
@@ -33,9 +57,6 @@ Improvements:
 
 TODO:
 
-- Make sure that the added cursor theme is commited
-- add some nice icon theme
-- Add some nice thunar theme
 - swaync is installed and should be some how configured, however nothing
   changes. Reasearch this later.
 - add buttons to waybar

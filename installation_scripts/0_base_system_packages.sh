@@ -127,6 +127,12 @@ else
 
 	# Ubuntu is a stable distro, bla bla bla
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+    # LLVM tooling, like clang-tidy, clang-format, clang-sa
+    wget https://apt.llvm.org/llvm.sh
+    chmod +x llvm.sh
+    sudo ./llvm.sh 18 all # Install all packages, version 18
+    rm llvm.sh
 fi
 
 echo ""

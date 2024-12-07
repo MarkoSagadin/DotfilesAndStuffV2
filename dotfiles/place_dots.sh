@@ -50,6 +50,7 @@ linkDotfile /home/$USER .config/waybar
 linkDotfile /home/$USER .config/wlsunset
 linkDotfile /home/$USER .config/zathura
 linkDotfile /home/$USER .config/zellij
+linkDotfile /home/$USER .icons
 linkDotfile /home/$USER .gitconfig
 linkDotfile /home/$USER .prettierrc
 linkDotfile /home/$USER .ssh
