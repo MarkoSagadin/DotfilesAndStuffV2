@@ -11,6 +11,14 @@ install_firefox_deb=""
 if [ "$DISTRO" = "UBUNTU" ]; then
     ask_yes_no "Do you want to completly remove Snap?" remove_snap
     ask_yes_no "Do you want to install Firefox as a Debian package and not as Snap package?" install_firefox_deb
+    
+    if [ "$remove_snap" = "Y" ]; then
+        ./support_scripts/remove_snap.sh
+    fi
+
+    if [ "$install_firefox_deb" = "Y" ]; then
+        ./support_scripts/install_firefox_deb.sh
+    fi
 fi
 
 #### Common section ####
@@ -45,25 +53,7 @@ install curl \
 	flameshot \
 	figlet \
 	lolcat \
-    vim
-
-if [ "$remove_snap" = "Y" ]; then
-   ./support_scripts/remove_snap.sh
-fi
-
-if [ "$install_firefox_deb" = "Y" ]; then
-    ./support_scripts/install_firefox_deb.sh
-fi
-
-# Install Git Large File storage
-# GIT_LFS_VERSION=3.5.1
-# GIT_LFS=git-lfs-linux-amd64-v${GIT_LFS_VERSION}
-# wget https://github.com/git-lfs/git-lfs/releases/download/v${GIT_LFS_VERSION}/${GIT_LFS}.tar.gz
-# mkdir -p tmp
-# tar -xvf ${GIT_LFS}.tar.gz -C tmp
-# sudo bash tmp/git-lfs-${GIT_LFS_VERSION}/install.sh
-# rm -fr tmp
-# rm -fr ${GIT_LFS}.tar.gz
+   	vim
 
 #### System specific section ####
 if [ "$DISTRO" = "MANJARO" ]; then
@@ -140,4 +130,6 @@ else
 fi
 
 echo ""
+echo "##########################################"
 echo "Stage 0 was installed"
+echo "##########################################"

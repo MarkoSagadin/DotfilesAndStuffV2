@@ -3,3 +3,9 @@ tags.*
 dotfiles/.config/nvim/plugin/
 dotfiles/.ssh/known_hosts
 dotfiles/.ssh/known_hosts.old
+
+# Ignore the generated wallust dirs
+wallust
+
+# but not wallust itself
+!dotfiles/.config/wallust

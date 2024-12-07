@@ -42,7 +42,7 @@ else
     rm nvim-linux64.tar.gz
 
     # Clangformat, there was no way to just get it alone without whole
-    # clang tooling, Not so happy about this, but now I accepted this.
+    # clang tooling, Not so happy about this, but now I have accepted this.
     wget https://apt.llvm.org/llvm.sh
     chmod +x llvm.sh
     sudo ./llvm.sh 18 all # Install all packages, version 18
@@ -50,6 +50,6 @@ else
 fi
 
 echo ""
-echo "Stage 2 done"
-
-
+echo "##########################################"
+echo "Stage 2 was installed"
+echo "##########################################"
