@@ -27,22 +27,23 @@ Suitable both for Ubuntu Server and Manjaro.
    starting with `0_base_system_packages.sh`. You will be prompted for sudo
    password.
 
-
 ## Scripts
 
 The following scripts you can find in `installation_scripts` folder:
+
 - `0_base_system_packages.sh` - Installs basic system packages suitable for
-  general development on the Linux machine. Optional for Ubuntu: remove Snap
-  and install Firefox as `deb` package.
+  general development on the Linux machine. Optional for Ubuntu: remove Snap and
+  install Firefox as `deb` package.
 
-- `1_terminal_setup.sh` - Installs several tools, plugins and fonts, that
-  in combination with dotfiles make working in terminal a nice experience.
-  After script is done ZSH will be set as a default shell. Terminal emulator
-  Alacritty is also installed.  
+- `1_terminal_setup.sh` - Installs several tools, plugins and fonts, that in
+  combination with dotfiles make working in terminal a nice experience. After
+  script is done ZSH will be set as a default shell. Terminal emulator Alacritty
+  is also installed.
 
+<!-- prettier-ignore -->
 > [!NOTE]
-> Gnome terminal users need to change the font in the Preferences menu to some 
-> [Nerd Font] font that supports extra glyphs. Try using the installed 
+> Gnome terminal users need to change the font in the Preferences menu
+> to some [Nerd Font] font that supports extra glyphs. Try using the installed
 > `MesloLGSDZ Nerd Font`, your terminal will look nicer.
 
 - `2_install_neovim.sh` - That one is quite clear.

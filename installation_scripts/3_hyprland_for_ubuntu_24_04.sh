@@ -23,8 +23,7 @@ source "$HOME/.cargo/env"
 # Ubuntu specific
 install meson wget build-essential ninja-build cmake-extras cmake gawk gettext gir1.2-graphene-1.0 glslang-tools gobject-introspection hwdata jq gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd scdoc libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 libcairo2-dev libgbm-dev libglvnd-core-dev libglvnd-dev libjpeg-turbo8-dev libpam0g-dev libpango1.0-dev libspa-0.2-dev libwayland-dev libwebp-dev libxcb-xkb-dev libxkbcommon-dev xdg-desktop-portal xdg-desktop-portal-gtk xwayland openssl psmisc python3-mako python3-markdown python3-markupsafe python3-yaml python3-pyquery qt6-base-dev spirv-tools vulkan-validationlayers libzip-dev libtomlplusplus-dev librsvg2-dev libxcb-util-dev libmagic-dev libpugixml-dev libdbus-1-dev graphviz doxygen xsltproc xmlto
 
-
-# Add deb-src to the ubuntu.sources file so that any later apt build-dep 
+# Add deb-src to the ubuntu.sources file so that any later apt build-dep
 # command works.
 sudo sed -Ei "s/(^Types: deb$)/\1 deb-src/g" /etc/apt/sources.list.d/ubuntu.sources
 
@@ -45,7 +44,7 @@ cd ..
 wayland_tag="1.23.1"
 git clone -b $wayland_tag https://gitlab.freedesktop.org/wayland/wayland.git
 cd wayland
-meson setup --prefix=/usr build/ 
+meson setup --prefix=/usr build/
 sudo ninja -C build/ install
 cd ..
 
@@ -162,7 +161,6 @@ cmake --build build
 sudo cmake --install build
 cd ..
 
-
 # Various things
 install feh playerctl pavucontrol pamixer jq brightnessctl gnome-system-monitor cliphist gvfs gvfs-backends imagemagick pavucontrol polkit-kde-agent-1 qt5ct qt5-style-kvantum qt5-style-kvantum-themes qt6ct sway-notification-center waybar wl-clipboard wlogout xdg-user-dirs xdg-utils yad policykit-desktop-privileges phinger-cursor-theme libplayerctl-dev
 
@@ -177,6 +175,7 @@ install ffmpegthumbnailer file-roller thunar thunar-volman tumbler thunar-archiv
 # SDDM things
 install sddm qml-module-qtgraphicaleffects qml-module-qtquick-controls qml-module-qtquick-controls2 qml-module-qtquick-extras qml-module-qtquick-layouts
 
+sudo systemctl disable gdm
 sudo systemctl enable sddm
 
 cd $SCRIPT_DIR
@@ -192,8 +191,8 @@ sudo sed -i 's/^Background="[^"]*"/Background="sddm-wallpaper.jpg"/' $theme_conf
 sudo sed -i 's/^ScreenWidth="[^"]*"/ScreenWidth="1920"/' $theme_conf
 sudo sed -i 's/^ScreenHeight="[^"]*"/ScreenHeight="1080"/' $theme_conf
 
-echo "[Theme]" | sudo tee -a /etc/sddm.conf > /dev/null 
-echo "Current=sugar-candy" | sudo tee -a /etc/sddm.conf > /dev/null 
+echo "[Theme]" | sudo tee -a /etc/sddm.conf >/dev/null
+echo "Current=sugar-candy" | sudo tee -a /etc/sddm.conf >/dev/null
 
 #Go back to tmp dir
 cd ~/tmp
@@ -249,8 +248,8 @@ sudo mv wl-clipboard-history /usr/bin/
 # NETPLAN_FILE=/etc/netplan/10-manage-devices-init.yaml
 # sudo rm $NETPLAN_FILE
 # sudo touch $NETPLAN_FILE
-# echo "network:" | sudo tee -a $NETPLAN_FILE > /dev/null 
-# echo "    renderer: NetworkManager" | sudo tee -a $NETPLAN_FILE > /dev/null 
+# echo "network:" | sudo tee -a $NETPLAN_FILE > /dev/null
+# echo "    renderer: NetworkManager" | sudo tee -a $NETPLAN_FILE > /dev/null
 # sudo chmod 600 $NETPLAN_FILE
 # sudo netplan apply
 # sudo systemctl restart NetworkManager.service

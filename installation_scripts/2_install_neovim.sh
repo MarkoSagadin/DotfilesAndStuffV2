@@ -13,7 +13,7 @@ pip install neovim --break-system-packages
 
 if [ "$DISTRO" = "MANJARO" ]; then
     # Manjaro specific
-    install neovim 
+    install neovim
 else
     # Ubuntu specific
     NVIM_TAG="v0.10.2"

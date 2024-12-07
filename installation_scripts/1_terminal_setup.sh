@@ -39,7 +39,7 @@ mv NotoColorEmoji.ttf ~/.fonts
 git clone https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized.git
 cd SFMono-Nerd-Font-Ligaturized
 mv *.otf ~/.fonts
-cd ..  rm -fr SFMono-Nerd-Font-Ligaturized
+cd .. rm -fr SFMono-Nerd-Font-Ligaturized
 
 # Material design icons
 git clone https://github.com/Templarian/MaterialDesign-Font.git
