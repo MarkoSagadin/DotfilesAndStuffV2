@@ -48,6 +48,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/java/jre1.8.0_401/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/miniconda3/bin
 export PATH=$PATH:$HOME/.local/share/nvim/lsp_servers/clangd/clangd/bin/

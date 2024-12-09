@@ -106,7 +106,7 @@ else
     # TODO: Above can not be done on a ubuntu server
 fi
 
-cd ~/tmp
+cd ~/
 rm -fr ~/tmp
 
 # Bye bye bash, hello zsh

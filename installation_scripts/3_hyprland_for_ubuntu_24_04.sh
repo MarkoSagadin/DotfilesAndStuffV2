@@ -21,7 +21,9 @@ cd ~/tmp
 source "$HOME/.cargo/env"
 
 # Ubuntu specific
-install meson wget build-essential ninja-build cmake-extras cmake gawk gettext gir1.2-graphene-1.0 glslang-tools gobject-introspection hwdata jq gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd scdoc libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 libcairo2-dev libgbm-dev libglvnd-core-dev libglvnd-dev libjpeg-turbo8-dev libpam0g-dev libpango1.0-dev libspa-0.2-dev libwayland-dev libwebp-dev libxcb-xkb-dev libxkbcommon-dev xdg-desktop-portal xdg-desktop-portal-gtk xwayland openssl psmisc python3-mako python3-markdown python3-markupsafe python3-yaml python3-pyquery qt6-base-dev spirv-tools vulkan-validationlayers libzip-dev libtomlplusplus-dev librsvg2-dev libxcb-util-dev libmagic-dev libpugixml-dev libdbus-1-dev graphviz doxygen xsltproc xmlto
+install meson wget build-essential ninja-build cmake-extras cmake automake gawk gettext gir1.2-graphene-1.0 glslang-tools gobject-introspection hwdata jq gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd scdoc libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 libcairo2-dev libgbm-dev libglvnd-core-dev libglvnd-dev libjpeg-turbo8-dev libpam0g-dev libpango1.0-dev libspa-0.2-dev libwayland-dev libwebp-dev libxcb-xkb-dev libxkbcommon-dev xdg-desktop-portal xdg-desktop-portal-gtk xwayland openssl psmisc python3-mako python3-markdown python3-markupsafe python3-yaml python3-pyquery qt6-base-dev spirv-tools vulkan-validationlayers libzip-dev libtomlplusplus-dev librsvg2-dev libxcb-util-dev libmagic-dev libpugixml-dev libdbus-1-dev graphviz doxygen xsltproc xmlto xcb-proto xutils-dev libcap-dev libdisplay-info-dev libliftoff-dev libdrm-dev pipewire waybar
+
+sudo apt build-dep wlroots -y
 
 # Add deb-src to the ubuntu.sources file so that any later apt build-dep
 # command works.
@@ -34,8 +36,9 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 14 --slave /
 
 # Dependency of hyprland
 xcb_tag="fba5e519e519524c61872948c9b883d6412201ca"
-git clone -b https://salsa.debian.org/debian/xcb-util-errors.git
+git clone https://salsa.debian.org/debian/xcb-util-errors.git
 cd xcb-util-errors
+git checkout $xcb_tag
 ./configure
 make
 sudo make install
@@ -48,14 +51,14 @@ meson setup --prefix=/usr build/
 sudo ninja -C build/ install
 cd ..
 
-pipe_tag="1.2.7"
-git clone -b $pipe_tag https://github.com/pipewire/pipewire.git
-cd pipewire
-meson setup build
-meson configure build
-meson compile -C build
-sudo meson install -C build
-cd ..
+# pipe_tag="1.2.7"
+# git clone -b $pipe_tag https://github.com/pipewire/pipewire.git
+# cd pipewire
+# meson setup build
+# meson configure build
+# meson compile -C build
+# sudo meson install -C build
+# cd ..
 
 sdbus_tag="v2.1.0"
 git clone -b $sdbus_tag https://github.com/kistler-group/sdbus-cpp.git
@@ -117,7 +120,8 @@ cd ..
 
 protocols_tag="v0.4.0"
 git clone --recursive -b $protocols_tag https://github.com/hyprwm/hyprland-protocols.git
-cd hyprland-protocols meson setup --prefix=/usr build/
+cd hyprland-protocols 
+meson setup --prefix=/usr build/
 sudo ninja -C build/ install
 cd ..
 
@@ -129,7 +133,8 @@ cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || get
 sudo cmake --install ./build
 cd ..
 
-hyprland_tag="v0.45.2"
+#hyprland_tag="v0.45.2"
+hyprland_tag="v0.39.1"
 git clone --recursive -b $hyprland_tag https://github.com/hyprwm/Hyprland.git
 cd Hyprland
 make all
@@ -212,7 +217,6 @@ cd ..
 install bluez blueman
 sudo systemctl enable --now bluetooth.service
 
-nwg-look
 install libgtk-3-dev libcairo2-dev libglib2.0-bin
 nwg_tag="v0.2.7"
 git clone --recursive -b "$nwg_tag" --depth 1 https://github.com/nwg-piotr/nwg-look.git
@@ -228,14 +232,15 @@ tar -xf ${wallust_name}.tar.gz
 sudo cp ${wallust_name}/man/*.1 /usr/local/share/man/man1
 sudo cp ${wallust_name}/wallust /usr/bin/
 
-install libgtkmm-3.0-dev libpulse-dev libnl-3-dev libnl-genl-3-dev
-waybar_tag="0.11.0"
-git clone -b $waybar_tag https://github.com/Alexays/Waybar
-cd Waybar
-meson setup build
-ninja -C build
-sudo ninja -C build install
-cd ..
+# TODO: Use package from apt for now, newer version doesn't add much.
+# install libgtkmm-3.0-dev libpulse-dev libnl-3-dev libnl-genl-3-dev
+# waybar_tag="0.11.0"
+# git clone -b $waybar_tag https://github.com/Alexays/Waybar
+# cd Waybar
+# meson setup build
+# ninja -C build
+# sudo ninja -C build install
+# cd ..
 
 # Clipboard
 install copyq
