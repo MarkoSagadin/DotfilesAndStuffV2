@@ -21,13 +21,14 @@ cd ~/tmp
 source "$HOME/.cargo/env"
 
 # Ubuntu specific
-install meson wget build-essential ninja-build cmake-extras cmake automake gawk gettext gir1.2-graphene-1.0 glslang-tools gobject-introspection hwdata jq gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd scdoc libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 libcairo2-dev libgbm-dev libglvnd-core-dev libglvnd-dev libjpeg-turbo8-dev libpam0g-dev libpango1.0-dev libspa-0.2-dev libwayland-dev libwebp-dev libxcb-xkb-dev libxkbcommon-dev xdg-desktop-portal xdg-desktop-portal-gtk xwayland openssl psmisc python3-mako python3-markdown python3-markupsafe python3-yaml python3-pyquery qt6-base-dev spirv-tools vulkan-validationlayers libzip-dev libtomlplusplus-dev librsvg2-dev libxcb-util-dev libmagic-dev libpugixml-dev libdbus-1-dev graphviz doxygen xsltproc xmlto xcb-proto xutils-dev libcap-dev libdisplay-info-dev libliftoff-dev libdrm-dev pipewire waybar
-
-sudo apt build-dep wlroots -y
+install meson wget build-essential ninja-build cmake-extras cmake automake gawk gettext gir1.2-graphene-1.0 glslang-tools gobject-introspection hwdata jq gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd scdoc libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 libcairo2-dev libgbm-dev libglvnd-core-dev libglvnd-dev libjpeg-turbo8-dev libpam0g-dev libpango1.0-dev libspa-0.2-dev libwayland-dev libwebp-dev libxcb-xkb-dev libxkbcommon-dev xdg-desktop-portal xdg-desktop-portal-gtk xwayland openssl psmisc python3-mako python3-markdown python3-markupsafe python3-yaml python3-pyquery qt6-base-dev spirv-tools vulkan-validationlayers libzip-dev libtomlplusplus-dev librsvg2-dev libxcb-util-dev libmagic-dev libpugixml-dev libdbus-1-dev graphviz doxygen xsltproc xmlto xcb-proto xutils-dev libcap-dev libdisplay-info-dev libliftoff-dev libdrm-dev pipewire waybar libpipewire-0.3-dev wayland-protocols libsdbus-c++-dev
 
 # Add deb-src to the ubuntu.sources file so that any later apt build-dep
 # command works.
 sudo sed -Ei "s/(^Types: deb$)/\1 deb-src/g" /etc/apt/sources.list.d/ubuntu.sources
+sudo apt update
+
+sudo apt build-dep wlroots -y
 
 # Latest compilers are a dependency of hyprland
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
@@ -44,12 +45,12 @@ make
 sudo make install
 cd ..
 
-wayland_tag="1.23.1"
-git clone -b $wayland_tag https://gitlab.freedesktop.org/wayland/wayland.git
-cd wayland
-meson setup --prefix=/usr build/
-sudo ninja -C build/ install
-cd ..
+# wayland_tag="1.23.1"
+# git clone -b $wayland_tag https://gitlab.freedesktop.org/wayland/wayland.git
+# cd wayland
+# meson setup --prefix=/usr build/
+# sudo ninja -C build/ install
+# cd ..
 
 # pipe_tag="1.2.7"
 # git clone -b $pipe_tag https://github.com/pipewire/pipewire.git
@@ -60,22 +61,22 @@ cd ..
 # sudo meson install -C build
 # cd ..
 
-sdbus_tag="v2.1.0"
-git clone -b $sdbus_tag https://github.com/kistler-group/sdbus-cpp.git
-cd sdbus-cpp
-mkdir build
-cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release -DSDBUSCPP_BUILD_LIBSYSTEMD=ON
-cmake --build .
-sudo cmake --build . --target install
-cd ..
+# sdbus_tag="v2.1.0"
+# git clone -b $sdbus_tag https://github.com/kistler-group/sdbus-cpp.git
+# cd sdbus-cpp
+# mkdir build
+# cd build
+# cmake .. -DCMAKE_BUILD_TYPE=Release -DSDBUSCPP_BUILD_LIBSYSTEMD=ON
+# cmake --build .
+# sudo cmake --build . --target install
+# cd ..
 
-wayproto_tag="1.38"
-git clone --recursive -b $wayproto_tag https://gitlab.freedesktop.org/wayland/wayland-protocols.git
-cd wayland-protocols
-meson setup --prefix=/usr build
-sudo ninja -C build install
-cd ..
+# wayproto_tag="1.38"
+# git clone --recursive -b $wayproto_tag https://gitlab.freedesktop.org/wayland/wayland-protocols.git
+# cd wayland-protocols
+# meson setup --prefix=/usr build
+# sudo ninja -C build install
+# cd ..
 
 hyprutils_tag="v0.2.6"
 git clone -b $hyprutils_tag https://github.com/hyprwm/hyprutils.git
@@ -158,7 +159,8 @@ cmake --build ./build --config Release --target hyprlock -j$(nproc 2>/dev/null |
 sudo cmake --install build
 cd ..
 
-xdph_tag="v1.3.8"
+# xdph_tag="v1.3.8" # Doesn't work
+xdph_tag="v1.3.2"
 git clone --recursive -b $xdph_tag https://github.com/hyprwm/xdg-desktop-portal-hyprland.git
 cd xdg-desktop-portal-hyprland
 cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -B build
