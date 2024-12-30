@@ -1,18 +1,5 @@
- /* wallust template - colors-rofi */
+ /* wallust template - colors-swaync */
 
-@define-color foreground {{foreground}};
-@define-color main-color {{color9}};
-@define-color background {{background}};
-
-@define-color cc-bg alpha(@main-color, 0.2);
-@define-color border alpha(lighter(@foreground), 0.1);
-@define-color text-color @foreground;
-@define-color text-color-disabled darker(@text-color);
-@define-color noti-bg @cc-bg;
-@define-color noti-bg-hover alpha(darker(@background), 0.2);
-@define-color noti-close-bg alpha(darker(@background), 0.1);
-@define-color noti-close-bg-hover alpha(darker(@background), 0.3);
-
-@define-color noti-bg-opaque rgb(48, 48, 48);
-@define-color noti-bg-darker rgb(38, 38, 38);
-@define-color noti-bg-focus rgba(68, 68, 68, 0.6);
+@define-color background alpha({{color1 | darken(0.5)}}, 0.5);
+@define-color background_lighter alpha({{color1 | darken(0.2)}}, 0.5);
+@define-color background_lighter2  alpha({{color1 | lighten(0.3)}}, 0.5);

@@ -20,6 +20,9 @@ cd ~/tmp
 # Source cargo, it was installed at some point
 source "$HOME/.cargo/env"
 
+# Source go, it was installed at some point
+export PATH=$PATH:/usr/local/go/bin
+
 # Ubuntu specific
 install meson wget build-essential ninja-build cmake-extras cmake automake gawk gettext gir1.2-graphene-1.0 glslang-tools gobject-introspection hwdata jq gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd scdoc libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libtomlplusplus3 libcairo2-dev libgbm-dev libglvnd-core-dev libglvnd-dev libjpeg-turbo8-dev libpam0g-dev libpango1.0-dev libspa-0.2-dev libwayland-dev libwebp-dev libxcb-xkb-dev libxkbcommon-dev xdg-desktop-portal xdg-desktop-portal-gtk xwayland openssl psmisc python3-mako python3-markdown python3-markupsafe python3-yaml python3-pyquery qt6-base-dev spirv-tools vulkan-validationlayers libzip-dev libtomlplusplus-dev librsvg2-dev libxcb-util-dev libmagic-dev libpugixml-dev libdbus-1-dev graphviz doxygen xsltproc xmlto xcb-proto xutils-dev libcap-dev libdisplay-info-dev libliftoff-dev libdrm-dev pipewire waybar libpipewire-0.3-dev wayland-protocols libsdbus-c++-dev
 
@@ -121,7 +124,7 @@ cd ..
 
 protocols_tag="v0.4.0"
 git clone --recursive -b $protocols_tag https://github.com/hyprwm/hyprland-protocols.git
-cd hyprland-protocols 
+cd hyprland-protocols
 meson setup --prefix=/usr build/
 sudo ninja -C build/ install
 cd ..
@@ -142,7 +145,7 @@ make all
 sudo make install
 cd ..
 
-idle_tag="v0.1.5"
+idle_tag="v0.1.2"
 git clone --recursive -b $idle_tag https://github.com/hyprwm/hypridle.git
 cd hypridle
 cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build
@@ -150,8 +153,8 @@ cmake --build ./build --config Release --target hypridle -j$(nproc 2>/dev/null |
 sudo cmake --install ./build
 cd ..
 
-lock_tag="v0.5.0"
-# lock_tag="v0.3.0"
+# lock_tag="v0.5.0"
+lock_tag="v0.3.0"
 git clone --recursive -b $lock_tag https://github.com/hyprwm/hyprlock.git
 cd hyprlock
 cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -S . -B ./build
@@ -249,7 +252,9 @@ install copyq
 wget https://raw.githubusercontent.com/janza/wl-clipboard-history/refs/heads/master/wl-clipboard-history
 sudo mv wl-clipboard-history /usr/bin/
 
-# TODO: solve this
+# TODO: Below was needed to get network running on Ubuntu Server
+# Desktop version doesn need it. Also, not everything was working with below
+# setup so test in the future if you have to.
 # Make all netowork devices (wifi adapters) to be managed by NetworkManager
 # install network-manager
 # NETPLAN_FILE=/etc/netplan/10-manage-devices-init.yaml
@@ -278,18 +283,6 @@ cd wlsunset
 meson build
 ninja -C build
 sudo ninja -C build install
-cd ..
-
-install libgtk-4-dev libadwaita-1-dev
-
-overskride_tag="v0.6.1"
-git clone -b $overskride_tag https://github.com/kaii-lb/overskride
-cd overskride
-meson setup build && cd build
-meson compile && meson devenv
-mkdir -p ~/.local/share/glib-2.0/schemas
-cp ../data/io.github.kaii_lb.Overskride.gschema.xml ~/.local/share/glib-2.0/schemas
-glib-compile-schemas ~/.local/share/glib-2.0/schemas
 cd ..
 
 cd ~

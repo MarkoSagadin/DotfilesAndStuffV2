@@ -52,18 +52,10 @@ The following scripts you can find in `installation_scripts` folder:
 
 [Nerd Font]: https://github.com/ryanoasis/nerd-fonts
 
-Improvements:
+## TODO
 
-- Repo should still be able to support simple usecase (no wayland)
-
-TODO:
-
-- swaync is installed and should be some how configured, however nothing
-  changes. Reasearch this later.
 - add buttons to waybar
   - toggle dark/light theme
-- nwg-display can compile but it doesn't run. Check support scripts for
-  installation.
 
 Resources:
 

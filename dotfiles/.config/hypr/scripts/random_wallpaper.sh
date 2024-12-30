@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/Wallpapers
+cd ~/wallpapers
 
 PICS=($(find . -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \)))
 
@@ -28,3 +28,6 @@ current_monitor=$(hyprctl -j activeworkspace | jq .monitor | tr -d '"')
 wallust run --skip-sequences $RANDOM_PIC
 
 swww img $SWWW_PARAMS $RANDOM_PIC
+
+# Restart programs to refresh new theme
+swaync-client -rs

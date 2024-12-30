@@ -10,6 +10,7 @@ check_distro
 # Neovim tooling - linters, formatters
 pip install pynvim --break-system-packages
 pip install neovim --break-system-packages
+sudo npm install -g tree-sitter-cli
 
 if [ "$DISTRO" = "MANJARO" ]; then
     # Manjaro specific

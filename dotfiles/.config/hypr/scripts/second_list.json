@@ -1,0 +1,42 @@
+[
+  {
+    "id": "561842",
+    "reason": "review_requested",
+    "url": "https://code.bbraun.io/api/v3/repos/dp-gravityplus/gravityplus-firmware/pulls/194",
+    "title": "fix: Add sensor board to quick build",
+    "latest_comment_url": "https://code.bbraun.io/api/v3/repos/dp-gravityplus/gravityplus-firmware/pulls/194",
+    "repo": "gravityplus-firmware",
+    "type": "PullRequest",
+    "org": "dp-gravityplus"
+  },
+  {
+    "id": "559786",
+    "reason": "review_requested",
+    "url": "https://code.bbraun.io/api/v3/repos/dp-gravityplus/gravityplus-firmware/pulls/192",
+    "title": "Docs: Add separate board overview page",
+    "latest_comment_url": null,
+    "repo": "gravityplus-firmware",
+    "type": "PullRequest",
+    "org": "dp-gravityplus"
+  },
+  {
+    "id": "554017",
+    "reason": "review_requested",
+    "url": "https://code.bbraun.io/api/v3/repos/dp-gravityplus/gravityplus-firmware/pulls/178",
+    "title": "feat: introduce SMF to therapy_manager component",
+    "latest_comment_url": "https://code.bbraun.io/api/v3/repos/dp-gravityplus/gravityplus-firmware/pulls/178",
+    "repo": "gravityplus-firmware",
+    "type": "PullRequest",
+    "org": "dp-gravityplus"
+  },
+  {
+    "id": "557268",
+    "reason": "review_requested",
+    "url": "https://code.bbraun.io/api/v3/repos/dp-gravityplus/gravityplus-firmware/pulls/182",
+    "title": "feat: Add charger to battery monitoring",
+    "latest_comment_url": "https://code.bbraun.io/api/v3/repos/dp-gravityplus/gravityplus-firmware/issues/comments/110762",
+    "repo": "gravityplus-firmware",
+    "type": "PullRequest",
+    "org": "dp-gravityplus"
+  }
+]

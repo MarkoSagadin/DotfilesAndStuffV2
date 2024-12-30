@@ -26,6 +26,7 @@
         "clock",
         "group/menu",
         "group/utilities",
+        "custom/notification",
         "custom/power"
     ]
 }

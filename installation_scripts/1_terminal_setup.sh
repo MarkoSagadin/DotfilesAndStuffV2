@@ -40,8 +40,14 @@ mv NotoColorEmoji.ttf ~/.fonts
 git clone https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized.git
 cd SFMono-Nerd-Font-Ligaturized
 mv *.otf ~/.fonts
-cd .. 
+cd ..
 rm -fr SFMono-Nerd-Font-Ligaturized
+
+git clone https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts.git
+cd San-Francisco-Pro-Fonts
+mv *.otf ~/.fonts
+cd ..
+rm -fr San-Francisco-Pro-Fonts
 
 # Material design icons
 git clone https://github.com/Templarian/MaterialDesign-Font.git
