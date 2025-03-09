@@ -51,12 +51,9 @@ mozilla_deb_install() {
 	printf "%s installed.\n" "$(firefox_version)"
 }
 
-echo "HEREERE"
 
 # Check if the Mozilla package is already installed
 #dpkg -l firefox | grep -q 'build' && echo "Mozilla Firefox DEB package ($(firefox_version)) is already installed."; exit;
-
-echo "HEREERE"
 
 # THIS IS MISSING
 # exists snap && 
