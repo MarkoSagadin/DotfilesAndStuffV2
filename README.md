@@ -68,3 +68,8 @@ Resources:
 - https://github.com/Narmis-E/onedark-wallpapers
 - https://github.com/dharmx/walls
 - https://github.com/PROxZIMA/.dotfiles
+
+Hyprland-qtutils
+
+Debugging missing audio in pipewire I added myself to the audio and pipewire
+groups
