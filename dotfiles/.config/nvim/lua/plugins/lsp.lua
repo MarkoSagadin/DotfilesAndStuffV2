@@ -28,6 +28,7 @@ return {
 				"lua-language-server",
 				"typescript-language-server",
 				"gopls",
+				"ginko_ls", -- DeviceTree LSP
 			},
 
 			PATH = "prepend", -- "skip" seems to cause the spawning error
