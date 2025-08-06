@@ -187,7 +187,7 @@
         "on-click":"~/.config/hypr/scripts/power-menu.sh"
     },
     "custom/media":{
-        "format":"{icon} {}",
+        "format":"{icon} {text}",
         "escape":true,
         "return-type":"json",
         "max-length":40,
@@ -335,7 +335,7 @@
         "return-type": "json"
     },
     "custom/wlsunset":{
-        "format": "󱩌 {}",
+        "format": "󱩌 {text}",
         "exec": "~/.config/hypr/scripts/wlsunset.sh status",
         "on-click": "~/.config/hypr/scripts/wlsunset.sh toggle",
         "return-type": "json"
