@@ -257,7 +257,7 @@ show_menu() {
         devices=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3-)
 
         if [[ ! -z $devices ]]; then
-            devices = "$devices\n"
+            devices="$devices\n"
         fi
 
         # Get controller flags
