@@ -1,6 +1,12 @@
 local opts = {
+    spec = {
+        -- From where to import plugins
+        { import = "plugins" },
+    },
+
 	defaults = { lazy = true },
 	ui = {
+        border = "rounded",
 		icons = {
 			ft = "",
 			lazy = "󰂠 ",
@@ -40,4 +46,4 @@ local opts = {
 	},
 }
 
-require("lazy").setup("plugins", opts)
+require("lazy").setup(opts)

@@ -7,6 +7,7 @@ return {
 	capabilities = {
 		offsetEncoding = { "utf-16" },
 	},
+	server_capabilities = { documentFormattingProvider = false },
 	cmd = {
 		"clangd",
 		-- "--compile-commands-dir=tests/basic/build",

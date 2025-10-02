@@ -1,9 +1,6 @@
 return {
 	"stevearc/conform.nvim",
 	cmd = { "ConformInfo" },
-	dependencies = {
-		"williamboman/mason.nvim",
-	},
 	-- Everything in opts will be passed to setup()
 	opts = {
 		-- Define your formatters

@@ -1,4 +1,5 @@
 return {
+	server_capabilities = { documentFormattingProvider = false },
 	settings = {
 		Lua = {
 			diagnostics = {
