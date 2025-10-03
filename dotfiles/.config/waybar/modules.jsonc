@@ -187,7 +187,7 @@
         "on-click":"~/.config/hypr/scripts/power-menu.sh"
     },
     "custom/media":{
-        "format":"{icon} {}",
+        "format":"{icon} {text}",
         "escape":true,
         "return-type":"json",
         "max-length":40,
@@ -342,8 +342,9 @@
     },
     "custom/change_wallpaper":{
         "format": " change",
+        "exec": "~/.config/hypr/scripts/random_wallpaper.sh",
         "on-click": "~/.config/hypr/scripts/random_wallpaper.sh",
-        "interval": 1800
+        "interval": 1800,
     },
     "custom/toggle_dark_light_theme":{
         "format": "󰔎 toggle",
