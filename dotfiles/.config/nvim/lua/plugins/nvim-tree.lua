@@ -1,5 +1,10 @@
 return {
-	"nvim-tree/nvim-web-devicons",
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = "Oil",
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		cmd = { "NvimTreeToggle", "NvimTreeFocus" },

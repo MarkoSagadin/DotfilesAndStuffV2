@@ -23,9 +23,7 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		event = "VeryLazy",
-		config = function(_, opts)
-			require("todo-comments").setup(opts)
-		end,
+        opts = {},
 	},
 	{
 		"danymat/neogen",
@@ -55,6 +53,5 @@ return {
 	{
 		"mzlogin/vim-markdown-toc",
 		ft = "markdown",
-		-- cmd = { "GenTocGFM", "GenTocGitLab" },
 	},
 }

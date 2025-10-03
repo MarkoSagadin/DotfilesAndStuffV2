@@ -177,7 +177,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id deadd-notification-center &
 
 # Start polkit for password popup windows
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Switch between us and si layout with win + space
 exec_always --no-startup-id "setxkbmap -layout us,si"

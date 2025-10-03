@@ -34,6 +34,7 @@ keymap("n", "<Right>", ":vertical resize -2<cr>")
 
 -- Open and close Nvim Tree
 keymap("n", "<C-c>", ":NvimTreeToggle<cr>", "Toggle NvimTree")
+keymap("n", "-", ":Oil<cr>", "Open parent directory")
 
 -- Telescope mappings
 keymap("n", "<C-p>", ":lua require('utils').project_files()<cr>", "Find files (Telescope)")
@@ -72,6 +73,9 @@ keymap("n", "<leader>ss", "<cmd>lua require('substitute.range').word()<cr>", "Wo
 keymap("n", "sx", "<cmd>lua require('substitute.exchange').operator()<cr>", "Exchange operator (Substitute)")
 keymap("n", "sxx", "<cmd>lua require('substitute.exchange').line()<cr>", "Exchange line (Substitute)")
 keymap("x", "X", "<cmd>lua require('substitute.exchange').visual()<cr>", "Exchange visual (Substitute)")
+
+-- LSP keymaps
+keymap("n", "<leader>c", "<Cmd>LspClangdSwitchSourceHeader<CR>", "Switch source/header (LSP)")
 
 -- Diagnostics
 keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", "Line diagnostics (LSP)")

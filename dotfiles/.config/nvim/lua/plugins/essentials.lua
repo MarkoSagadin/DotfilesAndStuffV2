@@ -66,10 +66,7 @@ return {
 		opts = {},
 	},
 	{
-		"norcalli/nvim-colorizer.lua",
-		event = "VimEnter",
-		config = function(_, _)
-			require("colorizer").setup()
-		end,
+		"catgoose/nvim-colorizer.lua",
+		event = "BufReadPre",
 	},
 }

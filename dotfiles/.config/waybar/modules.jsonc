@@ -335,7 +335,7 @@
         "return-type": "json"
     },
     "custom/wlsunset":{
-        "format": "󱩌 {}",
+        "format": "󱩌 {text}",
         "exec": "~/.config/hypr/scripts/wlsunset.sh status",
         "on-click": "~/.config/hypr/scripts/wlsunset.sh toggle",
         "return-type": "json"

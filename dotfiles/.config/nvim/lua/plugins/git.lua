@@ -1,25 +1,7 @@
 return {
 	{
 		"lewis6991/gitsigns.nvim",
-		ft = { "gitcommit", "diff" },
-		init = function()
-			-- load gitsigns only when a git file is opened
-			vim.api.nvim_create_autocmd({ "BufRead" }, {
-				group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
-				callback = function()
-					vim.fn.jobstart({ "git", "-C", vim.loop.cwd(), "rev-parse" }, {
-						on_exit = function(_, return_code)
-							if return_code == 0 then
-								vim.api.nvim_del_augroup_by_name("GitSignsLazyLoad")
-								vim.schedule(function()
-									require("lazy").load({ plugins = { "gitsigns.nvim" } })
-								end)
-							end
-						end,
-					})
-				end,
-			})
-		end,
+		event = "User FilePost",
 		opts = {
 			signs = {
 				add = { text = "▎" },
@@ -52,15 +34,16 @@ return {
 				map("v", "<leader>hs", ":Gitsigns stage_hunk<CR>")
 				map("n", "<leader>hr", ":Gitsigns reset_hunk<CR>")
 				map("v", "<leader>hr", ":Gitsigns reset_hunk<CR>")
-				map("n", "<leader>hS", "Gitsigns stage_buffer<CR>")
-				map("n", "<leader>hu", "Gitsigns undo_stage_hunk<CR>")
-				map("n", "<leader>hR", "Gitsigns reset_buffer<CR>")
-				map("n", "<leader>hp", "Gitsigns preview_hunk<CR>")
+				map("n", "<leader>hS", ":Gitsigns stage_buffer<CR>")
+				map("n", "<leader>hu", ":Gitsigns undo_stage_hunk<CR>")
+				map("n", "<leader>hR", ":Gitsigns reset_buffer<CR>")
+				map("n", "<leader>hp", ":Gitsigns preview_hunk<CR>")
 				map("n", "<leader>hb", "<cmd>lua require\"gitsigns\".blame_line{full=true}<CR>")
-				map("n", "<leader>tb", "Gitsigns toggle_current_line_blame<CR>")
-				map("n", "<leader>hd", "Gitsigns diffthis<CR>")
+				map("n", "<leader>hB", ":BlameToggle<CR>")
+				map("n", "<leader>tb", ":Gitsigns toggle_current_line_blame<CR>")
+				map("n", "<leader>hd", ":Gitsigns diffthis<CR>")
 				map("n", "<leader>hD", "<cmd>lua require\"gitsigns\".diffthis(\"~\")<CR>")
-				map("n", "<leader>td", "Gitsigns toggle_deleted<CR>")
+				map("n", "<leader>td", ":Gitsigns toggle_deleted<CR>")
 
 				-- Text object
 				map("o", "ih", ":<C-U>Gitsigns select_hunk<CR>")
@@ -68,7 +51,31 @@ return {
 			end,
 		},
 	},
-	-- { "tpope/vim-fugitive", cmd = "Git" },
+	{
+		"FabijanZulj/blame.nvim",
+		cmd = { "BlameToggle" },
+		opts = {
+			-- I have generated below on https://rootloops.sh/
+			colors = {
+				"#ede0d6",
+				"#d97780",
+				"#7aa860",
+				"#bc904f",
+				"#6b9bd9",
+				"#b77ed1",
+				"#52a9a9",
+				"#d0b39c",
+				"#634c3a",
+				"#e6949a",
+				"#8ebf73",
+				"#d3a563",
+				"#88b1e5",
+				"#c899de",
+				"#63c0bf",
+				"#f6efea",
+			},
+		},
+	},
 	{
 		"NeogitOrg/neogit",
 		dependencies = {
@@ -104,9 +111,5 @@ return {
 				},
 			},
 		},
-
-		config = function(_, opts)
-			require("neogit").setup(opts)
-		end,
 	},
 }

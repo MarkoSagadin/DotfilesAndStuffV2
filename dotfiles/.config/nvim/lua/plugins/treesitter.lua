@@ -67,10 +67,10 @@ return {
 		textobjects = {
 			select = {
 				enable = true,
-				-- Automatically jump forward to textobj, similar to targets.vim
+				-- automatically jump forward to textobj, similar to targets.vim
 				lookahead = true,
 				keymaps = {
-					-- You can use the capture groups defined in textobjects.scm
+					-- you can use the capture groups defined in textobjects.scm
 					["af"] = "@function.outer",
 					["if"] = "@function.inner",
 					["ab"] = "@block.outer",
@@ -101,7 +101,7 @@ return {
 					["<leader>a"] = "@parameter.inner",
 				},
 				swap_previous = {
-					["<leader>A"] = "@parameter.inner",
+					["<leader>a"] = "@parameter.inner",
 				},
 			},
 		},
