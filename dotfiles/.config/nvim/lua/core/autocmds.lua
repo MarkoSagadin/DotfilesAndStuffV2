@@ -73,3 +73,6 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 		end
 	end,
 })
+
+-- TelescopeResultsLineNr is too dim by default, make it like normal text
+vim.api.nvim_set_hl(0, "TelescopeResultsLineNr", { link = "TelescopeNormal" })
