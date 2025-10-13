@@ -83,7 +83,7 @@ return {
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
-		lazy = false,
+		event = { "VeryLazy" },
 		dependencies = {
 			"neovim/nvim-lspconfig",
 		},
