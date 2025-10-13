@@ -11,6 +11,12 @@ end
 -- jk is now escape
 keymap("i", "jk", "<ESC>")
 
+-- Enable hardmode
+keymap("n", "h", "<NOP>")
+keymap("n", "j", "<NOP>")
+keymap("n", "k", "<NOP>")
+keymap("n", "l", "<NOP>")
+
 -- Remap space as leader key, but first unmap it from any other mode
 keymap("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
