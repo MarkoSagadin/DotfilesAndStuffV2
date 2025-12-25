@@ -74,5 +74,22 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 	end,
 })
 
+-- Luasnip has a undesired behaviour: once you exit the snippet and press TAB
+-- it will instead jump to the next/previous expanded snippet instead of
+-- indenting. Below chunk of code should disable that.
+-- Found here: https://github.com/L3MON4D3/LuaSnip/issues/258
+vim.api.nvim_create_autocmd("ModeChanged", {
+	pattern = "*",
+	callback = function()
+		if
+			((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+			and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+			and not require("luasnip").session.jump_active
+		then
+			require("luasnip").unlink_current()
+		end
+	end,
+})
+
 -- TelescopeResultsLineNr is too dim by default, make it like normal text
 vim.api.nvim_set_hl(0, "TelescopeResultsLineNr", { link = "TelescopeNormal" })
