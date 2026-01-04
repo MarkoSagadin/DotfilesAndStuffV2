@@ -50,7 +50,7 @@ save_to_clipboard = true
 decorations = "None"
 dynamic_padding = true
 dynamic_title = true
-opacity = 0.7
+opacity = 0.85
 
 [window.padding]
 x = 10
