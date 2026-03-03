@@ -20,6 +20,7 @@ return {
 			},
 			renderer = {
 				highlight_git = true,
+				highlight_bookmarks = "all",
 				full_name = true,
 				indent_markers = {
 					enable = true,

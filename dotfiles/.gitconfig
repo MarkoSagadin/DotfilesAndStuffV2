@@ -43,3 +43,10 @@
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
+[rebase]
+    updateRefs = true
+	autosquash = true
+[include]
+    # A local gitconfig, outside of version control.
+    # If the file doesn't exist it is silently ignored
+    path = ~/.gitconfig-local

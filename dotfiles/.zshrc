@@ -2,26 +2,44 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
-# Install plugin manager and plugins
-source $HOME/.zsh/antigen/antigen.zsh
-antigen bundle mafredri/zsh-async
-antigen bundle agkozak/zsh-z
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle hcgraf/zsh-sudo
-antigen bundle zsh-users/zsh-syntax-highlighting # Needs to be last bundle
-antigen apply
+# Install zinit plugin manager
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-# Setup pure prompt
-fpath+=$HOME/.zsh/pure
-autoload -U promptinit; promptinit
-prompt pure
-zstyle :prompt:pure:git:stash show yes
+# Completion init (cached - only regenerates once per day)
+autoload -Uz compinit
+_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-24))
+if (( ${#_comp_files} )); then
+  compinit -C
+else
+  compinit
+fi
+unset _comp_files
+
+# Prompt - loaded synchronously (must be ready before first prompt)
+zinit ice pick"async.zsh" src"pure.zsh"
+zinit light sindresorhus/pure
+
+# Plugins - loaded in turbo mode (staggered to avoid input freeze)
+zinit ice wait"0a" lucid
+zinit light zsh-users/zsh-completions
+
+zinit ice wait"0b" lucid atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait"0c" lucid
+zinit light hcgraf/zsh-sudo
+
+# Syntax highlighting must be last
+zinit ice wait"1" lucid
+zinit light zsh-users/zsh-syntax-highlighting
 
 setopt histignoredups # Ignore command history duplicates
 setopt menu_complete # Tab completion when choice ambiguous
 
-# I want default edior to be nvim, but bindings should be emacs like
+# I want default editor to be nvim, but bindings should be emacs like
 export EDITOR="nvim"
 bindkey -e
 
@@ -41,17 +59,14 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
-# Various other paths
+# Consolidated PATH (deduplicated)
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 export PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/usr/java/jre1.8.0_401/bin
-export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/bin
-export PATH=$PATH:$HOME/miniconda3/bin
-export PATH=$PATH:$HOME/.local/share/nvim/lsp_servers/clangd/clangd/bin/
+export PATH=$PATH:/usr/java/jre1.8.0_401/bin
+export PATH=$PATH:$HOME/.local/share/nvim/lsp_servers/clangd/clangd/bin
 export PATH=$PATH:$HOME/.local/share/coursier/bin
 export PATH=$PATH:/opt/nvim-linux64/bin
 
@@ -112,43 +127,44 @@ GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export GCC_COLORS
 
 # FZF settings
-source /usr/share/doc/fzf/examples/key-bindings.zsh 2> /dev/null
-source /usr/share/doc/fzf/examples/completion.zsh 2> /dev/null
-source /usr/share/fzf/key-bindings.zsh 2> /dev/null
-source /usr/share/fzf/completion.zsh 2> /dev/null
+if [[ -d /usr/share/doc/fzf/examples ]]; then
+  source /usr/share/doc/fzf/examples/key-bindings.zsh 2>/dev/null
+  source /usr/share/doc/fzf/examples/completion.zsh 2>/dev/null
+elif [[ -d /usr/share/fzf ]]; then
+  source /usr/share/fzf/key-bindings.zsh 2>/dev/null
+  source /usr/share/fzf/completion.zsh 2>/dev/null
+fi
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/skobec/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
+# Lazy-load conda - only initialize when first used
+conda() {
+  unfunction conda
+  __conda_setup="$('/home/skobec/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
     eval "$__conda_setup"
-else
+  else
     if [ -f "/home/skobec/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/skobec/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/skobec/miniconda3/bin:$PATH"
+      . "/home/skobec/miniconda3/etc/profile.d/conda.sh"
     fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-#
-##compdef gt
-###-begin-gt-completions-###
-#
-# yargs command completion script
-#
-# Installation: gt completion >> ~/.zshrc
-#    or gt completion >> ~/.zprofile on OSX.
-#
-_gt_yargs_completions()
-{
-  local reply
-  local si=$IFS
-  IFS=$'
-' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" gt --get-yargs-completions "${words[@]}"))
-  IFS=$si
-  _describe 'values' reply
+  fi
+  unset __conda_setup
+  conda "$@"
 }
-compdef _gt_yargs_completions gt
-###-end-gt-completions-###
+
+# opencode
+export PATH=/home/skobec/.opencode/bin:$PATH
+
+# Cache zoxide init output (regenerates when zoxide binary is updated)
+_zoxide_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zoxide_init.zsh"
+if [[ ! -f "$_zoxide_cache" ]] || [[ "$(command -v zoxide)" -nt "$_zoxide_cache" ]]; then
+  zoxide init --cmd cd zsh > "$_zoxide_cache"
+fi
+source "$_zoxide_cache"
+unset _zoxide_cache
+
+# bun completions
+[ -s "/home/skobec/.bun/_bun" ] && source "/home/skobec/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -18,9 +18,7 @@ bash ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 # Install pure prompt theme, it is expected on a specific path by .zshrc
 mkdir -p ~/.zsh/pure
-mkdir -p ~/.zsh/antigen
 git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
-curl -L git.io/antigen >~/.zsh/antigen/antigen.zsh
 
 # Install various fonts
 mkdir -p ~/.fonts
