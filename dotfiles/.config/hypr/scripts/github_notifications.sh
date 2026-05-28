@@ -2,7 +2,7 @@
 #
 # Copyright (c) 2024 Marko Sagadin. All Rights Reserved.
 #
-# Pooling-style script for fetching notifications from the GitHub and
+# Polling-style script for fetching notifications from the GitHub and
 # publishing them as true Linux notifications with notify-send utility.
 # Notifications contain basic info, such as what event happened, to
 # which repo it belongs. Whenever possible, the notifications will also
@@ -43,8 +43,10 @@
 #
 #           * * * * * bash <path to this script>
 
-# This is required to get notify-send working if the script is run from cron.
+# This is required to get notify-send and xdg-open working if the script is run
+# from cron.
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-1}"
 
 source ~/github_hostnames.sh
 
@@ -82,7 +84,7 @@ get_new_notifications() {
     local first_list=$1
     local second_list=$2
     # Extract all "id" values from the first list (first_list.json)
-    old_ids=$(echo $first_list | jq 'map(.id) | .[]')
+    old_ids=$(echo "$first_list" | jq 'map(.id) | .[]')
 
     # Pack all ids into an array with slurp mode.
     old_ids=$(echo "$old_ids" | jq -s '.')
@@ -97,11 +99,11 @@ get_new_notifications() {
     #   - the not inverts that
     # 3. The result is a list of object that are only present in the second list,
     # but not in first.
-    echo $second_list | jq --argjson old_ids "$old_ids" \
+    echo "$second_list" | jq --argjson old_ids "$old_ids" \
         'map(select(.id as $id | $old_ids | index($id) | not))'
 }
 
-pretiffy_reason() {
+prettify_reason() {
     local reason=$1
     case $reason in
     "assign")
@@ -154,7 +156,7 @@ get_link() {
         # If we have both links that means that we can construct exact comment
         # link. And this works for both issues and pulls, regardless of the
         # weird below name.
-        comment_id=$(echo $latest_comment_url | rev | cut -d'/' -f 1 | rev)
+        comment_id=$(echo "$latest_comment_url" | rev | cut -d'/' -f 1 | rev)
         echo "${url}#issuecomment-${comment_id}"
     elif [[ "$latest_comment_url" != null ]]; then
         # Prefer latest comment link as a second best option
@@ -185,7 +187,7 @@ get_hash_number() {
     if [[ -z $link ]]; then
         echo ""
     else
-        maybe_number=$(echo $link | rev | cut -d'/' -f 1 | rev)
+        maybe_number=$(echo "$link" | rev | cut -d'/' -f 1 | rev)
         re='^[0-9]+$'
         if [[ "$maybe_number" =~ $re ]]; then
             echo "$maybe_number"
@@ -203,7 +205,7 @@ construct_msg() {
 
     local msg="\n<b>Owner</b>: ${org}\n<b>Repo</b>: ${repo}\n"
 
-    if [[ ! -z $type ]]; then
+    if [[ -n $type ]]; then
         msg+="<b>${type}</b>: ${title}"
     else
         msg+="<b>Message</b>: ${title}"
@@ -230,11 +232,11 @@ send_notify() {
     local label=$3
     local url=$4
 
-    if [[ ! -z $label ]]; then
+    if [[ -n $label ]]; then
         opt=$(notify-send --action="opt1=$label" "$reason" "$msg")
         # Check if the notification was clicked
-        if [[ ! -z $opt ]]; then
-            xdg-open $link
+        if [[ -n $opt ]]; then
+            xdg-open "$url"
         fi
     else
         notify-send "$reason" "$msg"
@@ -245,17 +247,17 @@ send_notify() {
 cleanup_link() {
     # Cleanup non-functioning links, there also a slight difference in the links
     # coming from the GitHub.com and enterprise versions.
-    echo $1 |
+    echo "$1" |
         sed 's|//api.|//|g' |
         sed 's|/api/v3/|/|g' |
         sed 's|/repos/|/|g' |
         sed 's|/pulls/|/pull/|g'
 }
 
-# Make sure that .cache folder exists, before writing any while there.
+# Make sure that .cache folder exists, before writing anything there.
 mkdir -p ~/.cache
 
-for hostname in ${GITHUB_HOSTNAMES[@]}; do
+for hostname in "${GITHUB_HOSTNAMES[@]}"; do
 
     current_noti_list=$(get_notifications_from_hostname "$hostname")
     old_noti_file=~/.cache/github_notifications_${hostname}.txt
@@ -267,21 +269,25 @@ for hostname in ${GITHUB_HOSTNAMES[@]}; do
     else
 
         if [[ ! -f $old_noti_file ]]; then
-            echo $current_noti_list >$old_noti_file
+            echo "$current_noti_list" >"$old_noti_file"
             continue
         fi
 
-        old_noti_list=$(<$old_noti_file)
-        echo $current_noti_list >$old_noti_file
+        old_noti_list=$(<"$old_noti_file")
+        echo "$current_noti_list" >"$old_noti_file"
     fi
 
+    # old_noti_list=""
     new_noti_list=$(get_new_notifications "$old_noti_list" "$current_noti_list")
+
+    # echo $new_noti_list
 
     # Pass the list into the jq that will then pass line by line to the read.
     echo "$new_noti_list" | jq -c '.[]' | while read noti; do
 
         # -r/--raw-output flag removes double quotes
-        reason=$(echo "$noti" | jq -r '.reason') title=$(echo "$noti" | jq -r '.title')
+        reason=$(echo "$noti" | jq -r '.reason')
+        title=$(echo "$noti" | jq -r '.title')
         url=$(echo "$noti" | jq -r '.url')
         repo=$(echo "$noti" | jq -r '.repo')
         org=$(echo "$noti" | jq -r '.org')
@@ -290,16 +296,19 @@ for hostname in ${GITHUB_HOSTNAMES[@]}; do
 
         url=$(cleanup_link "$url")
         latest_comment_url=$(cleanup_link "$latest_comment_url")
-        link=$(get_link $url "$latest_comment_url")
+        link=$(get_link "$url" "$latest_comment_url")
         type=$(determine_type "$type")
-        reason=$(pretiffy_reason "$reason")
+        reason=$(prettify_reason "$reason")
         hash_number=$(get_hash_number "$url")
 
         msg=$(construct_msg "$org" "$repo" "$title" "$type")
 
         label=$(construct_button_label "$type" "$hash_number")
 
+        echo "New notification for ${hostname}: ${reason} - ${title} (${repo})"
+        echo "Link: ${link}"
         (send_notify "$reason" "$msg" "$label" "$url") &
+        disown
 
     done
 
