@@ -1,121 +1,103 @@
+-- Helpers, because who has time to write all of this.
+-- Also, move wrappers, redraw the screen with cursor on top
+local function keymap_select(map, capture_group)
+	vim.keymap.set({ "x", "o" }, map, function()
+		require("nvim-treesitter-textobjects.select").select_textobject(capture_group, "textobjects")
+	end)
+end
+
+local function keymap_move_to_next_start(map, capture_group)
+	vim.keymap.set({ "n", "x", "o" }, map, function()
+		require("nvim-treesitter-textobjects.move").goto_next_start(capture_group, "textobjects")
+		vim.cmd.normal("zt")
+	end)
+end
+
+local function keymap_move_to_prev_start(map, capture_group)
+	vim.keymap.set({ "n", "x", "o" }, map, function()
+		require("nvim-treesitter-textobjects.move").goto_previous_start(capture_group, "textobjects")
+		vim.cmd.normal("zt")
+	end)
+end
+
+local function keymap_move_to_next_end(map, capture_group)
+	vim.keymap.set({ "n", "x", "o" }, map, function()
+		require("nvim-treesitter-textobjects.move").goto_next_end(capture_group, "textobjects")
+		vim.cmd.normal("zt")
+	end)
+end
+
+local function keymap_move_to_prev_end(map, capture_group)
+	vim.keymap.set({ "n", "x", "o" }, map, function()
+		require("nvim-treesitter-textobjects.move").goto_previous_end(capture_group, "textobjects")
+		vim.cmd.normal("zt")
+	end)
+end
+
 return {
-	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPost", "BufNewFile" },
-	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-	build = ":TSUpdate",
-	dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-	config = function(_, opts)
-		local configs = require("nvim-treesitter.configs")
-		configs.setup(opts)
-	end,
-	opts = {
-		ensure_installed = {
-			"markdown",
-			"latex",
-			"devicetree",
-			"dockerfile",
-			"bash",
-			"c",
-			"cpp",
-			"javascript",
-			"json",
-			"lua",
-			"python",
-			"typescript",
-			"css",
-			"rust",
-			"yaml",
-			"nix",
-			"go",
-		},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPost", "BufNewFile" },
+		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+		build = ":TSUpdate",
+		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					-- Enable treesitter highlighting and disable regex syntax
+					pcall(vim.treesitter.start)
+					-- Enable treesitter-based indentation
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
+			})
+			local ensure_installed = {
+				"markdown",
+				"latex",
+				"devicetree",
+				"dockerfile",
+				"bash",
+				"c",
+				"cpp",
+				"javascript",
+				"json",
+				"lua",
+				"python",
+				"typescript",
+				"css",
+				"rust",
+				"yaml",
+				"nix",
+				"go",
+			}
+			require("nvim-treesitter").install(ensure_installed)
+		end,
+	},
 
-		-- Install languages synchronously (only applied to `ensure_installed`)
-		sync_install = false,
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		init = function()
+			-- Disable entire built-in ftplugin mappings to avoid conflicts.
+			-- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+			vim.g.no_plugin_maps = true
 
-		highlight = {
-			-- `false` will disable the whole extension
-			enable = true,
+			-- keymaps
+			keymap_select("af", "@function.outer")
+			keymap_select("if", "@function.inner")
+			keymap_select("ab", "@block.outer")
+			keymap_select("ib", "@block.inner")
 
-			-- Disable slow treesitter highlight for large files
-			disable = function(_, buf)
-				local max_filesize = 60 * 1024 -- 60 KB
-				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-				if ok and stats and stats.size > max_filesize then
-					return true
-				end
-			end,
-			-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-			-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-			-- Using this option may slow down your editor, and you may see some duplicate highlights.
-			-- Instead of true it can also be a list of languages
-			additional_vim_regex_highlighting = true,
-		},
-		indent = {
-			enable = true,
-		},
-		incremental_selection = {
-			enable = true,
-			keymaps = {
-				init_selection = "gnn",
-				node_incremental = "grn",
-				scope_incremental = "grc",
-				node_decremental = "grm",
-			},
-		},
-		textobjects = {
-			select = {
-				enable = true,
-				-- automatically jump forward to textobj, similar to targets.vim
-				lookahead = true,
-				keymaps = {
-					-- you can use the capture groups defined in textobjects.scm
-					["af"] = "@function.outer",
-					["if"] = "@function.inner",
-					["ab"] = "@block.outer",
-					["ib"] = "@block.inner",
-				},
-				include_surrounding_whitespace = true,
-			},
-			move = {
-				enable = true,
-				set_jumps = true, -- whether to set jumps in the jumplist
-				goto_next_start = {
-					["]m"] = "@function.outer",
-					["]]"] = { query = "@class.outer", desc = "Next class start" },
-					--
-					-- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queries.
-					["]o"] = "@loop.*",
-					-- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
-					--
-					-- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
-					-- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
-					["]s"] = { query = "@local.scope", query_group = "locals", desc = "Next scope" },
-					["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
-					["]d"] = "@conditional.outer",
-				},
-				goto_next_end = {
-					["]M"] = "@function.outer",
-					["]["] = "@class.outer",
-				},
-				goto_previous_start = {
-					["[m"] = "@function.outer",
-					["[["] = "@class.outer",
-					["[d"] = "@conditional.outer",
-				},
-				goto_previous_end = {
-					["[M"] = "@function.outer",
-					["[]"] = "@class.outer",
-				},
-			},
-			swap = {
-				enable = true,
-				swap_next = {
-					["<leader>a"] = "@parameter.inner",
-				},
-				swap_previous = {
-					["<leader>a"] = "@parameter.inner",
-				},
-			},
-		},
+			keymap_move_to_next_start("]m", "@function.outer")
+			keymap_move_to_prev_start("[m", "@function.outer")
+
+			keymap_move_to_next_end("]M", "@function.inner")
+			keymap_move_to_prev_end("[M", "@function.inner")
+
+			keymap_move_to_next_start("]]", "@class.outer")
+			keymap_move_to_prev_start("[[", "@class.outer")
+
+			keymap_move_to_next_start("]d", "@conditional.outer")
+			keymap_move_to_prev_start("[d", "@conditional.outer")
+		end,
 	},
 }

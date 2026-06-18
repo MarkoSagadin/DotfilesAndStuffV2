@@ -34,6 +34,7 @@ opt.termguicolors = true -- Enable 24-bit colors
 opt.inccommand = "nosplit"
 opt.clipboard = "unnamedplus" -- Enable copying to system clipboard
 vim.o.winborder = "rounded"
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- Disable some default providers to decrease boot-up time.
 for _, provider in ipairs({ "node", "perl", "python3", "ruby" }) do

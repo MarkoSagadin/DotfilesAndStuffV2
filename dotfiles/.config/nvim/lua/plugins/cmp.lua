@@ -9,8 +9,8 @@ return {
 			},
 			snippets = { preset = "luasnip" },
 		},
-		build = "cargo build --release",
 		opts_extend = { "sources.default" },
+		version = "1.*",
 	},
 	{
 		"L3MON4D3/LuaSnip",

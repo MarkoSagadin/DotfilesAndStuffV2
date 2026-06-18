@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local id = vim.tbl_get(event, "data", "client_id")
 		local client = id and vim.lsp.get_client_by_id(id)
 
-		if client == nil or not client.supports_method("textDocument/documentHighlight") then
+		if client == nil or not client:supports_method("textDocument/documentHighlight") then
 			return
 		end
 

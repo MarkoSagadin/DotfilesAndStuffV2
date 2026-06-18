@@ -3,7 +3,7 @@ if not status_ok_tn then
 	return
 end
 
-local colorscheme = "tokyonight"
+local colorscheme = "tokyonight-storm"
 vim.cmd(":hi LineNr guibg=None guifg=#565f89")
 -- Needs to run before colorscheme cmd
 tokyonight.setup({
