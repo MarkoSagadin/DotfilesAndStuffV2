@@ -168,3 +168,40 @@ unset _zoxide_cache
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# lazy load nvm
+typeset -ga __lazyLoadLabels=(
+	bun
+	bunx
+	node
+	npm
+	npx
+	nvm
+	pnpm
+	pnpx
+	turbo
+	typescript-language-server
+	yarn
+    nvim
+)
+
+__load-nvm() {
+	export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+
+	[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+	[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+}
+
+__work() {
+	for label in "${__lazyLoadLabels[@]}"; do
+		unset -f $label
+	done
+	unset -v __lazyLoadLabels
+
+	__load-nvm
+	unset -f __load-nvm __work
+}
+
+for label in "${__lazyLoadLabels[@]}"; do
+	eval "$label() { __work; $label \$@; }"
+done
